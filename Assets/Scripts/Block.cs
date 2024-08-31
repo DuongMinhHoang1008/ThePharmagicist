@@ -7,13 +7,12 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     // Start is called before the first frame update
-    Camera mainCamera;
     Element element;
     BoardTile boardTile;
     bool placable = false;
     void Start()
     {
-        mainCamera = Camera.main;
+ 
     }
 
     // Update is called once per frame
@@ -21,29 +20,52 @@ public class Block : MonoBehaviour
     {
         
     }
-    private void OnMouseDrag() {
-        Vector3 screenPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-        transform.position = screenPos;
-    }
-    private void OnMouseUp() {
-        Debug.Log("up" + " " + placable);
+    public void Place() {
+        Debug.Log(gameObject.name + " " + boardTile + " " + placable);
         if (placable && boardTile != null) {
-            boardTile.ChangeColor(GetComponent<SpriteRenderer>().color);
+            boardTile.PlaceOn(element);
             Destroy(gameObject);
         }
     }
     private void OnTriggerStay2D(Collider2D other) {
+        // Vector3 globalPos = transform.TransformPoint(transform.position);
+        // Vector3 globalOtherPos = transform.TransformPoint(other.gameObject.transform.position);
+        Vector3 globalPos = transform.position;
+        Vector3 globalOtherPos = other.gameObject.transform.position;
         if (other.GetComponent<BoardTile>() != null) {
-            if (Math.Abs(transform.position.x - other.gameObject.transform.position.x) < GlobalGameVar.Instance().blockWidth / 1.5f
-            && Math.Abs(transform.position.y - other.gameObject.transform.position.y) < GlobalGameVar.Instance().blockWidth / 1.5f) {
-                Debug.Log("Oj");
-                placable = true;
+            //if boardTile = null -> boardTile = this obj | if this obj near obj than boardTile (or it is boardTile) -> boardTile = this obj
+            if (boardTile == null) {
                 boardTile = other.GetComponent<BoardTile>();
-                boardTile.ChangeColor(Color.gray);
-            } else {
+            } else if ((boardTile.gameObject.transform.position - transform.position).magnitude 
+                        >= (other.gameObject.transform.position - transform.position).magnitude) {
+                //The current boardTile is not capable anymore
                 placable = false;
-                other.GetComponent<BoardTile>().ChangeColor(Color.white);
+
+                boardTile.ChangeColor(GlobalGameVar.Instance().elementDic[boardTile.element].color);
+                // Debug.Log(Math.Abs(globalPos.x - globalOtherPos.x));
+                //Change the boardTile
+                boardTile = other.GetComponent<BoardTile>();
+                
+                if (Math.Abs(globalPos.x - globalOtherPos.x) < GlobalGameVar.Instance().blockWidth / 2
+                && Math.Abs(globalPos.y - globalOtherPos.y) < GlobalGameVar.Instance().blockWidth / 2
+                && boardTile.CanBePlacedOn(element)) {
+                    placable = true;
+                    boardTile.ChangeColor(Color.cyan);
+                } else {
+                    Debug.Log(gameObject.name + " can't place on: " + other.name);
+                    placable = false;
+                    if (boardTile.element == Element.None) {
+                        boardTile.ChangeColor(Color.white);
+                    }
+                }
             }
         }
+    }
+    public bool IsPlacable() {
+        return placable;
+    }
+    public void SetElement(Element el) {
+        element = el;
+        GetComponent<SpriteRenderer>().color = GlobalGameVar.Instance().elementDic[element].color;
     }
 }
