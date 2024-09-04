@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(currentHP > 0) playerMovement();
+        else playerHeath.Die();
     }
 
     void playerMovement()
