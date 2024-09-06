@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private float maxHP = 100;
     private float currentHP;
     public float playerVelocity = 5;
+    private Vector3 moveInput;
 
     [SerializeField] Element playerElement;
 
@@ -34,25 +35,10 @@ public class Player : MonoBehaviour
 
     void playerMovement()
     {
-        if ( Input.GetKey(KeyCode.W) )
-        {
-            transform.position = transform.position + new Vector3(0, playerVelocity, 0) * Time.deltaTime;
-        }
+        moveInput.x = Input.GetAxis("Horizontal");
+        moveInput.y = Input.GetAxis("Vertical");
 
-        if ( Input.GetKey(KeyCode.A) )
-        {
-            transform.position = transform.position - new Vector3(playerVelocity, 0, 0) * Time.deltaTime;
-        }
-
-        if ( Input.GetKey(KeyCode.D) )
-        {
-            transform.position = transform.position + new Vector3(playerVelocity, 0, 0) * Time.deltaTime;
-        }
-
-        if ( Input.GetKey(KeyCode.S) )
-        {
-            transform.position = transform.position - new Vector3(0, playerVelocity, 0) * Time.deltaTime;
-        }
+        transform.position += moveInput * playerVelocity * Time.deltaTime;
     }
 
     public void OnMouseDown()
