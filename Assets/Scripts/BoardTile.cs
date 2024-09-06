@@ -31,6 +31,7 @@ public class BoardTile : MonoBehaviour
         } else {
             if (element == GlobalGameVar.Instance().elementDic[el].plus) {
                 value = 2;
+                GetComponent<SpriteRenderer>().color = GlobalGameVar.Instance().elementDic[element].color;
             } else if (el == GlobalGameVar.Instance().elementDic[element].plus) {
                 value = 2;
                 element = el;
