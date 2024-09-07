@@ -55,7 +55,9 @@ public class BoardTile : MonoBehaviour
         }
     }
     public bool CanBePlacedOn(Element blockEl) {
-        if (blockEl != element && value != 2) {
+        if ((blockEl != element && value != 2) 
+            || (value == 2 && (blockEl == GlobalGameVar.Instance().elementDic[element].minus
+            || element == GlobalGameVar.Instance().elementDic[blockEl].minus))) {
             return true;
         } else {
             return false;
