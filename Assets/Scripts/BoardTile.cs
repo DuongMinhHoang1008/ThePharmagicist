@@ -13,6 +13,7 @@ public class BoardTile : MonoBehaviour
     void Start()
     {
         value = 0;
+        Debug.Log(GetComponent<SpriteRenderer>().color.a);
     }
 
     // Update is called once per frame
@@ -21,7 +22,11 @@ public class BoardTile : MonoBehaviour
         
     }
     public void ChangeColor(Color elementColor) {
-        GetComponent<SpriteRenderer>().color = elementColor;
+        float alphaCol = 1;
+        if (value == 0) {
+            alphaCol = 65f/255f;
+        } 
+        GetComponent<SpriteRenderer>().color = new Color(elementColor.r, elementColor.g, elementColor.b, alphaCol);
     }
     public void ChangeElement(Element el) {
         if (element == Element.None) {
@@ -50,7 +55,7 @@ public class BoardTile : MonoBehaviour
         }
     }
     public bool CanBePlacedOn(Element blockEl) {
-        if (blockEl != element) {
+        if (blockEl != element && value != 2) {
             return true;
         } else {
             return false;
