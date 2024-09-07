@@ -9,9 +9,10 @@ public class PotionClass : ItemClass
     [Header("Potion")]
     public int toolDamage;
     public int toolDurability;
+    
     public override ItemClass GetItems(SlotClass slotClass) { return this; }
-    public override PotionClass GetPotion(ItemClass itemClass) { return this; }
-    public override HerbClass GetHerb(SlotClass slotClass) { return null; }
+    public override PotionClass GetPotion() { return this; }
+    public override HerbClass GetHerb() { return null; }
 
-    public override ConsumableClass GetConsumable(ItemClass itemClass) { return null; }
+    public override ConsumableClass GetConsumable() { return null; }
 }

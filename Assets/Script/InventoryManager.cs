@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private ItemClass itemToAdd;
     
     [SerializeField] private ItemClass itemToRemove;
-    [SerializeField] private SlotClass[] items;
+    [SerializeField] public SlotClass[] items;
     [SerializeField] private SlotClass[] herb;
     [SerializeField] private SlotClass[] potion;
 
@@ -21,11 +21,11 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private SlotClass originalSlot;
     [SerializeField] private SlotClass tempSlot;
 
-    
+   
 
     public Image itemCursor;
 
-    [SerializeField] private GameObject[] slots;
+    [SerializeField] public GameObject[] slots;
     public bool isMoving;
 
     //[SerializeField] private List<SlotClass> items = new List<SlotClass>();
@@ -93,8 +93,9 @@ public class InventoryManager : MonoBehaviour
     }
     private void Update()
     {
+
         
-        
+            
         if (Input.GetMouseButtonDown(0))
         {
             
@@ -160,7 +161,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-    private void RefreshUI()
+    public void RefreshUI()
     {
         for(int i = 0;i<slots.Length;i++)
         {

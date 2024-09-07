@@ -9,10 +9,10 @@ public abstract class ItemClass :ScriptableObject
     public Sprite itemIcon;
     public bool isStackable = true;
     public abstract ItemClass GetItems(SlotClass slotClass);
-    public abstract PotionClass GetPotion(ItemClass itemClass);
-    public abstract HerbClass GetHerb(SlotClass slotClass);
+    public abstract PotionClass GetPotion();
+    public abstract HerbClass GetHerb();
 
-    public abstract ConsumableClass GetConsumable(ItemClass itemClass);
+    public abstract ConsumableClass GetConsumable();
 
 
 
