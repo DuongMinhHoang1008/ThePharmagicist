@@ -13,7 +13,6 @@ public class BoardTile : MonoBehaviour
     void Start()
     {
         value = 0;
-        Debug.Log(GetComponent<SpriteRenderer>().color.a);
     }
 
     // Update is called once per frame

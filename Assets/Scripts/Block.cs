@@ -21,7 +21,6 @@ public class Block : MonoBehaviour
         
     }
     public void Place() {
-        Debug.Log(gameObject.name + " " + boardTile + " " + placable);
         if (placable && boardTile != null) {
             boardTile.PlaceOn(element);
             Destroy(gameObject);
@@ -42,7 +41,6 @@ public class Block : MonoBehaviour
                 placable = false;
 
                 boardTile.ChangeColor(GlobalGameVar.Instance().elementDic[boardTile.element].color);
-                // Debug.Log(Math.Abs(globalPos.x - globalOtherPos.x));
                 //Change the boardTile
                 boardTile = other.GetComponent<BoardTile>();
                 
@@ -52,7 +50,6 @@ public class Block : MonoBehaviour
                     placable = true;
                     boardTile.ChangeColor(Color.cyan);
                 } else {
-                    Debug.Log(gameObject.name + " can't place on: " + other.name);
                     placable = false;
                     if (boardTile.element == Element.None) {
                         boardTile.ChangeColor(Color.white);

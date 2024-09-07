@@ -35,13 +35,14 @@ public class Board : MonoBehaviour
     public void CalculateElement() {
         foreach (BoardTile tile in boardTileArr) {
             if (tile.element != Element.None) {
-                Debug.Log(tile.name + " - " + tile.element);
                 elementNumber[tile.element] += tile.value;
             }
         }
+        string res = "";
         foreach (Element element in elementNumber.Keys) {
-            Debug.Log(element + ": " + elementNumber[element]);
+            res += element + ": " + elementNumber[element] + "\n";
         }
+        Debug.Log(res);
         elementNumber[Element.Metal] = 0;
         elementNumber[Element.Water] = 0;
         elementNumber[Element.Wood] = 0;

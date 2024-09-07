@@ -25,7 +25,7 @@ public class BlockGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(blockArr.Length);
+        
     }
     private void OnMouseDrag() {
         Vector3 screenPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
@@ -42,7 +42,6 @@ public class BlockGroup : MonoBehaviour
     bool IsPlacable() {
         foreach (Block block in blockArr) {
             if (!block.IsPlacable()) {
-                Debug.Log(block.name);
                 return false;
             }
         }
