@@ -38,6 +38,7 @@ public class PotionController : MonoBehaviour
             Random.Range(spawnAreaMin.z, spawnAreaMax.z));
             GameObject newObject = new GameObject(herbDic[i].herb.ItemName);
             var currentitem = herbDic[i].herb.ItemName;
+            newObject.transform.localScale = new Vector3(4f, 4f, 4f);
             SpriteRenderer spriteRenderer = newObject.AddComponent<SpriteRenderer>();
             CircleCollider2D collider2D = newObject.AddComponent<CircleCollider2D>();
 
