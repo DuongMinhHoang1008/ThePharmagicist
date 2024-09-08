@@ -8,6 +8,7 @@ public class HerbClass : ItemClass
 {
     [Header("Herb")]
     public string itemDescription;
+    
     public override ItemClass GetItems(SlotClass slotClass) { return this; }
     public override PotionClass GetPotion() { return null; }
     public override HerbClass GetHerb() {return this;}

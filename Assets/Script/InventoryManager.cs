@@ -53,13 +53,22 @@ public class InventoryManager : MonoBehaviour
         }
         for(int i = 0; i < startingItems.Length; i++)
         {
-            items[i] = startingItems[i];
+            if(startingItems[i].GetQuantity() >= 1)
+            {
+                items[i] = startingItems[i];
+            }
+            
         }
         RefreshUI();
     }
     public void Classify()
     {
         RefreshUI();
+        for(int i = 0; i < slots.Length; i++)
+        {
+            herb[i].RemoveItem();
+            potion[i].RemoveItem();
+        }
     }
     public void ClassifyPotion()
     {
@@ -75,6 +84,11 @@ public class InventoryManager : MonoBehaviour
         }
         j = 0;
         RefreshPotion();
+        for (int i = 0; i < slots.Length; i++)
+        {
+            herb[i].RemoveItem();
+            
+        }
     }
     public void ClassifyHerb()
     {
@@ -89,6 +103,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
         j = 0;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            
+            potion[i].RemoveItem();
+        }
         RefreshHerb();
     }
     private void Update()
@@ -123,9 +142,6 @@ public class InventoryManager : MonoBehaviour
     }
     private void RefreshHerb()
     {
-        
-            
-        
             for (int i = 0; i < slots.Length; i++)
             {
                 try
@@ -141,10 +157,10 @@ public class InventoryManager : MonoBehaviour
                     slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
                 }
             }
-        
     }
     private void RefreshPotion()
     {
+        
         for (int i = 0; i < slots.Length; i++)
         {
             try
@@ -163,13 +179,14 @@ public class InventoryManager : MonoBehaviour
     }
     public void RefreshUI()
     {
-        for(int i = 0;i<slots.Length;i++)
+        for (int i = 0;i<slots.Length;i++)
         {
             try
             {
-                slots[i].transform.GetChild(0).GetComponent<Image>().enabled = true ;
-                slots[i].transform.GetChild(0).GetComponent<Image>().sprite = items[i].GetItem().itemIcon;
-                slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].GetQuantity()+"";
+                    slots[i].transform.GetChild(0).GetComponent<Image>().enabled = true;
+                    slots[i].transform.GetChild(0).GetComponent<Image>().sprite = items[i].GetItem().itemIcon;
+                    slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = items[i].GetQuantity() + "";
+                
             }
             catch
             {
@@ -177,13 +194,16 @@ public class InventoryManager : MonoBehaviour
                 slots[i].transform.GetChild(0).GetComponent<Image>().enabled =false;
                 slots[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
             }
+
         }
+        
     }
 
     // Update is called once per frame
     public void AddItem(ItemClass item,int quantity)
     {
         SlotClass slot = ContainItem(item);
+        Debug.Log("ccc");
         if(slot != null)
         {
             slot.AddQuantity(quantity);
@@ -234,13 +254,14 @@ public class InventoryManager : MonoBehaviour
         RefreshUI();
     }
     
-    private SlotClass ContainItem(ItemClass item)
+    public SlotClass ContainItem(ItemClass item)
     {
         foreach(SlotClass slot in items)
         {
-            if(slot.GetItem() == item)
+            if(slot != null && slot.GetItem() == item)
             {
                 return slot;
+                
             }
         }
         return null;

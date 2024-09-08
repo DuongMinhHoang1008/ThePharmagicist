@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1631124076353429594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2332903500072438643}
+  - component: {fileID: 28119664173364745}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2332903500072438643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631124076353429594}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 522.2774, y: 315.9101, z: -6.050212}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &28119664173364745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631124076353429594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1b58db513e535469b8a21ad893303e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotsHolder: {fileID: 0}
+  itemToAdd: {fileID: 0}
+  itemToRemove: {fileID: 0}
+  items: []
+  herb: []
+  potion: []
+  startingItems:
+  - item: {fileID: 11400000, guid: 37bca8777fc7eef4c863592d5fcee826, type: 2}
+    quantity: 0
+  - item: {fileID: 11400000, guid: 95755febc1b00d0429d190a2f566030d, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: eaa741b8f5a88c04fb8a5a2c0f34405e, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: ca63f0878f4f32445a8a748159e64a0e, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 87f18b668a8dd244094799ba93d0d04e, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: a6b63bde0e965cf42b6e04635ca9f4f3, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 7403bfabdfc5e234581d654575ff1734, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 1e6ff092643713543823bbbef6097dff, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 483a3820fa289e5469e502396a9518bc, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 2a75b1ef3b8f2e94c9bcfe9e7f67fb35, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 4f27f90f3f2273149ad5c5c2c1311b2c, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 6c2c758ee347b08499e52d5504526072, type: 2}
+    quantity: 1
+  movingSlot:
+    item: {fileID: 0}
+    quantity: 0
+  originalSlot:
+    item: {fileID: 0}
+    quantity: 0
+  tempSlot:
+    item: {fileID: 0}
+    quantity: 0
+  itemCursor: {fileID: 0}
+  slots: []
+  isMoving: 0
