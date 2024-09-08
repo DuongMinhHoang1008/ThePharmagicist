@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 80
       width: 13
       height: 30
-    spriteID: 9a738e2f16edddc499d65feef167299d
+    spriteID: 8eb02ee53b48ad34691c275b7cf49b84
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 15
       height: 30
-    spriteID: 6a766a174d9437848ab7e5240a6afc76
+    spriteID: 6ca0b63808a0361419b8bcf36ce66755
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 42
       width: 14
       height: 30
-    spriteID: 3e71e627e88ddeb40a0217293d3117a5
+    spriteID: fc64ea53bf932f44d84bfd37297319f5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,7 +197,7 @@ ScriptedImporter:
         y: 0
         width: 13
         height: 30
-      spriteId: 9a738e2f16edddc499d65feef167299d
+      spriteId: 8eb02ee53b48ad34691c275b7cf49b84
     - name: player_walk_left_done_Frame_1
       frameIndex: 1
       cellRect:
@@ -205,7 +205,7 @@ ScriptedImporter:
         y: 0
         width: 15
         height: 30
-      spriteId: 6a766a174d9437848ab7e5240a6afc76
+      spriteId: 6ca0b63808a0361419b8bcf36ce66755
     - name: player_walk_left_done_Frame_2
       frameIndex: 2
       cellRect:
@@ -213,7 +213,7 @@ ScriptedImporter:
         y: 0
         width: 14
         height: 30
-      spriteId: 3e71e627e88ddeb40a0217293d3117a5
+      spriteId: fc64ea53bf932f44d84bfd37297319f5
     linkedCells: []
     parentIndex: -1
   platformSettings: []

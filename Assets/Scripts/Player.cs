@@ -10,12 +10,11 @@ public class Player : MonoBehaviour
     //Set a HealthBar for player
     [SerializeField] HealthBar playerHeath;
 
-
     //Player attribute
-    private float maxHP = 100;
+    private const float maxHP = 100;
     private float currentHP;
-    public float playerVelocity = 10;
-    public Vector2 moveInput;
+    public float playerVelocity = 5;
+    private Vector2 moveInput;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -25,13 +24,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
-        //If the HealthBar follow character, uncomment line 25
-        //playerHeath = GetComponentInChildren<HealthBar>();
+        playerHeath = GetComponent<HealthBar>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if(currentHP > 0) playerMovement();
         else playerHeath.Die();
@@ -39,13 +37,10 @@ public class Player : MonoBehaviour
 
     void playerMovement()
     {
-        moveInput.x = 0;
-        moveInput.y = 1;
-
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
-
-        rb.MovePosition(rb.position + moveInput * playerVelocity * Time.deltaTime);
+        rb.MovePosition(rb.position + moveInput * playerVelocity * Time.fixedDeltaTime);
+        
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
 
@@ -56,9 +51,4 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
-    {
-        currentHP -= 10;
-        playerHeath.updateHealthBar(currentHP, maxHP);
-    }
 }
