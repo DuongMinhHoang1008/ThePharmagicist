@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
+        moveInput = moveInput.normalized;
         rb.MovePosition(rb.position + moveInput * playerVelocity * Time.fixedDeltaTime);
         
         animator.SetFloat("Horizontal", moveInput.x);
