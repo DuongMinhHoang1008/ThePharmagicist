@@ -30,11 +30,14 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
+    void Update() {
+        if(currentHP > 0) playerMovement();
+        else playerHeath.Die();
+    }
 
     void FixedUpdate()
     {
-        if(currentHP > 0) playerMovement();
-        else playerHeath.Die();
+        if(currentHP > 0) rb.MovePosition(rb.position + moveInput * playerVelocity * Time.fixedDeltaTime);
     }
 
     void playerMovement()
@@ -42,7 +45,6 @@ public class Player : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput = moveInput.normalized;
-        rb.MovePosition(rb.position + moveInput * playerVelocity * Time.fixedDeltaTime);
         
         animator.SetFloat("Horizontal", moveInput.x);
         animator.SetFloat("Vertical", moveInput.y);
