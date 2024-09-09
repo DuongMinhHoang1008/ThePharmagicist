@@ -788,6 +788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawnitem
       objectReference: {fileID: 0}
+    - target: {fileID: 4776254245767814921, guid: 13c5e818264fb4d42bc373ad8edd70ea, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

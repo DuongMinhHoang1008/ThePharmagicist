@@ -271,7 +271,8 @@ public class InventoryManager : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            if(Vector2.Distance(slots[i].transform.position,Input.mousePosition) <= 64)
+            
+            if(Vector2.Distance(slots[i].transform.position,Input.mousePosition) <= 32)
             {
                 return items[i];
             }

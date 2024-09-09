@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         if (currentHP > 0) playerMovement();
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.DrawRay(transform.position, transform.right * 10, Color.red, 2f); // Visualize the ray
+            
             RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, transform.right , 1f, LayerMask.GetMask("Item", "~Player"));
             //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hit.collider);
             if (hits.Length > 0)
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
                         if (spawnitemManager != null)
                         {
                             hit.collider.GetComponent<SpawnitemManager>().Loot();
+                            break;
                         }
                     }
                 }
