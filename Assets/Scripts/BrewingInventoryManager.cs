@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class InventoryManager : MonoBehaviour
+public class BrewingInventoryManager : MonoBehaviour
 {
     private UIManager UIManager;
     [SerializeField] private GameObject slotsHolder;
@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private SlotClass originalSlot;
     [SerializeField] private SlotClass tempSlot;
 
-   
+    GameObject ingredientShape;
 
     public Image itemCursor;
 
@@ -100,7 +100,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             var currentItem = items[i].GetItem();
-            if ((currentItem is HerbClass))
+            if (currentItem is HerbClass)
             {
                 herb[j].AddItem(items[i].GetItem(), items[i].GetQuantity());
                 j++;
@@ -128,8 +128,9 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                BeginMove();
+                GetItemToBrew();
             }
+            
         }
         if (isMoving)
         {
@@ -207,7 +208,6 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(ItemClass item,int quantity)
     {
         SlotClass slot = ContainItem(item);
-        Debug.Log("ccc");
         if(slot != null)
         {
             slot.AddQuantity(quantity);
@@ -276,7 +276,7 @@ public class InventoryManager : MonoBehaviour
         for(int i = 0; i < slots.Length; i++)
         {
             
-            if(Vector2.Distance(slots[i].transform.position,Input.mousePosition) <= 32)
+            if(Vector2.Distance(slots[i].transform.position,Camera.main.ScreenToWorldPoint(Input.mousePosition)) <= 0.5f)
             {
                 return items[i];
             }
@@ -302,52 +302,74 @@ public class InventoryManager : MonoBehaviour
     }
     private void EndMove()
     {
-        originalSlot = GetCloseSlot();
+        if(ingredientShape != null) {
+            if(!ingredientShape.GetComponent<BlockGroup>().IsPlacable()) {
+                Destroy(ingredientShape);
+                originalSlot = GetCloseSlot();
 
-        if(originalSlot == null)
-        {
-            AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
-        }
-        else
-        {
-            if (originalSlot.GetItem() != null)
-            {
-                if (originalSlot.GetItem() == movingSlot.GetItem())
+                if(originalSlot == null)
                 {
-                    if (originalSlot.GetItem().isStackable)
-                    {
-                        originalSlot.AddQuantity(movingSlot.GetQuantity());
-                        movingSlot.RemoveItem();
-                    }
-                    else
-                    {
-                        return;
-                    }
+                    AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
                 }
                 else
                 {
-                    tempSlot.AddItem(originalSlot.GetItem(), originalSlot.GetQuantity());
-                    originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
-                    movingSlot.AddItem(tempSlot.GetItem(), tempSlot.GetQuantity());
-                    tempSlot.RemoveItem();
+                    if (originalSlot.GetItem() != null)
+                    {
+                        if (originalSlot.GetItem() == movingSlot.GetItem())
+                        {
+                            if (originalSlot.GetItem().isStackable)
+                            {
+                                originalSlot.AddQuantity(movingSlot.GetQuantity());
+                                movingSlot.RemoveItem();
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            tempSlot.AddItem(originalSlot.GetItem(), originalSlot.GetQuantity());
+                            originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
+                            movingSlot.AddItem(tempSlot.GetItem(), tempSlot.GetQuantity());
+                            tempSlot.RemoveItem();
 
-                    RefreshUI();
-                    return;
+                            RefreshUI();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
+                        movingSlot.RemoveItem();
+                    }
                 }
+                RefreshUI();
             }
-            else
-            {
-                originalSlot.AddItem(movingSlot.GetItem(), movingSlot.GetQuantity());
-                movingSlot.RemoveItem();
-            }
+            isMoving = false;
         }
-
-        
-        isMoving = false;
-        RefreshUI();
-        return;
     }
    
+    public void GetItemToBrew() {
+        SlotClass currentSlot = GetCloseSlot();
+        if(currentSlot == null || currentSlot.GetItem() == null)
+        {
+            return;
+        }
+        HerbClass herbClass = currentSlot.GetItem().GetHerb();
+        if (herbClass != null) {
+            currentSlot.SubQuantity(1);
+            isMoving = true;
+            movingSlot.AddItem(currentSlot.GetItem(), 1);
+            if (currentSlot.GetQuantity() == 0) {
+                currentSlot.RemoveItem();
+            }
+            RefreshUI();
 
+            ingredientShape = Instantiate(herbClass.GetIngredientShape(), Vector3.zero, Quaternion.identity);
+            ingredientShape.GetComponent<BlockGroup>().SetElement(herbClass.GetElement());
+        }
+        return;
+    }
 
 }

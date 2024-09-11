@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f015deb19c9ea774ca6f1a6456211b52, type: 3}
-  m_Name: cay_ca_gai_leo
+  m_Name: sa
   m_EditorClassIdentifier: 
-  ItemName: cay_ca_gai_leo
-  itemIcon: {fileID: 21300000, guid: c82adfcf025ddf745bc1fd88780447a8, type: 3}
+  ItemName: "S\u1EA3"
+  itemIcon: {fileID: 21300000, guid: 2b19b23d2f4595f49b59db9ba45d1a1d, type: 3}
   isStackable: 1
-  itemDescription: ca_gai_leo
-  element: 3
-  ingredientShape: {fileID: 0}
+  itemDescription: 
+  element: 4
+  ingredientShape: {fileID: 1688870218526684440, guid: f9ccb8ffbfc23ff4d8a0f9e6f81aed80, type: 3}
