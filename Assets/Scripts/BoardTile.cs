@@ -80,4 +80,9 @@ public class BoardTile : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 1);
         }
     }
+    public void ClearAll() {
+        element = Element.None;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        value = 0;
+    }
 }

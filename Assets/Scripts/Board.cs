@@ -46,6 +46,12 @@ public class Board : MonoBehaviour
             res += element + ": " + elementNumber[element] + "\n";
         }
         BrewNewPotion();
+        elementNumber[Element.Metal] = 0;
+        elementNumber[Element.Water] = 0;
+        elementNumber[Element.Wood] = 0;
+        elementNumber[Element.Fire] = 0;
+        elementNumber[Element.Earth] = 0;
+        ClearBoard();
     }
     public void BrewNewPotion() {
         CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();
@@ -57,15 +63,26 @@ public class Board : MonoBehaviour
                         + "E" + elementNumber[Element.Earth]; 
         string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
 
-        curePotionClass.SetElementValue(elementNumber[Element.Metal],
-                                        elementNumber[Element.Water],
-                                        elementNumber[Element.Wood],
-                                        elementNumber[Element.Fire],
-                                        elementNumber[Element.Earth],
-                                        curePotionIcon);
+        if (!System.IO.File.Exists(path)) {
+            curePotionClass.SetElementValue(elementNumber[Element.Metal],
+                                            elementNumber[Element.Water],
+                                            elementNumber[Element.Wood],
+                                            elementNumber[Element.Fire],
+                                            elementNumber[Element.Earth],
+                                            curePotionIcon);
 
-        AssetDatabase.CreateAsset(curePotionClass, path);
+            AssetDatabase.CreateAsset(curePotionClass, path);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        } else {
+            curePotionClass = AssetDatabase.LoadAssetAtPath<CurePotionClass>(path);
+        }
 
         brewingInventoryManager.AddItem(curePotionClass, 1);
+    }
+    public void ClearBoard() {
+        foreach (BoardTile boardTile in boardTileArr) {
+            boardTile.ClearAll();
+        }
     }
 }

@@ -207,6 +207,7 @@ public class BrewingInventoryManager : MonoBehaviour
     // Update is called once per frame
     public void AddItem(ItemClass item,int quantity)
     {
+        Debug.Log("Wtf"+(item!=items[10].GetItem()));
         SlotClass slot = ContainItem(item);
         if(slot != null)
         {
@@ -260,8 +261,12 @@ public class BrewingInventoryManager : MonoBehaviour
     
     public SlotClass ContainItem(ItemClass item)
     {
+        Debug.Log("Here" + items[10].GetItem());
         foreach(SlotClass slot in items)
         {
+            if(slot.GetItem() != null) {
+                Debug.Log(slot.GetItem() + " " + item + " " + (slot.GetItem() == item));
+            }
             if(slot != null && slot.GetItem() == item)
             {
                 return slot;

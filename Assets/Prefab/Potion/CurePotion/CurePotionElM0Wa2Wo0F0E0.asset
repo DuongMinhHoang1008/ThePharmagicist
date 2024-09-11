@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CurePotionElM0Wa2Wo0F0E0
   m_EditorClassIdentifier: 
   ItemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 3a481bc5b3972b54ab4918d5226622af, type: 3}
   isStackable: 1
   metalValue: 0
   waterValue: 2
