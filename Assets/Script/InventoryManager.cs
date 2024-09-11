@@ -51,6 +51,7 @@ public class InventoryManager : MonoBehaviour
             herb[i] = new SlotClass();
             potion[i] = new SlotClass();
         }
+
         for(int i = 0; i < startingItems.Length; i++)
         {
             if(startingItems[i].GetQuantity() >= 1)
@@ -59,6 +60,9 @@ public class InventoryManager : MonoBehaviour
             }
             
         }
+
+        PlayerInfo.Instance().UpdateGlobalInventory(ref items);
+
         RefreshUI();
     }
     public void Classify()

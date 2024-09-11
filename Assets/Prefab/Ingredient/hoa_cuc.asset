@@ -16,3 +16,5 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: bb68ecb3df433b34d816f21fe64b2a61, type: 3}
   isStackable: 1
   itemDescription: 
+  element: 2
+  ingredientShape: {fileID: 478141490278108447, guid: 946a19e9ea9e31045aa5250cb93cf17b, type: 3}
