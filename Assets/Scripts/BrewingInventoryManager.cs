@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BrewingInventoryManager : MonoBehaviour
 {
@@ -20,10 +21,12 @@ public class BrewingInventoryManager : MonoBehaviour
     [SerializeField] private SlotClass movingSlot;//di chuyển các slot khác cho cái item
     [SerializeField] private SlotClass originalSlot;
     [SerializeField] private SlotClass tempSlot;
-
+    [SerializeField] Board brewingBoard;
+    [SerializeField] GameObject itemInfo;
     GameObject ingredientShape;
 
     public Image itemCursor;
+    SlotClass[] tempItems;
 
     [SerializeField] public GameObject[] slots;
     public bool isMoving;
@@ -62,6 +65,7 @@ public class BrewingInventoryManager : MonoBehaviour
         }
 
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
+        CopyInventory(items, ref tempItems);
 
         RefreshUI();
     }
@@ -116,9 +120,6 @@ public class BrewingInventoryManager : MonoBehaviour
     }
     private void Update()
     {
-
-        
-            
         if (Input.GetMouseButtonDown(0))
         {
             
@@ -143,7 +144,6 @@ public class BrewingInventoryManager : MonoBehaviour
             itemCursor.enabled = false;
             itemCursor.sprite = null;
         }
-        
     }
     private void RefreshHerb()
     {
@@ -207,7 +207,6 @@ public class BrewingInventoryManager : MonoBehaviour
     // Update is called once per frame
     public void AddItem(ItemClass item,int quantity)
     {
-        Debug.Log("Wtf"+(item!=items[10].GetItem()));
         SlotClass slot = ContainItem(item);
         if(slot != null)
         {
@@ -261,11 +260,9 @@ public class BrewingInventoryManager : MonoBehaviour
     
     public SlotClass ContainItem(ItemClass item)
     {
-        Debug.Log("Here" + items[10].GetItem());
         foreach(SlotClass slot in items)
         {
             if(slot.GetItem() != null) {
-                Debug.Log(slot.GetItem() + " " + item + " " + (slot.GetItem() == item));
             }
             if(slot != null && slot.GetItem() == item)
             {
@@ -359,6 +356,7 @@ public class BrewingInventoryManager : MonoBehaviour
         SlotClass currentSlot = GetCloseSlot();
         if(currentSlot == null || currentSlot.GetItem() == null)
         {
+            CloseItemInfo();
             return;
         }
         HerbClass herbClass = currentSlot.GetItem().GetHerb();
@@ -373,8 +371,33 @@ public class BrewingInventoryManager : MonoBehaviour
 
             ingredientShape = Instantiate(herbClass.GetIngredientShape(), Vector3.zero, Quaternion.identity);
             ingredientShape.GetComponent<BlockGroup>().SetElement(herbClass.GetElement());
+        } else {
+            if (currentSlot.GetItem() is CurePotionClass) {
+                ShowItemInfo((CurePotionClass) currentSlot.GetItem());
+            }
         }
         return;
+    }  
+    public void UndoBrewing() {
+        CopyInventory(tempItems, ref items);
+        RefreshUI();
+        brewingBoard.ClearBoard();
     }
-
+    void CopyInventory(SlotClass[] from, ref SlotClass[] to) {
+        to = new SlotClass[from.Length];
+        for (int i = 0; i < from.Length; i++) {
+            to[i] = new SlotClass(from[i].GetItem(), from[i].GetQuantity());
+        }
+    }
+    public void CopyInventoryToTemp() {
+        CopyInventory(items, ref tempItems);
+    }
+    void ShowItemInfo(CurePotionClass curePotion) {
+        itemInfo.active = true;
+        itemInfo.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = curePotion.GetPotionName();
+        itemInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = curePotion.GetInfoPotion();
+    }
+    void CloseItemInfo() {
+        itemInfo.active = false;
+    }
 }

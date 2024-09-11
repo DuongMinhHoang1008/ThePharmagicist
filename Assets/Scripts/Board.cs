@@ -79,6 +79,7 @@ public class Board : MonoBehaviour
         }
 
         brewingInventoryManager.AddItem(curePotionClass, 1);
+        brewingInventoryManager.CopyInventoryToTemp();
     }
     public void ClearBoard() {
         foreach (BoardTile boardTile in boardTileArr) {

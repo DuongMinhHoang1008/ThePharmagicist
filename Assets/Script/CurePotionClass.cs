@@ -25,4 +25,21 @@ public class CurePotionClass : ItemClass
         metalValue = metal; waterValue = water; woodValue = wood; fireValue = fire; earthValue = earth; 
         itemIcon = sprite;
     }
+    public string GetPotionName() {
+        string name = "Thuốc chữa bệnh\n" 
+                        + "M" + metalValue
+                        + "Wa" + waterValue
+                        + "Wo" + woodValue
+                        + "F" + fireValue
+                        + "E" + earthValue;
+        return name;
+    }
+    public string GetInfoPotion() {
+        string info = "Kim: " + metalValue + "\n"
+                    + "Thủy: " + waterValue + "\n"
+                    + "Mộc: " + woodValue + "\n"
+                    + "Hỏa: " + fireValue + "\n"
+                    + "Thổ: " + earthValue;
+        return info;
+    }
 }

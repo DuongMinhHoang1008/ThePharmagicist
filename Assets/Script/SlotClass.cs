@@ -21,7 +21,7 @@ public class SlotClass
         this.quantity = _quantity;
     }
 
-    public ItemClass GetItem() { Debug.Log("This Slot" + item); return this.item; }
+    public ItemClass GetItem() { return this.item; }
     
     public int GetQuantity() { return this.quantity; }
     public void AddQuantity(int _quantity) { quantity += _quantity; }
