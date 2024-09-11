@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class Board : MonoBehaviour
 {
     BoardTile[] boardTileArr;
     Dictionary<Element, int> elementNumber;
+    [SerializeField] BrewingInventoryManager brewingInventoryManager;
+    [SerializeField] Sprite curePotionIcon;
     // Start is called before the first frame update
     private void Awake() {
         
@@ -42,11 +45,27 @@ public class Board : MonoBehaviour
         foreach (Element element in elementNumber.Keys) {
             res += element + ": " + elementNumber[element] + "\n";
         }
-        Debug.Log(res);
-        elementNumber[Element.Metal] = 0;
-        elementNumber[Element.Water] = 0;
-        elementNumber[Element.Wood] = 0;
-        elementNumber[Element.Fire] = 0;
-        elementNumber[Element.Earth] = 0;
+        BrewNewPotion();
+    }
+    public void BrewNewPotion() {
+        CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();
+        string name = "CurePotionEl" 
+                        + "M" + elementNumber[Element.Metal]
+                        + "Wa" + elementNumber[Element.Water]
+                        + "Wo" + elementNumber[Element.Wood]
+                        + "F" + elementNumber[Element.Fire]
+                        + "E" + elementNumber[Element.Earth]; 
+        string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
+
+        curePotionClass.SetElementValue(elementNumber[Element.Metal],
+                                        elementNumber[Element.Water],
+                                        elementNumber[Element.Wood],
+                                        elementNumber[Element.Fire],
+                                        elementNumber[Element.Earth],
+                                        curePotionIcon);
+
+        AssetDatabase.CreateAsset(curePotionClass, path);
+
+        brewingInventoryManager.AddItem(curePotionClass, 1);
     }
 }

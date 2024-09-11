@@ -26,4 +26,7 @@ public class GameManager : MonoBehaviour
     public void ChangeSceneToBrewing() {
         SceneManager.LoadScene("BrewingPuzzle");
     }
+    public void ChangeSceneToInventory() {
+        SceneManager.LoadScene("InventoryTestScene");
+    }
 }
