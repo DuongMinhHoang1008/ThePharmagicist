@@ -25,13 +25,24 @@ public class BlockGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 screenPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+        transform.position = screenPos;
+        if (Input.GetMouseButtonDown(0)) {
+            if (IsPlacable()) {
+                foreach (Block block in blockArr) {
+                    block.Place();
+                }  
+                Destroy(gameObject);
+            }
+        }
     }
     private void OnMouseDrag() {
+        return;
         Vector3 screenPos = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         transform.position = screenPos;
     }
     private void OnMouseUp() {
+        return;
         if (IsPlacable()) {
             foreach (Block block in blockArr) {
                 block.Place();
@@ -39,12 +50,15 @@ public class BlockGroup : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    bool IsPlacable() {
+    public bool IsPlacable() {
         foreach (Block block in blockArr) {
             if (!block.IsPlacable()) {
                 return false;
             }
         }
         return true;
+    }
+    public void SetElement(Element el) {
+        element = el;
     }
 }

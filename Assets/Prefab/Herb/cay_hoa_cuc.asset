@@ -16,3 +16,5 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 1c344a74d8df7344a8795db3788760ca, type: 3}
   isStackable: 1
   itemDescription: hoa_cuc
+  element: 2
+  ingredientShape: {fileID: 0}
