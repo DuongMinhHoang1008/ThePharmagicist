@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] Element playerElement;
     
     [SerializeField]private SpawnitemManager[] spawnitemManagers;
-    Vector2 direction ;
-    
+    Vector2 direction = Vector2.right;
+    LaunchingMagicManager launchingMagicManager;
     public LayerMask lootLayer;
 
     void Start()
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //If the HealthBar follow character, uncomment line 25
         //playerHeath = GetComponentInChildren<HealthBar>();
+        launchingMagicManager = GetComponent<LaunchingMagicManager>();
         playerHealth.updateHealthBar(currentHP, maxHP);
+        
     }
 
     void Update()
@@ -60,7 +62,9 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            launchingMagicManager.LaunchFirstMagic(rb.position, direction);
+        }
     }
 
     void FixedUpdate()
@@ -81,6 +85,7 @@ public class Player : MonoBehaviour
         {
             animator.SetFloat("LastHorizontal", moveInput.x);
             animator.SetFloat("LastVertical", moveInput.y);
+            direction = moveInput;
         }
     }
 
