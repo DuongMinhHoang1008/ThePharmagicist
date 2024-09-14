@@ -8,8 +8,8 @@ public class HerbClass : ItemClass
 {
     [Header("Herb")]
     public string itemDescription;
-    [SerializeField] private Element element;
-    [SerializeField] private GameObject ingredientShape;
+    [SerializeField] protected Element element;
+    [SerializeField] protected GameObject ingredientShape;
     
     public override ItemClass GetItems(SlotClass slotClass) { return this; }
     public override PotionClass GetPotion() { return null; }

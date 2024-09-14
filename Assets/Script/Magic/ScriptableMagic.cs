@@ -20,9 +20,8 @@ public class ScriptableMagic : ScriptableObject
     [SerializeField] public float lifeTime;
     [SerializeField] public int number;
     [SerializeField] public MagicShape shape;
+    [SerializeField] public float size = 1f;
     [SerializeField] public bool explodeOnContact;
-    [ShowIf("explodeOnContact")]
-    [SerializeField] public float explodeRange;
-    [ShowIf("explodeOnContact")]
-    [SerializeField] public float explodeDamage;
+    [SerializeField] public StatusEffect statusEffect;
+    [SerializeField] public Sprite sprite;
 }

@@ -1005,6 +1005,18 @@ PrefabInstance:
       propertyPath: slotsHolder
       value: 
       objectReference: {fileID: 592029982}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.data[12].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 156ace5e123832d4fb88007ec6faf59e, type: 2}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.data[12].quantity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
       propertyPath: m_Name
       value: InventoryManager

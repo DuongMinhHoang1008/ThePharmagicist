@@ -62,14 +62,22 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            launchingMagicManager.LaunchFirstMagic(rb.position, direction);
-        }
+        if(launchingMagicManager != null) {
+            if(Input.GetMouseButtonDown(0)) {
+                Vector2 shootDir = ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position - Vector2.up * 0.75f).normalized;
+                launchingMagicManager.LaunchFirstMagic(shootDir);
+            }
+            if(Input.GetMouseButtonDown(1)) {
+                Vector2 shootDir = ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position - Vector2.up * 0.75f).normalized;
+                launchingMagicManager.LaunchSecondMagic(shootDir);
+            }
+        } 
     }
 
     void FixedUpdate()
     {
         if(currentHP > 0) rb.MovePosition(rb.position + (Vector2) moveInput * playerVelocity * Time.fixedDeltaTime);
+        PlayerInfo.Instance().UpdatePlayerPos(rb.position);
     }
 
     void playerMovement()
