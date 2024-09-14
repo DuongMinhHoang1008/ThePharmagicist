@@ -6,6 +6,7 @@ public class PlayerInfo
 {
     private static PlayerInfo instance;
     private SlotClass[] inventoryItems;
+    private Vector2 playerPos = Vector2.zero;
     private PlayerInfo() {}
     public static PlayerInfo Instance() {
         if (instance == null) {
@@ -18,5 +19,11 @@ public class PlayerInfo
             inventoryItems = items;
         }
         items = inventoryItems;
+    }
+    public void UpdatePlayerPos(Vector2 pos) {
+        playerPos = pos;
+    }
+    public Vector2 GetPlayerPos() {
+        return playerPos;
     }
 }

@@ -65,6 +65,7 @@ public class BrewingInventoryManager : MonoBehaviour
         }
 
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
+        tempItems = new SlotClass[items.Length];
         CopyInventory(items, ref tempItems);
 
         RefreshUI();
@@ -384,7 +385,6 @@ public class BrewingInventoryManager : MonoBehaviour
         brewingBoard.ClearBoard();
     }
     void CopyInventory(SlotClass[] from, ref SlotClass[] to) {
-        to = new SlotClass[from.Length];
         for (int i = 0; i < from.Length; i++) {
             to[i] = new SlotClass(from[i].GetItem(), from[i].GetQuantity());
         }

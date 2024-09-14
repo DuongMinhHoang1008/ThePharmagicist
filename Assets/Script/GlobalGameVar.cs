@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum StatusEffect {
+    None,
+    Burn,
+    Poison,
+    Stun
+}
+
 public enum Element {
     None,
     Metal,

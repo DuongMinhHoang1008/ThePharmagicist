@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     [SerializeField] Element playerElement;
     
     [SerializeField]private SpawnitemManager[] spawnitemManagers;
-    Vector2 direction ;
-    
+    Vector2 direction = Vector2.right;
+    LaunchingMagicManager launchingMagicManager;
     public LayerMask lootLayer;
 
     void Start()
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         //If the HealthBar follow character, uncomment line 25
         //playerHeath = GetComponentInChildren<HealthBar>();
+        launchingMagicManager = GetComponent<LaunchingMagicManager>();
         playerHealth.updateHealthBar(currentHP, maxHP);
+        
     }
 
     void Update()
@@ -60,12 +62,22 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        
+        if(launchingMagicManager != null) {
+            if(Input.GetMouseButtonDown(0)) {
+                Vector2 shootDir = ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position - Vector2.up * 0.75f).normalized;
+                launchingMagicManager.LaunchFirstMagic(shootDir);
+            }
+            if(Input.GetMouseButtonDown(1)) {
+                Vector2 shootDir = ((Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - rb.position - Vector2.up * 0.75f).normalized;
+                launchingMagicManager.LaunchSecondMagic(shootDir);
+            }
+        } 
     }
 
     void FixedUpdate()
     {
         if(currentHP > 0) rb.MovePosition(rb.position + (Vector2) moveInput * playerVelocity * Time.fixedDeltaTime);
+        PlayerInfo.Instance().UpdatePlayerPos(rb.position);
     }
 
     void playerMovement()
@@ -81,6 +93,7 @@ public class Player : MonoBehaviour
         {
             animator.SetFloat("LastHorizontal", moveInput.x);
             animator.SetFloat("LastVertical", moveInput.y);
+            direction = moveInput;
         }
     }
 

@@ -811,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 1626749187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 197.65816, y: 188.75607, z: -4.6298556}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1005,6 +1005,18 @@ PrefabInstance:
       propertyPath: slotsHolder
       value: 
       objectReference: {fileID: 592029982}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.data[12].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 156ace5e123832d4fb88007ec6faf59e, type: 2}
+    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
+      propertyPath: startingItems.Array.data[12].quantity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
       propertyPath: m_Name
       value: InventoryManager
@@ -1133,11 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7229791128160061307, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 7229791128160061307, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.77
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7229791128160061307, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: m_LocalPosition.z

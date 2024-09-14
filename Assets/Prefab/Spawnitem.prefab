@@ -50,6 +50,22 @@ MonoBehaviour:
     herbItem: {fileID: 11400000, guid: 0bc469c2a774d8c4f955759683b59d69, type: 2}
   - herb: {fileID: 11400000, guid: b73ddb8ead22c0d49b7e59cb5896d752, type: 2}
     herbItem: {fileID: 11400000, guid: eaa741b8f5a88c04fb8a5a2c0f34405e, type: 2}
+  - herb: {fileID: 11400000, guid: 68561baea38e6f84bb241085da4c32cc, type: 2}
+    herbItem: {fileID: 11400000, guid: ca63f0878f4f32445a8a748159e64a0e, type: 2}
+  - herb: {fileID: 11400000, guid: 5756847de2b770647a675d68b4ceda5a, type: 2}
+    herbItem: {fileID: 11400000, guid: 6c2c758ee347b08499e52d5504526072, type: 2}
+  - herb: {fileID: 11400000, guid: 9dad23db2f984ac4bb3c4114fd15728a, type: 2}
+    herbItem: {fileID: 11400000, guid: 2a75b1ef3b8f2e94c9bcfe9e7f67fb35, type: 2}
+  - herb: {fileID: 11400000, guid: 00cdd3c47d4b8ec46ab280008487a808, type: 2}
+    herbItem: {fileID: 11400000, guid: 37bca8777fc7eef4c863592d5fcee826, type: 2}
+  - herb: {fileID: 11400000, guid: 5049d2c5e8b632e428050f5516953b7d, type: 2}
+    herbItem: {fileID: 11400000, guid: 7403bfabdfc5e234581d654575ff1734, type: 2}
+  - herb: {fileID: 11400000, guid: c5b44ae933a0fc84dbbc46efb7fa73d1, type: 2}
+    herbItem: {fileID: 11400000, guid: d37bef3add41f094eb944d8fb319ad5d, type: 2}
+  - herb: {fileID: 11400000, guid: c2a501ecea95c474f98301b6478dd1a8, type: 2}
+    herbItem: {fileID: 11400000, guid: c2a501ecea95c474f98301b6478dd1a8, type: 2}
+  - herb: {fileID: 11400000, guid: 483a3820fa289e5469e502396a9518bc, type: 2}
+    herbItem: {fileID: 11400000, guid: 483a3820fa289e5469e502396a9518bc, type: 2}
   myObject: {fileID: 0}
   inventoryManager: {fileID: 0}
   objectCount: 10
