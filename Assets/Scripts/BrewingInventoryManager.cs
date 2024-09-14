@@ -347,6 +347,7 @@ public class BrewingInventoryManager : MonoBehaviour
                         movingSlot.RemoveItem();
                     }
                 }
+
                 RefreshUI();
             }
             isMoving = false;
@@ -372,6 +373,13 @@ public class BrewingInventoryManager : MonoBehaviour
 
             ingredientShape = Instantiate(herbClass.GetIngredientShape(), Vector3.zero, Quaternion.identity);
             ingredientShape.GetComponent<BlockGroup>().SetElement(herbClass.GetElement());
+
+            
+            if (herbClass is MagicIngredient) {
+                MagicIngredient magicIngredient = (MagicIngredient) herbClass;
+                Debug.Log("This is it");
+                brewingBoard.SetMagicIngredient(magicIngredient);
+            }
         } else {
             if (currentSlot.GetItem() is CurePotionClass) {
                 ShowItemInfo((CurePotionClass) currentSlot.GetItem());

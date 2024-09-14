@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
     Dictionary<Element, int> elementNumber;
     [SerializeField] BrewingInventoryManager brewingInventoryManager;
     [SerializeField] Sprite curePotionIcon;
+    MagicIngredient magicIngredient = null;
     // Start is called before the first frame update
     private void Awake() {
         
@@ -54,36 +55,71 @@ public class Board : MonoBehaviour
         ClearBoard();
     }
     public void BrewNewPotion() {
-        CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();
-        string name = "CurePotionEl" 
-                        + "M" + elementNumber[Element.Metal]
-                        + "Wa" + elementNumber[Element.Water]
-                        + "Wo" + elementNumber[Element.Wood]
-                        + "F" + elementNumber[Element.Fire]
-                        + "E" + elementNumber[Element.Earth]; 
-        string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
-
-        if (!System.IO.File.Exists(path)) {
-            curePotionClass.SetElementValue(elementNumber[Element.Metal],
-                                            elementNumber[Element.Water],
-                                            elementNumber[Element.Wood],
-                                            elementNumber[Element.Fire],
-                                            elementNumber[Element.Earth],
-                                            curePotionIcon);
-
-            AssetDatabase.CreateAsset(curePotionClass, path);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+        if (CanMakeMagicPotion()) {
+            brewingInventoryManager.AddItem(magicIngredient.GetMagicPotion(), 1);
+            brewingInventoryManager.CopyInventoryToTemp();
+            magicIngredient = null;
         } else {
-            curePotionClass = AssetDatabase.LoadAssetAtPath<CurePotionClass>(path);
-        }
+            CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();
+            string name = "CurePotionEl" 
+                            + "M" + elementNumber[Element.Metal]
+                            + "Wa" + elementNumber[Element.Water]
+                            + "Wo" + elementNumber[Element.Wood]
+                            + "F" + elementNumber[Element.Fire]
+                            + "E" + elementNumber[Element.Earth]; 
+            string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
 
-        brewingInventoryManager.AddItem(curePotionClass, 1);
-        brewingInventoryManager.CopyInventoryToTemp();
+            if (!System.IO.File.Exists(path)) {
+                curePotionClass.SetElementValue(elementNumber[Element.Metal],
+                                                elementNumber[Element.Water],
+                                                elementNumber[Element.Wood],
+                                                elementNumber[Element.Fire],
+                                                elementNumber[Element.Earth],
+                                                curePotionIcon);
+
+                AssetDatabase.CreateAsset(curePotionClass, path);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            } else {
+                curePotionClass = AssetDatabase.LoadAssetAtPath<CurePotionClass>(path);
+            }
+
+            brewingInventoryManager.AddItem(curePotionClass, 1);
+            brewingInventoryManager.CopyInventoryToTemp();
+        }
     }
     public void ClearBoard() {
         foreach (BoardTile boardTile in boardTileArr) {
             boardTile.ClearAll();
         }
+        magicIngredient = null;
+    }
+    public void SetMagicIngredient(MagicIngredient ingredient) {
+        magicIngredient = ingredient;
+    }
+    public MagicIngredient GetMagicIngredient() {
+        return magicIngredient;
+    }
+    bool CanMakeMagicPotion() {
+        if (magicIngredient != null) {
+            MagicPotionClass magicPotion = magicIngredient.GetMagicPotion();
+            if (magicPotion.metalValue != 0 && magicPotion.metalValue != elementNumber[Element.Metal]) {
+                return false;
+            }
+            if (magicPotion.waterValue != 0 && magicPotion.waterValue != elementNumber[Element.Water]) {
+                return false;
+            }
+            if (magicPotion.woodValue != 0 && magicPotion.woodValue != elementNumber[Element.Wood]) {
+                return false;
+            }
+            if (magicPotion.fireValue != 0 && magicPotion.fireValue != elementNumber[Element.Fire]) {
+                return false;
+            }
+            if (magicPotion.earthValue != 0 && magicPotion.earthValue != elementNumber[Element.Earth]) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 }
