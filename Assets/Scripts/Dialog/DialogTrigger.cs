@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DialogTrigger : MonoBehaviour
 {
-    [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
     public bool playerInRange { get; private set; }
@@ -13,12 +12,7 @@ public class DialogTrigger : MonoBehaviour
     {
         playerInRange = false;
     }
-    private void Update()
-    {
-        if (playerInRange) { 
-            
-        }
-    }
+   
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player") { 

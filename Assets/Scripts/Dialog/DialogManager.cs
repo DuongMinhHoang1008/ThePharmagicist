@@ -5,6 +5,7 @@ using UnityEngine;
 using Ink.Runtime;
 using System.Windows.Input;
 using UnityEngine.EventSystems;
+using UnityEditor.VersionControl;
 
 public class DialogManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class DialogManager : MonoBehaviour
     public Story currentStory;
 
     public bool dialogIsPlaying;
+
+    public int lettersPerSecond = 10;
 
     private void Awake()
     {
@@ -48,11 +51,7 @@ public class DialogManager : MonoBehaviour
     }
     private void Update()
     {
-        if (!dialogIsPlaying) { 
-            return; 
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z)) { 
+        if (Input.GetKeyDown(KeyCode.Z)) {
             ContinueStory();
         }
         
@@ -68,20 +67,42 @@ public class DialogManager : MonoBehaviour
     public void ExitDialogMode()
     {
         dialogIsPlaying = false;
-        dialogPanel.SetActive(false);
-        dialogText.text = "";
+        if (dialogPanel != null) {
+            dialogPanel.SetActive(false);
+        }
+        if (dialogText != null) {
+            dialogText.text = "";
+        }
     }
-    private void ContinueStory()
+    public void ContinueStory()
     {
+        //dialogText.text = currentStory.Continue();
         if (currentStory.canContinue)
         {
-            dialogText.text = currentStory.Continue();
-            DisplayChoices();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(currentStory.Continue()));
+
+            if (currentStory.currentChoices.Count > 0)
+            {
+                DisplayChoices();
+            }
         }
         else
         {
             ExitDialogMode();
         }
+        
+
+    }
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogText.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogText.text += letter;
+            yield return new WaitForSeconds(1f / lettersPerSecond);
+        }
+        
     }
     private void DisplayChoices()
     {
@@ -92,30 +113,25 @@ public class DialogManager : MonoBehaviour
         int index = 0;
 
         foreach (Choice choice in currentChoices) {
-            Debug.Log("currentChoice " + currentChoices.Count);
-            Debug.Log(choice.text);
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
         }
 
-        for(int i = index; i < choicesText.Length; i++)
+        Debug.Log("index in " + index);
+
+        for (int i = index; i < choicesText.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
+            Debug.Log("index in choices " + index);
         }
 
-        StartCoroutine(nameof(SelectFitstChoices));
-    }
-    private IEnumerable SelectFitstChoices()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
     }
 
     public void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
+        choices[choiceIndex].gameObject.SetActive(false);
     }
 }
