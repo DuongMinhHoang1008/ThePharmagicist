@@ -686,7 +686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1946925695}
         m_TargetAssemblyTypeName: BlockchainManager, Assembly-CSharp
-        m_MethodName: ClaimGold
+        m_MethodName: ClaimNFT
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
