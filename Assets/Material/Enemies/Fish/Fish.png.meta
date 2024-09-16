@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf3cfdb1968579447bbb372710344d58
+guid: 14e6b59401f6a854bac663a100db6471
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_0
+      name: Fish_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 68
-        width: 26
-        height: 23
+        x: 16
+        y: 648
+        width: 160
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb58e99cae33c94caede77f2970accc
-      internalID: -527049202
+      spriteID: 3798ab56d33f6e941a520a838354cdb7
+      internalID: 2030752351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_1
+      name: Fish_1
       rect:
         serializedVersion: 2
-        x: 33
-        y: 68
-        width: 30
-        height: 21
+        x: 216
+        y: 648
+        width: 144
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb379b56616a69b4e834256eea795103
-      internalID: -101504824
+      spriteID: f26c11db9f1325740aab76a8724a6357
+      internalID: -1876436883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_2
+      name: Fish_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 68
-        width: 22
-        height: 25
+        x: 416
+        y: 648
+        width: 152
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea12eb00bb6cdb6448f3e7b42b46484a
-      internalID: 1006368795
+      spriteID: 109a11884c05d83459c249c35865b728
+      internalID: 1310554533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_3
+      name: Fish_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 68
-        width: 26
-        height: 24
+        x: 616
+        y: 648
+        width: 144
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 410086c68dc6e794bb6fc96ca745feea
-      internalID: -1728436143
+      spriteID: 9999d9a912966344db0bb7863de2e339
+      internalID: -1097619770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_4
+      name: Fish_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 36
-        width: 26
-        height: 23
+        x: 16
+        y: 448
+        width: 136
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7256e10e3aa47ef43bf3d15f318e8d7d
-      internalID: 1567812188
+      spriteID: 6a2b8c8ab6f84f74a85b4db5d094bb9d
+      internalID: -883137726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_5
+      name: Fish_5
       rect:
         serializedVersion: 2
-        x: 45
-        y: 34
-        width: 19
-        height: 26
+        x: 224
+        y: 448
+        width: 128
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 414979d9ff9e2a24985b48e5901dc04d
-      internalID: -450448073
+      spriteID: 2d610f4df23074d40b83a36c61af1137
+      internalID: 681634219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_6
+      name: Fish_6
       rect:
         serializedVersion: 2
-        x: 76
-        y: 36
-        width: 20
-        height: 22
+        x: 416
+        y: 448
+        width: 136
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9774bf991102854e9ca67c77cea077d
-      internalID: 973802519
+      spriteID: 8c864977e3c51384d857a339338f255f
+      internalID: -1233846076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_7
+      name: Fish_7
       rect:
         serializedVersion: 2
-        x: 106
-        y: 36
-        width: 20
-        height: 23
+        x: 616
+        y: 448
+        width: 128
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac7274796da4be744a94bf32553a3b0c
-      internalID: 2020108533
+      spriteID: 18739f8ccb6259a49a6fe79b68ffe87b
+      internalID: -615905726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_8
+      name: Fish_8
       rect:
         serializedVersion: 2
-        x: 130
-        y: 36
-        width: 26
-        height: 20
+        x: 0
+        y: 248
+        width: 152
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92556f29fd0ae54fb45eb4e68d1537d
-      internalID: 247342645
+      spriteID: 2f5eabd65f764304fb00016f464c6f29
+      internalID: 1442446456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_9
+      name: Fish_9
       rect:
         serializedVersion: 2
-        x: 3
-        y: 4
-        width: 26
-        height: 23
+        x: 208
+        y: 248
+        width: 144
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50e6e2a0a30062e4f87fe96817488da0
-      internalID: -1618771583
+      spriteID: 71a1c9844d8857f429d719f78e87d755
+      internalID: -1641214331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_10
+      name: Fish_10
       rect:
         serializedVersion: 2
-        x: 35
-        y: 4
-        width: 27
-        height: 19
+        x: 400
+        y: 248
+        width: 152
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -334,20 +334,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc0966a5abb3b154da78086ddaadaf29
-      internalID: -48964479
+      spriteID: 50f4f8f3cbef374418ad6fb041b09027
+      internalID: -1367838612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_11
+      name: Fish_11
       rect:
         serializedVersion: 2
-        x: 73
-        y: 4
-        width: 18
-        height: 21
+        x: 608
+        y: 248
+        width: 144
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -355,20 +355,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e3b29433aaf69c4db3240e91c41b123
-      internalID: 2142399301
+      spriteID: 1247107dc39442e449eedcaf64461bf8
+      internalID: -1640461837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_12
+      name: Fish_12
       rect:
         serializedVersion: 2
-        x: 108
-        y: 4
-        width: 15
-        height: 21
+        x: 16
+        y: 48
+        width: 136
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dacf7f92e2b6f246b55b90d64cf16be
-      internalID: -938057922
+      spriteID: e3ee2ad672fdd0641a67b2029f5cbfd8
+      internalID: -988552763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_13
+      name: Fish_13
       rect:
         serializedVersion: 2
-        x: 138
-        y: 4
-        width: 19
-        height: 22
+        x: 224
+        y: 48
+        width: 120
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,20 +397,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89066295843f86c4ca5b736898e69465
-      internalID: -33916827
+      spriteID: fdfa3338e7af85e4e940c3806a6f65ca
+      internalID: -436951603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_14
+      name: Fish_14
       rect:
         serializedVersion: 2
-        x: 164
-        y: 4
-        width: 24
-        height: 23
+        x: 416
+        y: 48
+        width: 136
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,20 +418,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21464b1632a73a743aca9ca164940cfd
-      internalID: -535412904
+      spriteID: acdced366ec00be4193d4b00e49ecd10
+      internalID: 1197958607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_15
+      name: Fish_15
       rect:
         serializedVersion: 2
-        x: 196
-        y: 4
-        width: 20
-        height: 23
+        x: 624
+        y: 48
+        width: 120
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -439,29 +439,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 328e94c898feaab44874add7f5732d9f
-      internalID: -483516139
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Training Dummy Sprite Sheet_16
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 4
-        width: 16
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e8e79aa9acf9d84fbdd76883e776d11
-      internalID: 1858194356
+      spriteID: f18d051fd3c60644b8e2f9b45518dde2
+      internalID: -573380884
       vertices: []
       indices: 
       edges: []
@@ -477,23 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Training Dummy Sprite Sheet_0: -527049202
-      Training Dummy Sprite Sheet_1: -101504824
-      Training Dummy Sprite Sheet_10: -48964479
-      Training Dummy Sprite Sheet_11: 2142399301
-      Training Dummy Sprite Sheet_12: -938057922
-      Training Dummy Sprite Sheet_13: -33916827
-      Training Dummy Sprite Sheet_14: -535412904
-      Training Dummy Sprite Sheet_15: -483516139
-      Training Dummy Sprite Sheet_16: 1858194356
-      Training Dummy Sprite Sheet_2: 1006368795
-      Training Dummy Sprite Sheet_3: -1728436143
-      Training Dummy Sprite Sheet_4: 1567812188
-      Training Dummy Sprite Sheet_5: -450448073
-      Training Dummy Sprite Sheet_6: 973802519
-      Training Dummy Sprite Sheet_7: 2020108533
-      Training Dummy Sprite Sheet_8: 247342645
-      Training Dummy Sprite Sheet_9: -1618771583
+      Fish_0: 2030752351
+      Fish_1: -1876436883
+      Fish_10: -1367838612
+      Fish_11: -1640461837
+      Fish_12: -988552763
+      Fish_13: -436951603
+      Fish_14: 1197958607
+      Fish_15: -573380884
+      Fish_2: 1310554533
+      Fish_3: -1097619770
+      Fish_4: -883137726
+      Fish_5: 681634219
+      Fish_6: -1233846076
+      Fish_7: -615905726
+      Fish_8: 1442446456
+      Fish_9: -1641214331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

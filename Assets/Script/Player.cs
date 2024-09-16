@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     //Player attribute
     [SerializeField] HealthBar playerHealth;
+    [SerializeField] float invincibleTime = 1f; 
     private float maxHP = 100;
     private float currentHP;
     public float playerVelocity = 5;
@@ -18,10 +19,11 @@ public class Player : MonoBehaviour
 
     [SerializeField] Element playerElement;
     
-    [SerializeField]private SpawnitemManager[] spawnitemManagers;
+    [SerializeField] private SpawnitemManager[] spawnitemManagers;
     Vector2 direction = Vector2.right;
     LaunchingMagicManager launchingMagicManager;
     public LayerMask lootLayer;
+    bool isInvincible = false;
 
     void Start()
     {
@@ -35,7 +37,11 @@ public class Player : MonoBehaviour
         //playerHeath = GetComponentInChildren<HealthBar>();
         launchingMagicManager = GetComponent<LaunchingMagicManager>();
         playerHealth.updateHealthBar(currentHP, maxHP);
-        
+        if (PlayerInfo.Instance().element == Element.None) {
+            PlayerInfo.Instance().SetPlayerElement(playerElement);
+        } else {
+            playerElement = PlayerInfo.Instance().element;
+        }
     }
 
     void Update()
@@ -96,7 +102,31 @@ public class Player : MonoBehaviour
             direction = moveInput;
         }
     }
-
-    
+    public void ChangeHealth(float moreHealth) {
+        if (moreHealth < 0) {
+            if (isInvincible) {
+                return;
+            }
+            isInvincible = true;
+            StartCoroutine("Blinking");
+            Invoke("InvincibleEnd", invincibleTime);
+        }
+        currentHP += moreHealth;
+        if (currentHP > maxHP) currentHP = maxHP;
+        else if (currentHP < 0) currentHP = 0;
+        playerHealth.updateHealthBar(currentHP, maxHP);
+    }
+    void InvincibleEnd() {
+        isInvincible = false;
+    }
+    IEnumerator Blinking() {
+        int time = (int)(invincibleTime / 0.2f);
+        for (int i = 0; i < time; i++) {
+            gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+            yield return new WaitForSeconds(0.1f);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }
 

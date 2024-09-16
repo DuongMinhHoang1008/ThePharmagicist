@@ -11,7 +11,6 @@ public class HealthBar : MonoBehaviour
     public void updateHealthBar(float currentHealth, float maxHealth)
     {
         healthBar.value = currentHealth / maxHealth;
-        Debug.Log(healthBar.value);
     }
 
     public void Die()

@@ -377,7 +377,6 @@ public class BrewingInventoryManager : MonoBehaviour
             
             if (herbClass is MagicIngredient) {
                 MagicIngredient magicIngredient = (MagicIngredient) herbClass;
-                Debug.Log("This is it");
                 brewingBoard.SetMagicIngredient(magicIngredient);
             }
         } else {
