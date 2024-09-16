@@ -395,8 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   enemyHealthBar: {fileID: 7141732502336686671}
-  senseRange: 5
-  speed: 3
+  senseRange: 3
+  speed: 1
   damage: 10
   attackCooldown: 1
   maxHealth: 30
@@ -405,6 +405,8 @@ MonoBehaviour:
   stunIcon: {fileID: 1251325145352239121}
   attackTrigger: {fileID: 2005026403132645893}
   elementIcon: {fileID: 2139012616237553631}
+  comeBack: 0
+  attack: 0
 --- !u!50 &8146680071246174578
 Rigidbody2D:
   serializedVersion: 4
@@ -442,7 +444,7 @@ Animator:
   m_GameObject: {fileID: 4696751811765966069}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2f18f93459ba61d49b36e90b176bdae7, type: 2}
+  m_Controller: {fileID: 9100000, guid: c0d95569e21d06f4eb5b2b0b72a5a556, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

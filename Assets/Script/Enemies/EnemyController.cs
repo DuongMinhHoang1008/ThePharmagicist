@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject elementIcon;
     public bool comeBack = false;
     bool hasChase = false;
+    public bool attack = false;
     Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
         poisonIcon.SetActive(false);
         stunIcon.SetActive(false);
         attackTrigger.OnTriggerStayed2D += OnAttackTriggerStayed2D;
+        attackTrigger.OnTriggerExited2D += OnAttackTriggerExit2D;
         elementIcon.GetComponent<SpriteRenderer>().sprite = GlobalGameVar.Instance().elementDic[element].sprite;
         animator = GetComponent<Animator>();
         startPosition = rigidbody2D.position;
@@ -51,7 +53,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = PlayerInfo.Instance().GetPlayerPos() - rigidbody2D.position;
+        Vector2 direction = PlayerInfo.Instance().GetPlayerPos() + Vector2.up - rigidbody2D.position;
         if (Vector2.Distance(PlayerInfo.Instance().GetPlayerPos(), rigidbody2D.position) < senseRange) {
             chase = true;
             comeBack = false;
@@ -70,13 +72,15 @@ public class EnemyController : MonoBehaviour
         animator.SetFloat("Speed", direction.magnitude * ((chase ^ comeBack)? 1 : 0));
     }
     private void FixedUpdate() {
-        Vector2 destination = startPosition;
-        if (chase && !statusEffects[StatusEffect.Stun]) {
-            destination = PlayerInfo.Instance().GetPlayerPos();
+        if(!attack) {
+            Vector2 destination = startPosition;
+            if (chase && !statusEffects[StatusEffect.Stun]) {
+                destination = PlayerInfo.Instance().GetPlayerPos() + Vector2.up;
+            }
+            Vector2 direction = (destination - rigidbody2D.position).normalized;
+            if (!chase && Vector2.Distance(destination, rigidbody2D.position) < 1f) { comeBack = false; return;}
+            rigidbody2D.MovePosition(rigidbody2D.position + direction * speed * Time.deltaTime);
         }
-        Vector2 direction = (destination - rigidbody2D.position).normalized;
-        if (!chase && Vector2.Distance(destination, rigidbody2D.position) < 1f) { comeBack = false; return;}
-        rigidbody2D.MovePosition(rigidbody2D.position + direction * speed * Time.deltaTime);
     }
     public void TakeDamage(float damage, StatusEffect status, int level, Element dmgElement) {
         StartCoroutine("Blinking");
@@ -156,6 +160,7 @@ public class EnemyController : MonoBehaviour
         if (collider.GetComponent<Player>() != null) {
             Player player = collider.GetComponent<Player>();
             if (!onAttackCooldown) {
+                attack = true;
                 float damageModifier = 1;
                 Element playerElement = PlayerInfo.Instance().element;
                 Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
@@ -164,11 +169,23 @@ public class EnemyController : MonoBehaviour
                 } else if (elementDic[element].plus == playerElement) {
                     damageModifier = 0.5f;
                 }
-                player.ChangeHealth(-damage * damageModifier);
-                onAttackCooldown = true;
-                Invoke("AttackCooldownEnd", attackCooldown);
+                StartCoroutine(AttackPlayer(player, damage * damageModifier));
             }
         }
+    }
+    void OnAttackTriggerExit2D(Collider2D collider) {
+        if (collider.GetComponent<Player>() != null) {
+            attack = false;
+        }
+    }
+    IEnumerator AttackPlayer(Player player, float dmg) {
+        onAttackCooldown = true;
+        animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.5f);
+        if (attack) {
+            player.ChangeHealth(-dmg);
+        }
+        Invoke("AttackCooldownEnd", attackCooldown - 0.5f);
     }
     void AttackCooldownEnd() {
         onAttackCooldown = false;

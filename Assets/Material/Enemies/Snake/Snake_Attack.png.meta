@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5ccbbf46eeca57b42acb063b5e94305b
+guid: ecbd983279c2dda488c7284aa579b7e2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 12
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_0
+      name: Snake_Attack_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 34
-        height: 21
+        x: 7
+        y: 78
+        width: 10
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81e0c935f1c21864b877330ed2fcc60e
-      internalID: -557110499
+      spriteID: c63ee8208d0eee84a83ab63d1610e841
+      internalID: -1095482841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_1
+      name: Snake_Attack_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 0
-        width: 34
-        height: 21
+        x: 31
+        y: 78
+        width: 10
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e4d603ed0e314841a4a5c9a6c02ff97
-      internalID: 437856213
+      spriteID: 9dad442f86b5d7649a8023e3818eca8d
+      internalID: 534164920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_2
+      name: Snake_Attack_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 0
-        width: 34
-        height: 21
+        x: 56
+        y: 78
+        width: 15
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8178667c36c76548be76e288968b10f
-      internalID: 1869595498
+      spriteID: 094d28babaaddc04e81a2fbe778e391a
+      internalID: -900314870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_3
+      name: Snake_Attack_3
       rect:
         serializedVersion: 2
-        x: 102
-        y: 0
-        width: 34
-        height: 21
+        x: 80
+        y: 79
+        width: 14
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4834b9a006398f4fa53821678f69330
-      internalID: -1132845670
+      spriteID: 23fffb6f61ca42143a5d59d97d950221
+      internalID: 1642105684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_4
+      name: Snake_Attack_4
       rect:
         serializedVersion: 2
-        x: 136
-        y: 0
-        width: 34
-        height: 21
+        x: 7
+        y: 54
+        width: 10
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a48429515013ff8488d615662489b8c4
-      internalID: -1907963083
+      spriteID: 10fe7a6c769dcf547a5047218fc0f7cd
+      internalID: 1397749241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_5
+      name: Snake_Attack_5
       rect:
         serializedVersion: 2
-        x: 170
-        y: 0
-        width: 34
-        height: 21
+        x: 31
+        y: 54
+        width: 10
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82bb847136cd500419707a74c6e3eceb
-      internalID: -1655903734
+      spriteID: 57faa78f81e49ef4390ccc920ff88c13
+      internalID: -972577922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_6
+      name: Snake_Attack_6
       rect:
         serializedVersion: 2
-        x: 204
-        y: 0
-        width: 34
-        height: 21
+        x: 49
+        y: 54
+        width: 16
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86cf98fb89657ba469c937503f319ca4
-      internalID: 1413566909
+      spriteID: 6c4c5c593beb25f4186d8b1c066daf1f
+      internalID: 307798488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_7
+      name: Snake_Attack_7
       rect:
         serializedVersion: 2
-        x: 238
-        y: 0
-        width: 34
-        height: 21
+        x: 74
+        y: 55
+        width: 15
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aa0fae358113b04dae4cb71d41d316a
-      internalID: -103429306
+      spriteID: 4a15ecb68c47f0142bf59d0e1af74309
+      internalID: 1277042535
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_8
+      name: Snake_Attack_8
       rect:
         serializedVersion: 2
-        x: 272
-        y: 0
-        width: 34
-        height: 21
+        x: 7
+        y: 30
+        width: 10
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e36511485ed50f146a891ea87f33253d
-      internalID: -1174583366
+      spriteID: 2e793ae780cf0014681f725266cd104a
+      internalID: 1920981434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ChickenAttack-Sheet_9
+      name: Snake_Attack_9
       rect:
         serializedVersion: 2
-        x: 306
-        y: 0
-        width: 34
-        height: 21
+        x: 31
+        y: 30
+        width: 10
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -313,8 +313,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48c72d3d3475b8647bf38828788d1189
-      internalID: 1655858187
+      spriteID: cd8e1cfc9b6785649a508d0c4bfb2a36
+      internalID: 167701484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 25
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d229c052ce093fe48b71812550ce91dd
+      internalID: 1835623296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 26
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80df735acba5b04fb2fdf19250549ba
+      internalID: -669644150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 6
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fec4ecb51b12423439c1c863190f3ef2
+      internalID: 1700627764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_13
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 6
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c70303826bba7947a646e1e70e6873a
+      internalID: -663533667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_14
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 6
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b28fce22402368845ba19e066cd527e2
+      internalID: -899620844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Snake_Attack_15
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 6
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54138677859bdd48ba3c6574547a227
+      internalID: 1780421972
       vertices: []
       indices: 
       edges: []
@@ -330,16 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-ChickenAttack-Sheet_0: -557110499
-      Sprite-ChickenAttack-Sheet_1: 437856213
-      Sprite-ChickenAttack-Sheet_2: 1869595498
-      Sprite-ChickenAttack-Sheet_3: -1132845670
-      Sprite-ChickenAttack-Sheet_4: -1907963083
-      Sprite-ChickenAttack-Sheet_5: -1655903734
-      Sprite-ChickenAttack-Sheet_6: 1413566909
-      Sprite-ChickenAttack-Sheet_7: -103429306
-      Sprite-ChickenAttack-Sheet_8: -1174583366
-      Sprite-ChickenAttack-Sheet_9: 1655858187
+      Snake_Attack_0: -1095482841
+      Snake_Attack_1: 534164920
+      Snake_Attack_10: 1835623296
+      Snake_Attack_11: -669644150
+      Snake_Attack_12: 1700627764
+      Snake_Attack_13: -663533667
+      Snake_Attack_14: -899620844
+      Snake_Attack_15: 1780421972
+      Snake_Attack_2: -900314870
+      Snake_Attack_3: 1642105684
+      Snake_Attack_4: 1397749241
+      Snake_Attack_5: -972577922
+      Snake_Attack_6: 307798488
+      Snake_Attack_7: 1277042535
+      Snake_Attack_8: 1920981434
+      Snake_Attack_9: 167701484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

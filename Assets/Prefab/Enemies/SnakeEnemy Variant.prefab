@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 722634587463615013, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1759195191199336816, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -81,12 +85,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: element
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: maxHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: senseRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: attackCooldown
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

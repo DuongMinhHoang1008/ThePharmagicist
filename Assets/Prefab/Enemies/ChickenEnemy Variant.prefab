@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4750512199922279115, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2f18f93459ba61d49b36e90b176bdae7, type: 2}
     - target: {fileID: 6724297925691433470, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -85,6 +89,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: element
       value: 1
       objectReference: {fileID: 0}
@@ -94,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: senseRange
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
