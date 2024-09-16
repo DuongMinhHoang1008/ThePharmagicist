@@ -207,7 +207,6 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(ItemClass item,int quantity)
     {
         SlotClass slot = ContainItem(item);
-        Debug.Log("ccc");
         if(slot != null)
         {
             slot.AddQuantity(quantity);

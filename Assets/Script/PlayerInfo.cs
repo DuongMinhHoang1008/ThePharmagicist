@@ -7,6 +7,7 @@ public class PlayerInfo
     private static PlayerInfo instance;
     private SlotClass[] inventoryItems;
     private Vector2 playerPos = Vector2.zero;
+    public Element element { get; private set; } = Element.None;
     private PlayerInfo() {}
     public static PlayerInfo Instance() {
         if (instance == null) {
@@ -25,5 +26,8 @@ public class PlayerInfo
     }
     public Vector2 GetPlayerPos() {
         return playerPos;
+    }
+    public void SetPlayerElement(Element element) {
+        this.element = element;
     }
 }

@@ -50,7 +50,6 @@ public class LaunchingMagicManager : MonoBehaviour
         for (int i = 0; i < magic.scriptableMagic.number; i++) {
             float angle = -45f + (i + 1f) * 90f / (magic.scriptableMagic.number + 1f);
             angle = Vector2.SignedAngle(Vector2.right, direction) + angle;
-            Debug.Log(angle);
             Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
             ShootOneProjectile(dir, magic);
         }
@@ -65,7 +64,10 @@ public class LaunchingMagicManager : MonoBehaviour
         }
         launch.transform.localScale = new Vector3(magic.scriptableMagic.size, magic.scriptableMagic.size, 0);
         float damage = (int) Math.Ceiling(magic.scriptableMagic.damage * Math.Pow(1.25f ,magic.level - 1));
-        launch.GetComponent<ProjectileManager>().Launch(direction, magic.scriptableMagic.speed, magic.scriptableMagic.element, damage, magic.scriptableMagic.lifeTime, magic.scriptableMagic.explodeOnContact, magic.scriptableMagic.statusEffect);
+        launch.GetComponent<ProjectileManager>().Launch(direction, 
+        magic.scriptableMagic.speed, magic.scriptableMagic.element, damage, 
+        magic.scriptableMagic.lifeTime, magic.scriptableMagic.explodeOnContact, 
+        magic.scriptableMagic.statusEffect, magic.level);
     }
     public void LaunchFirstMagic(Vector2 direction) {
         if (!onFirstMagicCooldown && firstMagic.scriptableMagic != null) {
