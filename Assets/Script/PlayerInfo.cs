@@ -8,6 +8,9 @@ public class PlayerInfo
     private SlotClass[] inventoryItems;
     private Vector2 playerPos = Vector2.zero;
     public Element element { get; private set; } = Element.None;
+    public Magic firstMagic;
+    public Magic secondMagic;
+    public AccessoryClass accessory;
     private PlayerInfo() {}
     public static PlayerInfo Instance() {
         if (instance == null) {
@@ -29,5 +32,19 @@ public class PlayerInfo
     }
     public void SetPlayerElement(Element element) {
         this.element = element;
+    }
+    public void UpdatePlayerGlobalMagic(ref Magic fmagic, ref Magic smagic, ref AccessoryClass acc) {
+        if (firstMagic == null) {
+            firstMagic = fmagic;
+        }
+        fmagic = firstMagic;
+        if (secondMagic == null) {
+            secondMagic = smagic;
+        }
+        smagic = secondMagic;
+        if (accessory == null) {
+            accessory = acc;
+        }
+        acc = accessory;
     }
 }
