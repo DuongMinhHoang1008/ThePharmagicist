@@ -93,13 +93,37 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: lowRate
+      value: 
+      objectReference: {fileID: 11400000, guid: 13861675c0a14d2488f3083f8f6f424d, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: highRate
+      value: 
+      objectReference: {fileID: 11400000, guid: e50a292c8c45fa340ab630fa4d426a81, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: mediumRate
+      value: 
+      objectReference: {fileID: 11400000, guid: b0c6a281291ff604abbedf07caa2394b, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: senseRange
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: canDropItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: verylowRate
+      value: 
+      objectReference: {fileID: 11400000, guid: c82d2ea5d3833614f92f67d4af2cda12, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: veryhighRate
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f62cdbd723d1f24db6a70aa13e804be, type: 2}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: attackCooldown
       value: 2

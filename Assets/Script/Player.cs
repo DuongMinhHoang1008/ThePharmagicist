@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     LaunchingMagicManager launchingMagicManager;
     public LayerMask lootLayer;
     bool isInvincible = false;
+    [SerializeField] MagicInventoryClass inventory;
 
     void Start()
     {
@@ -58,6 +59,11 @@ public class Player : MonoBehaviour
                 {
                     if (hit.collider != null && hit.collider.gameObject.layer == 6)
                     {
+                        if (hit.collider.GetComponent<DropItemManager>() != null) {
+                            inventory.AddItem(hit.collider.GetComponent<DropItemManager>().itemClass, 1);
+                            Destroy(hit.collider.gameObject);
+                            break;
+                        }
                         SpawnitemManager spawnitemManager = hit.collider.GetComponent<SpawnitemManager>();
                         if (spawnitemManager != null)
                         {

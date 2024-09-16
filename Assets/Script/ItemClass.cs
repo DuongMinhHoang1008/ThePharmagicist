@@ -14,7 +14,9 @@ public abstract class ItemClass :ScriptableObject
 
     public abstract ConsumableClass GetConsumable();
 
-
+    public virtual string GetDescription() {
+        return "";
+    }
 
     
 }
