@@ -16,13 +16,14 @@ public class LaunchingMagicManager : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Magic firstMagic;
     [SerializeField] Magic secondMagic;
+    [SerializeField] AccessoryClass accessory;
     Vector2 position = Vector2.zero;
     bool onFirstMagicCooldown = false;
     bool onSecondMagicCooldown = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
     }
 
     // Update is called once per frame
@@ -55,6 +56,29 @@ public class LaunchingMagicManager : MonoBehaviour
         }
     }
     void ShootOneProjectile(Vector2 direction, Magic magic) {
+        float dmgModifier = 1f;
+        if (accessory != null) {
+            switch(magic.scriptableMagic.element) {
+                case Element.Metal:
+                    dmgModifier = 1 + accessory.metalBuff;
+                    break;
+                case Element.Water:
+                    dmgModifier = 1 + accessory.waterBuff;
+                    break;
+                case Element.Wood:
+                    dmgModifier = 1 + accessory.woodBuff;
+                    break;
+                case Element.Fire:
+                    dmgModifier = 1 + accessory.fireBuff;
+                    break;
+                case Element.Earth:
+                    dmgModifier = 1 + accessory.earthBuff;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
         GameObject launch = Instantiate(projectile, position + Vector2.up * 0.75f, Quaternion.Euler(0,0, Vector2.SignedAngle((direction.x >= 0) ? Vector2.right : Vector2.left, direction)));
         if(direction.x < 0) {
             launch.GetComponent<SpriteRenderer>().flipX = true;
@@ -65,7 +89,7 @@ public class LaunchingMagicManager : MonoBehaviour
         launch.transform.localScale = new Vector3(magic.scriptableMagic.size, magic.scriptableMagic.size, 0);
         float damage = (int) Math.Ceiling(magic.scriptableMagic.damage * Math.Pow(1.25f ,magic.level - 1));
         launch.GetComponent<ProjectileManager>().Launch(direction, 
-        magic.scriptableMagic.speed, magic.scriptableMagic.element, damage, 
+        magic.scriptableMagic.speed, magic.scriptableMagic.element, damage * dmgModifier, 
         magic.scriptableMagic.lifeTime, magic.scriptableMagic.explodeOnContact, 
         magic.scriptableMagic.statusEffect, magic.level);
     }
