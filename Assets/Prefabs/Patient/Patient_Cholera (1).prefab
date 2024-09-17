@@ -225,4 +225,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79113f82019d5244a475164174bbd53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 4900000, guid: 874d462760fecc343b1ee791dc31bb71, type: 3}
+  inkJSON: {fileID: 4900000, guid: 021c5ed7b88537e4cad8eb8a769b7204, type: 3}
