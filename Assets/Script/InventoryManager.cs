@@ -6,20 +6,20 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    private UIManager UIManager;
-    [SerializeField] private GameObject slotsHolder;
-    [SerializeField] private ItemClass itemToAdd;
+    protected UIManager UIManager;
+    [SerializeField] protected GameObject slotsHolder;
+    [SerializeField] protected ItemClass itemToAdd;
     
-    [SerializeField] private ItemClass itemToRemove;
+    [SerializeField] protected ItemClass itemToRemove;
     [SerializeField] public SlotClass[] items;
-    [SerializeField] private SlotClass[] herb;
-    [SerializeField] private SlotClass[] potion;
+    [SerializeField] protected SlotClass[] herb;
+    [SerializeField] protected SlotClass[] potion;
 
-    [SerializeField] private SlotClass[] startingItems;
+    [SerializeField] protected SlotClass[] startingItems;
 
-    [SerializeField] private SlotClass movingSlot;//di chuyển các slot khác cho cái item
-    [SerializeField] private SlotClass originalSlot;
-    [SerializeField] private SlotClass tempSlot;
+    [SerializeField] protected SlotClass movingSlot;//di chuyển các slot khác cho cái item
+    [SerializeField] protected SlotClass originalSlot;
+    [SerializeField] protected SlotClass tempSlot;
 
    
 
@@ -144,7 +144,7 @@ public class InventoryManager : MonoBehaviour
         }
         
     }
-    private void RefreshHerb()
+    protected void RefreshHerb()
     {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -162,7 +162,7 @@ public class InventoryManager : MonoBehaviour
                 }
             }
     }
-    private void RefreshPotion()
+    protected void RefreshPotion()
     {
         
         for (int i = 0; i < slots.Length; i++)
@@ -270,7 +270,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    private SlotClass GetCloseSlot()
+    protected SlotClass GetCloseSlot()
     {
         for(int i = 0; i < slots.Length; i++)
         {
@@ -284,7 +284,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
     
-    private void BeginMove()
+    protected void BeginMove()
     {
         originalSlot = GetCloseSlot();
         if(originalSlot == null || originalSlot.GetItem() == null)
@@ -299,7 +299,7 @@ public class InventoryManager : MonoBehaviour
         return;
         
     }
-    private void EndMove()
+    protected void EndMove()
     {
         originalSlot = GetCloseSlot();
 
