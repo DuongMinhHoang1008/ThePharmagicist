@@ -895,6 +895,18 @@ MonoBehaviour:
     m_Y: 0
     m_Width: 33
     m_Height: 511
+  - m_X: 188
+    m_Y: 257
+    m_Width: 7
+    m_Height: 66
+  - m_X: 195
+    m_Y: 342
+    m_Width: 316
+    m_Height: 64
+  - m_X: 197
+    m_Y: 342
+    m_Width: 314
+    m_Height: 169
   m_fontInfo:
     Name: Liberation Sans
     PointSize: 86

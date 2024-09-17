@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535cbfab0b03ef949a15ef2c4624a8d3, type: 3}
-  m_Name: "Vong_co_th\u1ECF"
+  m_Name: Vong_co_tho
   m_EditorClassIdentifier: 
   ItemName: "V\xF2ng c\u1ED5 Th\u1ED5"
   itemIcon: {fileID: -275106077, guid: cc40da95ae277ec42be5aee066b90e17, type: 3}

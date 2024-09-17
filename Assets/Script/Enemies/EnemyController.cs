@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MetaMask.Editor.NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
 
@@ -34,6 +35,13 @@ public class EnemyController : MonoBehaviour
     bool hasChase = false;
     public bool attack = false;
     Animator animator;
+    [SerializeField] bool canDropItem;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass veryhighRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass highRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass mediumRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass lowRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass verylowRate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +106,7 @@ public class EnemyController : MonoBehaviour
             OnStatusEffect(status, level);
         }
         if (health <= 0) {
+            DropItem();
             Destroy(gameObject);
         }
     }
@@ -105,6 +114,7 @@ public class EnemyController : MonoBehaviour
         health -= (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
         enemyHealthBar.updateHealthBar(health, maxHealth);
         if (health <= 0) {
+            DropItem();
             Destroy(gameObject);
         }
     }
@@ -189,5 +199,34 @@ public class EnemyController : MonoBehaviour
     }
     void AttackCooldownEnd() {
         onAttackCooldown = false;
+    }
+    void DropItem() {
+        if (canDropItem) {
+            ItemClass itemDrop;
+            int rate = UnityEngine.Random.Range(0, 100);
+            if (rate >= 99) {
+                //2%
+                itemDrop = verylowRate;
+            } else if (rate >= 97) {
+                //2%
+                itemDrop = lowRate;
+            } else if (rate >= 92) {
+                //5%
+                itemDrop = mediumRate;
+            } else if (rate >= 82) {
+                //10%
+                itemDrop = highRate;
+            } else if (rate >= 62) {
+                //20%
+                itemDrop = veryhighRate;
+            } else {
+                itemDrop = null;
+            }
+            if (itemDrop != null) {
+                GameObject itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Enemies/DropItem.prefab");
+                GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                item.GetComponent<DropItemManager>().SetUp(itemDrop.itemIcon, itemDrop);
+            }
+        }
     }
 }
