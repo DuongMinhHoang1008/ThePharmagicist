@@ -1,9 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using MetaMask.Editor.NaughtyAttributes;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Quaternion = UnityEngine.Quaternion;
+using Unity.Mathematics;
 
 public class EnemyController : MonoBehaviour
 {
@@ -31,6 +36,7 @@ public class EnemyController : MonoBehaviour
                                                     };
     
     [SerializeField] GameObject elementIcon;
+    [SerializeField] GameObject damageNumber;
     public bool comeBack = false;
     bool hasChase = false;
     public bool attack = false;
@@ -91,31 +97,41 @@ public class EnemyController : MonoBehaviour
         }
     }
     public void TakeDamage(float damage, StatusEffect status, int level, Element dmgElement) {
-        StartCoroutine("Blinking");
-        float damageModifier = 1;
-        Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
-        if (elementDic[dmgElement].minus == element) {
-            damageModifier = 1.5f;
-        } else if (elementDic[dmgElement].minus == element) {
-            damageModifier = 0.5f;
-        }
-        health -= damage * damageModifier;
-        enemyHealthBar.updateHealthBar(health, maxHealth);
-        if (status != StatusEffect.None && !statusEffects[status]) {
-            statusEffects[status] = true;
-            OnStatusEffect(status, level);
-        }
-        if (health <= 0) {
-            DropItem();
-            Destroy(gameObject);
+        if (health > 0) {
+            StartCoroutine("Blinking");
+            float damageModifier = 1f;
+            Color dmgColor = Color.white;
+            Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
+            if (elementDic[dmgElement].minus == element) {
+                damageModifier = 1.5f;
+                dmgColor = Color.red;
+            } else if (elementDic[dmgElement].plus == element) {
+                damageModifier = 0.5f;
+                dmgColor = Color.gray;
+            }
+            ShowDamageRecieve(damage * damageModifier, dmgColor);
+            health -= damage * damageModifier;
+            enemyHealthBar.updateHealthBar(health, maxHealth);
+            if (status != StatusEffect.None && !statusEffects[status]) {
+                statusEffects[status] = true;
+                OnStatusEffect(status, level);
+            }
+            if (health <= 0) {
+                DropItem();
+                Destroy(gameObject);
+            }
         }
     }
-    void LoseStatusHealth(float damage, int level) {
-        health -= (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
-        enemyHealthBar.updateHealthBar(health, maxHealth);
-        if (health <= 0) {
-            DropItem();
-            Destroy(gameObject);
+    void LoseStatusHealth(float damage, int level, Color dmgColor) {
+        if (health > 0) {
+            int dmg = (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
+            health -= dmg;
+            ShowDamageRecieve(dmg, dmgColor);
+            enemyHealthBar.updateHealthBar(health, maxHealth);
+            if (health <= 0) {
+                DropItem();
+                Destroy(gameObject);
+            }
         }
     }
     void OnStatusEffect(StatusEffect status, int level) {
@@ -139,7 +155,7 @@ public class EnemyController : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        LoseStatusHealth(8, level);
+        LoseStatusHealth(8, level, Color.red);
         statusEffects[StatusEffect.Burn] = false;
         burnIcon.SetActive(false);
     }
@@ -150,7 +166,7 @@ public class EnemyController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             yield return new WaitForSeconds(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            LoseStatusHealth(1.5f, level);
+            LoseStatusHealth(1.5f, level, Color.green);
         }
         statusEffects[StatusEffect.Poison] = false;
         poisonIcon.SetActive(false);
@@ -227,6 +243,17 @@ public class EnemyController : MonoBehaviour
                 GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
                 item.GetComponent<DropItemManager>().SetUp(itemDrop.itemIcon, itemDrop);
             }
+        }
+    }
+    void ShowDamageRecieve(float dmg, Color dmgColor) {
+        if (damageNumber != null) {
+            int dam = (int) Math.Ceiling(dmg);
+            GameObject showdmg = Instantiate(damageNumber, rigidbody2D.position + Vector2.up, Quaternion.identity);
+            showdmg.GetComponent<TextMeshPro>().text = dam.ToString();
+            showdmg.GetComponent<TextMeshPro>().color = dmgColor;
+            float randRad = UnityEngine.Random.Range(60, 120) * Mathf.Deg2Rad;
+            Vector2 direc = new Vector2(Mathf.Cos(randRad), Mathf.Sin(randRad));
+            showdmg.GetComponent<Rigidbody2D>().AddForce(direc * UnityEngine.Random.Range(300, 400));
         }
     }
 }
