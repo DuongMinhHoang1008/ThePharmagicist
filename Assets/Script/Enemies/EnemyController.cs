@@ -48,6 +48,7 @@ public class EnemyController : MonoBehaviour
     [ShowIf("canDropItem")] [SerializeField] ItemClass lowRate;
     [ShowIf("canDropItem")] [SerializeField] ItemClass verylowRate;
 
+    [SerializeField] AudioSource hitsound;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,6 +100,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damage, StatusEffect status, int level, Element dmgElement) {
         if (health > 0) {
             StartCoroutine("Blinking");
+            hitsound.PlayOneShot(hitsound.clip, 1);
             float damageModifier = 1f;
             Color dmgColor = Color.white;
             Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
@@ -124,6 +126,7 @@ public class EnemyController : MonoBehaviour
     }
     void LoseStatusHealth(float damage, int level, Color dmgColor) {
         if (health > 0) {
+            hitsound.PlayOneShot(hitsound.clip, 1);
             int dmg = (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
             health -= dmg;
             ShowDamageRecieve(dmg, dmgColor);
@@ -150,23 +153,47 @@ public class EnemyController : MonoBehaviour
         }
     }
     IEnumerator OnBurn(int level) {
+        float dmgModifier = 1f + PlayerInfo.Instance().accessory.fireBuff;
+        Element playerElement = PlayerInfo.Instance().element;
+        if (playerElement == Element.Fire) {
+            dmgModifier *= 1.5f;
+        } else if (playerElement == Element.Water || playerElement == Element.Metal) {
+            dmgModifier *= 0.5f;
+        }
+        if (element == Element.Metal) {
+            dmgModifier *= 1.5f;
+        } else if (element == Element.Earth) {
+            dmgModifier *= 0.5f;
+        }
         burnIcon.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        LoseStatusHealth(8, level, Color.red);
+        LoseStatusHealth(8 * dmgModifier, level, new Color(1, 165f/255f, 0));
         statusEffects[StatusEffect.Burn] = false;
         burnIcon.SetActive(false);
     }
     IEnumerator OnPoison(int level) {
+        float dmgModifier = 1f + PlayerInfo.Instance().accessory.woodBuff;
+        Element playerElement = PlayerInfo.Instance().element;
+        if (playerElement == Element.Wood) {
+            dmgModifier *= 1.5f;
+        } else if (playerElement == Element.Earth || playerElement == Element.Metal) {
+            dmgModifier *= 0.5f;
+        }
+        if (element == Element.Earth) {
+            dmgModifier *= 1.5f;
+        } else if (element == Element.Fire) {
+            dmgModifier *= 0.5f;
+        }
         poisonIcon.SetActive(true);
         for (int i = 0; i < 8; i++) {
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             yield return new WaitForSeconds(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            LoseStatusHealth(1.5f, level, Color.green);
+            LoseStatusHealth(1.5f * dmgModifier, level, Color.green);
         }
         statusEffects[StatusEffect.Poison] = false;
         poisonIcon.SetActive(false);

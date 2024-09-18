@@ -25,6 +25,7 @@ public class LaunchingMagicManager : MonoBehaviour
     [SerializeField] GameObject secondMagicLevel;
     [SerializeField] GameObject accessoryIcon;
     [SerializeField] GameObject playerElementIcon;
+    [SerializeField] AudioSource shootsound;
     Vector2 position = Vector2.zero;
     bool onFirstMagicCooldown = false;
     bool onSecondMagicCooldown = false;
@@ -67,6 +68,7 @@ public class LaunchingMagicManager : MonoBehaviour
         }
     }
     void ShootOneProjectile(Vector2 direction, Magic magic) {
+        shootsound.PlayOneShot(shootsound.clip, 1);
         float dmgModifier = 1f;
         if (accessory != null) {
             switch(magic.scriptableMagic.element) {

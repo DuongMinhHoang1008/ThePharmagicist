@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 
   element: 4
   damage: 7
-  cooldown: 3
+  cooldown: 2.5
   speed: 350
   lifeTime: 3
   number: 1
