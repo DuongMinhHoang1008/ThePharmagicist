@@ -16,6 +16,8 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
     private float remainTime = 120;
     private int indexActiveLastest;
+
+    public static QuestUI instance { get; private set; }
     void Update()
     {
         HideAndShowUI();

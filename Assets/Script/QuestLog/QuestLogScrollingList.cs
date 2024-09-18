@@ -16,7 +16,7 @@ public class QuestLogScrollingList : MonoBehaviour
 
     public static QuestLogScrollingList instance { get; private set; }
 
-    public bool isNeedRefresh = true;
+    public bool isNeedRefresh;
 
     void Start()
     {
@@ -25,13 +25,28 @@ public class QuestLogScrollingList : MonoBehaviour
                 quest = createQuest(i);
 
                 if (Random.Range(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
-                else savePeopleQuest(quest, "Cứu người");
+                else
+                {
+                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                    {
+                        collectHerbalQuest(quest, "Thảo dược");
+                    }
+                    else
+                    {
+                        //Debug.Log("spawn patient");
+                        spawnPatients.SpawnPrefabs();
+                        savePeopleQuest(quest, "Cứu người");
+                    }
+                }
+
                 questStored[i] = quest;
                 if (i == 0)
                 {
                     quest.button.Select();
                 }
             }
+
+        isNeedRefresh = false;
     }
     void Update()
     {
@@ -43,17 +58,19 @@ public class QuestLogScrollingList : MonoBehaviour
                 if (Random.Range(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
                 else
                 {
-                    /*if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
                     {
                         collectHerbalQuest(questStored[i], "Thảo dược");
                     }
                     else
-                    {*/
+                    {
+                        //Debug.Log("count bed" + spawnPatients.countBed);
+                        //Debug.Log("spawn patient");
+                        spawnPatients.SpawnPrefabs();
                         savePeopleQuest(questStored[i], "Cứu người");
-                    //}
+                    }
                 }
                 
-                //questStored[0].button.Select();
             }
             isNeedRefresh = false;
         }
@@ -83,9 +100,6 @@ public class QuestLogScrollingList : MonoBehaviour
         quest.gameObject.name = "savePeople";
         quest.questCollected = 0;
         quest.questColletion = 1;
-
-        spawnPatients.SpawnPrefabs();
-        spawnPatients.patient.gameObject.SetActive(true);
 
         quest.Initialize("Chữa bệnh", quest.questCollected, quest.questColletion);
     }

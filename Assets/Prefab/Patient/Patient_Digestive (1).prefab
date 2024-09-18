@@ -221,5 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc51fda12005c44dbf2f6407fbd7370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lackElement: 00000000000000000000000000000000feffffff
-  needElement: 0000000000000000000000000000000002000000
+  metalValue: 0
+  waterValue: 0
+  woodValue: 0
+  fireValue: 0
+  earthValue: 2
