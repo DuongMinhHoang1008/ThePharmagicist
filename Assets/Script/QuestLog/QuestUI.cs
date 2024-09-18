@@ -14,8 +14,10 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI QuestStatus;
     [SerializeField] TextMeshProUGUI QuestReward;
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
-    private float remainTime = 10;
+    private float remainTime = 120;
     private int indexActiveLastest;
+
+    public static QuestUI instance { get; private set; }
     void Update()
     {
         HideAndShowUI();
