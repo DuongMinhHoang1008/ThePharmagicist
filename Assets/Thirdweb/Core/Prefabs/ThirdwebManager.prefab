@@ -44,8 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d9559a79e304f44b5ac4d726f1ee68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeChain: arbitrum-sepolia
+  activeChain: avalanche-fuji
   supportedChains:
+  - identifier: avalanche-fuji
+    chainId: 43113
+    rpcOverride: 
   - identifier: ethereum
     chainId: 1
     rpcOverride: 
@@ -66,9 +69,6 @@ MonoBehaviour:
     rpcOverride: 
   - identifier: avalanche
     chainId: 43114
-    rpcOverride: 
-  - identifier: avalanche-fuji
-    chainId: 43113
     rpcOverride: 
   - identifier: arbitrum
     chainId: 42161

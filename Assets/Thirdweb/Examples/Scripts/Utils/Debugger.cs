@@ -16,7 +16,10 @@ namespace Thirdweb.Examples
             if (Instance == null)
                 Instance = this;
             else
-                Destroy(this.gameObject);
+                {
+                    Destroy(gameObject);
+                    return;
+                }
         }
 
         private void Start()

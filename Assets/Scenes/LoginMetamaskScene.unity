@@ -686,7 +686,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1946925695}
         m_TargetAssemblyTypeName: BlockchainManager, Assembly-CSharp
-        m_MethodName: ClaimNFT
+        m_MethodName: CreateListing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -766,8 +766,6 @@ MonoBehaviour:
   OnLoggedIn:
     m_PersistentCalls:
       m_Calls: []
-  ClaimButton: {fileID: 0}
-  goldText: {fileID: 0}
 --- !u!4 &1946925696
 Transform:
   m_ObjectHideFlags: 0
@@ -840,7 +838,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Claim
+  m_text: Create listing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1026,7 +1024,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 946622332}
   - {fileID: 2127324124}
   - {fileID: 1408831654}
   - {fileID: 1946925696}
+  - {fileID: 946622332}
