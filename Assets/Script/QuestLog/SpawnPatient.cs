@@ -26,11 +26,11 @@ public class SpawnPatient : MonoBehaviour
 
         System.Random random = new System.Random();
         int idPrefabs = random.Next(0, prefabs.Length - 1);
-        int idPosition = random.Next(0, postionObject.Length - 1);
+        int idPosition = random.Next(0, onActive.Length - 1);
 
         while (onActive[idPosition] != 0)
         {
-            idPosition = random.Next(0, postionObject.Length - 1);
+            idPosition = random.Next(0, onActive.Length - 1);
         }
 
         //Debug.Log("idprefabs" + idPrefabs);
