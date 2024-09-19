@@ -75,7 +75,7 @@ public class QuestUI : MonoBehaviour
                     isSelected = true;
                 }
             }
-            if (!isSelected)
+            if (!isSelected && questList.questStored[indexActiveLastest] != null)
             {
                 questList.questStored[indexActiveLastest].button.Select();
             }

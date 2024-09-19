@@ -44,6 +44,7 @@ public class NPCController : MonoBehaviour
             talk.SetActive(true);
             if (giveItem && item != null) {
                 other.GetComponent<Player>().GetInventory().AddItem(item, 1);
+                other.GetComponent<Player>().GetInventory().ClaimNFT(item);
             }
         }
     }

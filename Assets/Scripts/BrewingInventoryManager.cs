@@ -407,4 +407,9 @@ public class BrewingInventoryManager : MonoBehaviour
     void CloseItemInfo() {
         itemInfo.active = false;
     }
+    public void ClaimNFT(ItemClass item) {
+        if (item is MagicPotionClass) {
+            BlockchainManager.Instance.ClaimNFT(item.name);
+        } 
+    }
 }

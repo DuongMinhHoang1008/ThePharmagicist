@@ -1,34 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
+using Org.BouncyCastle.Math.Field;
 using UnityEngine;
 
 namespace Thirdweb.Examples
 {
     public class Prefab_Marketplace : MonoBehaviour
     {
-        private const string TOKEN_ERC20_CONTRACT = "0x81ebd23aA79bCcF5AaFb9c9c5B0Db4223c39102e";
-        private const string DROP_ERC20_CONTRACT = "0xEBB8a39D865465F289fa349A67B3391d8f910da9";
-        private const string TOKEN_ERC721_CONTRACT = "0x345E7B4CCA26725197f1Bed802A05691D8EF7770";
-        private const string DROP_ERC721_CONTRACT = "0xD811CB13169C175b64bf8897e2Fd6a69C6343f5C";
-        private const string TOKEN_ERC1155_CONTRACT = "0x83b5851134DAA0E28d855E7fBbdB6B412b46d26B";
-        private const string DROP_ERC1155_CONTRACT = "0x6A7a26c9a595E6893C255C9dF0b593e77518e0c3";
-        private const string MARKETPLACE_CONTRACT = "0xc9671F631E8313D53ec0b5358e1a499c574fCe6A";
-        private const string PACK_CONTRACT = "0xE33653ce510Ee767d8824b5EcDeD27125D49889D";
-
-        // Fetching
-
+        private const string TOKEN_ERC20_CONTRACT = "0x1738247AE53268d2B8C860A372D041B17653D28c";
+        private const string DROP_ERC20_CONTRACT_GOLD = "0x837Da77508c6c131a7A67546a95AfB754e7Fb9b7";
+        private const string DROP_ERC20_CONTRACT_SILV = "0x957d31118d993E52B9414856EA4666f11EB79984";
+         private const string TOKEN_ERC721_CONTRACT = "0x345E7B4CCA26725197f1Bed802A05691D8EF7770";
+        // private const string DROP_ERC721_CONTRACT = "0x6170158C1e6C6cd91091b4dcF84F6ae3a75A7707";
+        private const string DROP_ERC1155_CONTRACT = "0xE6FC216dBb76B25af3D3d78643B89474bF645CF8";
+        // private const string PACK_CONTRACT = "0xE33653ce510Ee767d8824b5EcDeD27125D49889D";
+        private const string MARKETPLACE_CONTRACT = "0x450667c45F79C6a936d058c2BD044CB6aF8e11A5";
+        private const string TOKEN_ERC1155_CONTRACT = "0xDf1020aC916d9B6136579218f64a30Cf05728ACD";
+        // Fetching     
         public async void Fetch_DirectListing()
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 var contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
-                var result = await contract.Marketplace.DirectListings.GetListing("1");
-                Debugger.Instance.Log("[Fetch_DirectListing] Sucess", result.ToString());
+                var marketplace = contract.Marketplace;
+                var result = await marketplace.DirectListings.GetAll();
+                Debug.Log(result);
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Fetch_DirectListing] Error", e.Message);
+                Debug.Log(e.Message);
             }
         }
 
@@ -48,7 +50,7 @@ namespace Thirdweb.Examples
         }
 
         public async void Fetch_Offer()
-        {
+        { 
             try
             {
                 Debugger.Instance.Log("Request Sent", "Pending confirmation...");
@@ -74,7 +76,7 @@ namespace Thirdweb.Examples
                     new CreateListingInput()
                     {
                         assetContractAddress = TOKEN_ERC1155_CONTRACT,
-                        tokenId = "4",
+                        tokenId = "0",
                         pricePerToken = "0.000000000000000001", // 1 wei
                         quantity = "100"
                     }
@@ -97,7 +99,7 @@ namespace Thirdweb.Examples
                     new CreateAuctionInput()
                     {
                         assetContractAddress = TOKEN_ERC1155_CONTRACT,
-                        tokenId = "4",
+                        tokenId = "0",
                         buyoutBidAmount = "0.0000000000000001",
                         minimumBidAmount = "0.000000000000000001"
                     }
@@ -120,7 +122,7 @@ namespace Thirdweb.Examples
                     new MakeOfferInput()
                     {
                         assetContractAddress = TOKEN_ERC1155_CONTRACT,
-                        tokenId = "4",
+                        tokenId = "0",
                         totalPrice = "0.000000000000000001",
                     }
                 );
@@ -225,5 +227,6 @@ namespace Thirdweb.Examples
                 Debugger.Instance.Log("[Cancel_Offer] Error", e.Message);
             }
         }
+        
     }
 }

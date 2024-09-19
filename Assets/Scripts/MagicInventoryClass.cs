@@ -12,6 +12,7 @@ public class MagicInventoryClass : InventoryManager
     [SerializeField] GameObject firstMagicButton;
     [SerializeField] GameObject secondMagicButton;
     [SerializeField] LaunchingMagicManager playerMagicManager;
+    
     SlotClass useItemInSlot;
     // For Magic
 

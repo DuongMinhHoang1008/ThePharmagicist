@@ -57474,7 +57474,7 @@ PrefabInstance:
     - target: {fileID: 1584582576168046240, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 897817091}
+      objectReference: {fileID: 867880012}
     - target: {fileID: 1584582576168046240, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: playerHealth
       value: 
@@ -57507,6 +57507,30 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: itemInfo
+      value: 
+      objectReference: {fileID: 687548119}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: itemCursor
+      value: 
+      objectReference: {fileID: 1662471545}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: equipButton
+      value: 
+      objectReference: {fileID: 1368600901}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: slotsHolder
+      value: 
+      objectReference: {fileID: 1526339431}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: firstMagicButton
+      value: 
+      objectReference: {fileID: 1881553532}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: secondMagicButton
+      value: 
+      objectReference: {fileID: 1873588165}
     - target: {fileID: 6012318277863271685, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: accessoryIcon
       value: 
@@ -57593,20 +57617,17 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7229791128160061307, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1572390622}
-    - targetCorrespondingSourceObject: {fileID: 7229791128160061307, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 897817092}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
 --- !u!114 &867880012 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6012318277863271685, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
   m_PrefabInstance: {fileID: 867880011}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9edef5dc4a7f41b43a9475708c1c64bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ba4f04dea1cb4740981709dbac85708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &880667388
@@ -57674,22 +57695,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5805065309318061127, guid: eee385a8fdecad04c8c372763f9b517d, type: 3}
   m_PrefabInstance: {fileID: 1761704144}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &897817091 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-  m_PrefabInstance: {fileID: 1950258576}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba4f04dea1cb4740981709dbac85708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &897817092 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-  m_PrefabInstance: {fileID: 1950258576}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &901159861
 GameObject:
@@ -58980,7 +58985,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 897817091}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: EquipItem
         m_Mode: 1
@@ -59716,7 +59721,7 @@ Transform:
   m_GameObject: {fileID: 1572390621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000150203705, y: 7.1000004, z: -10}
+  m_LocalPosition: {x: 0.00001859665, y: 7.1000004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61212,7 +61217,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 897817091}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: ChangeSecondMagic
         m_Mode: 1
@@ -61325,7 +61330,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 897817091}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: ChangeFirstMagic
         m_Mode: 1
@@ -61636,91 +61641,6 @@ Transform:
   - {fileID: 1791686193}
   m_Father: {fileID: 1755837090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1950258576
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1325235197}
-    m_Modifications:
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: itemInfo
-      value: 
-      objectReference: {fileID: 687548119}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: itemCursor
-      value: 
-      objectReference: {fileID: 1662471545}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: equipButton
-      value: 
-      objectReference: {fileID: 1368600901}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: slotsHolder
-      value: 
-      objectReference: {fileID: 1526339431}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: firstMagicButton
-      value: 
-      objectReference: {fileID: 1881553532}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: secondMagicButton
-      value: 
-      objectReference: {fileID: 1873588165}
-    - target: {fileID: 1627846822663179299, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: playerMagicManager
-      value: 
-      objectReference: {fileID: 867880012}
-    - target: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_Name
-      value: InventoryManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 94462aeb54361014c94071a1445435b3, type: 3}
 --- !u!1 &1998542243
 GameObject:
   m_ObjectHideFlags: 0

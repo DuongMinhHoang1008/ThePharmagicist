@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Thirdweb;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -360,5 +361,10 @@ public class InventoryManager : MonoBehaviour
             showItem.GetComponent<Rigidbody2D>().AddForce(direc * UnityEngine.Random.Range(300, 400));
         }
     }
-
+    public void ClaimNFT(ItemClass item) {
+        if (item is MagicPotionClass) {
+            Debug.Log(item.name);
+            // BlockchainManager.Instance.ClaimNFT(item.name);
+        } 
+    }
 }
