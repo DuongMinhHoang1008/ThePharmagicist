@@ -37,4 +37,9 @@ public class Teleporter : MonoBehaviour
             
         }
     }
+    public void ChangeScene() {
+        if (mode == TeleportMode.BetweenScenes) {
+            SceneManager.LoadScene(sceneTeleTo);
+        }
+    }
 }
