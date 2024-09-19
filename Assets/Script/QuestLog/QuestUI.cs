@@ -14,10 +14,8 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI QuestStatus;
     [SerializeField] TextMeshProUGUI QuestReward;
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
-    private float remainTime = 120;
-    private int indexActiveLastest;
-
-    public static QuestUI instance { get; private set; }
+    private float remainTime = 10;
+    private int indexActiveLastest = 0;
     void Update()
     {
         HideAndShowUI();
@@ -75,7 +73,7 @@ public class QuestUI : MonoBehaviour
                     isSelected = true;
                 }
             }
-            if (!isSelected)
+            if (!isSelected && questList.questStored[indexActiveLastest] != null)
             {
                 questList.questStored[indexActiveLastest].button.Select();
             }
