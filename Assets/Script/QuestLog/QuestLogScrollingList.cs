@@ -18,13 +18,15 @@ public class QuestLogScrollingList : MonoBehaviour
 
     public bool isNeedRefresh;
 
+    System.Random random = new System.Random();
+
     void Start()
     {
         for (int i = 0; i < 5; i++)
             {
                 quest = createQuest(i);
 
-                if (Random.Range(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
+                if (random.Next(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
                 else
                 {
                     if (spawnPatients.countBed == spawnPatients.postionObject.Length)
@@ -55,7 +57,7 @@ public class QuestLogScrollingList : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
-                if (Random.Range(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
+                if (random.Next(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
                 else
                 {
                     if (spawnPatients.countBed == spawnPatients.postionObject.Length)
