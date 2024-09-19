@@ -16,6 +16,7 @@ public class SpawnPatient : MonoBehaviour
     public int countBed = 0;
     private void Start()
     {
+        onActive = new int[postionObject.Length];
         for (int i = 0; i < onActive.Length; i++) {
             onActive[i] = 0;
         }
@@ -32,8 +33,8 @@ public class SpawnPatient : MonoBehaviour
             idPosition = random.Next(0, postionObject.Length - 1);
         }
 
-        Debug.Log("idprefabs" + idPrefabs);
-        Debug.Log("idposition" + idPosition);
+        //Debug.Log("idprefabs" + idPrefabs);
+        //Debug.Log("idposition" + idPosition);
 
         GameObject randomPrefabs = prefabs[idPrefabs];
         Vector3 randomPosition = postionObject[idPosition].transform.position;

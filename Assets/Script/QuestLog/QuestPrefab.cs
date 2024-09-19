@@ -11,7 +11,7 @@ public class QuestPrefab : MonoBehaviour
     public int questCollected { get;  set; }
     public int questColletion { get;  set; }
 
-    public static QuestPrefab instance { get; private set; }
+    public static QuestPrefab instance { get; set; }
     public void Initialize(string displayName, int questCollected = 0, int questColletion = 0) 
     {
         this.questCollected = questCollected;
