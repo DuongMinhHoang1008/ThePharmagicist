@@ -516,145 +516,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50509286}
   m_CullTransparentMesh: 1
---- !u!1001 &51358599
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 556913254}
-    m_Modifications:
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: itemCursor
-      value: 
-      objectReference: {fileID: 1251698205}
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: slotsHolder
-      value: 
-      objectReference: {fileID: 1251698206}
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: startingItems.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: startingItems.Array.data[12].item
-      value: 
-      objectReference: {fileID: 11400000, guid: 156ace5e123832d4fb88007ec6faf59e, type: 2}
-    - target: {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: startingItems.Array.data[12].quantity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_Name
-      value: InventoryManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 522.2774
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 315.9101
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.050212
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 28119664173364745, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 51358602}
-  m_SourcePrefab: {fileID: 100100000, guid: 94462aeb54361014c94071a1445435b3, type: 3}
---- !u!1 &51358600 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1631124076353429594, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-  m_PrefabInstance: {fileID: 51358599}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &51358601 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2332903500072438643, guid: 94462aeb54361014c94071a1445435b3, type: 3}
-  m_PrefabInstance: {fileID: 51358599}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &51358602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51358600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba4f04dea1cb4740981709dbac85708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotsHolder: {fileID: 1251698206}
-  itemToAdd: {fileID: 0}
-  itemToRemove: {fileID: 0}
-  items: []
-  herb: []
-  potion: []
-  startingItems:
-  - item: {fileID: 11400000, guid: 1178585c3269af94d98a710aa6222f31, type: 2}
-    quantity: 1
-  - item: {fileID: 11400000, guid: 198a869cd6c812a46968f0a7fff4e9b3, type: 2}
-    quantity: 1
-  - item: {fileID: 11400000, guid: 31388997c881a1d40a1cb44d3e11e567, type: 2}
-    quantity: 1
-  - item: {fileID: 11400000, guid: c82d2ea5d3833614f92f67d4af2cda12, type: 2}
-    quantity: 1
-  movingSlot:
-    item: {fileID: 0}
-    quantity: 0
-  originalSlot:
-    item: {fileID: 0}
-    quantity: 0
-  tempSlot:
-    item: {fileID: 0}
-    quantity: 0
-  itemCursor: {fileID: 1251698205}
-  slots: []
-  isMoving: 0
-  itemInfo: {fileID: 1015446961}
-  equipButton: {fileID: 1317171001}
-  firstMagicButton: {fileID: 835943924}
-  secondMagicButton: {fileID: 1869891384}
-  playerMagicManager: {fileID: 0}
 --- !u!1 &126644458
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1462,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 834505202}
-  - {fileID: 51358601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &631560718
@@ -2214,7 +2074,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 51358602}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: ChangeFirstMagic
         m_Mode: 1
@@ -2686,7 +2546,7 @@ PrefabInstance:
     - target: {fileID: 1584582576168046240, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 51358602}
+      objectReference: {fileID: 0}
     - target: {fileID: 1584582576168046240, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: playerHealth
       value: 
@@ -2723,6 +2583,30 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: itemInfo
+      value: 
+      objectReference: {fileID: 1015446961}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: itemCursor
+      value: 
+      objectReference: {fileID: 1251698205}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: equipButton
+      value: 
+      objectReference: {fileID: 1317171001}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: slotsHolder
+      value: 
+      objectReference: {fileID: 1251698206}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: firstMagicButton
+      value: 
+      objectReference: {fileID: 835943924}
+    - target: {fileID: 5248206038666592455, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: secondMagicButton
+      value: 
+      objectReference: {fileID: 1869891384}
     - target: {fileID: 6012318277863271685, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: accessoryIcon
       value: 
@@ -2747,6 +2631,14 @@ PrefabInstance:
       propertyPath: playerElementIcon
       value: 
       objectReference: {fileID: 972398262}
+    - target: {fileID: 6012318277863271685, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: firstMagic.scriptableMagic
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012318277863271685, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
+      propertyPath: secondMagic.scriptableMagic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6261330951449041259, guid: a9687ca90eaf7084f973998465cd8599, type: 3}
       propertyPath: m_Constraints
       value: 4
@@ -2836,7 +2728,7 @@ Transform:
   m_GameObject: {fileID: 1180009057}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.792222, y: -3.04, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6648,7 +6540,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 51358602}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: EquipItem
         m_Mode: 1
@@ -8630,7 +8522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 51358602}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MagicInventoryClass, Assembly-CSharp
         m_MethodName: ChangeSecondMagic
         m_Mode: 1
