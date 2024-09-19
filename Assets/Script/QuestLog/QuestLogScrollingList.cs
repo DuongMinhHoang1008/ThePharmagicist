@@ -92,7 +92,7 @@ public class QuestLogScrollingList : MonoBehaviour
     {
         quest.gameObject.name = "collectHerbal";
         quest.questCollected = 0;
-        quest.questColletion = Random.Range(5, 10);
+        quest.questColletion = random.Next(5, 10);
 
         quest.Initialize("Thu thập thảo dược", quest.questCollected, quest.questColletion);
     }
