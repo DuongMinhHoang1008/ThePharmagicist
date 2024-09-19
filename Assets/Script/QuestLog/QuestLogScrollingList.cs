@@ -26,27 +26,31 @@ public class QuestLogScrollingList : MonoBehaviour
             {
                 quest = createQuest(i);
 
-                if (random.Next(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
-                else
-                {
-                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
-                    {
-                        collectHerbalQuest(quest, "Thảo dược");
-                    }
-                    else
-                    {
-                        //Debug.Log("spawn patient");
-                        spawnPatients.SpawnPrefabs(grandpa);
+                // if (random.Next(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
+                // else
+                // {
+                //     if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                //     {
+                //         collectHerbalQuest(quest, "Thảo dược");
+                //     }
+                //     else
+                //     {
+                //         //Debug.Log("spawn patient");
+                        
+                //     }
+                // }
+                if (spawnPatients != null) {
+                    spawnPatients.SpawnPrefabs(grandpa, grandpa.transform.parent.GetComponent<QuestUI>().timeToRefresh, quest);
                         savePeopleQuest(quest, "Cứu người");
-                    }
+                    questStored[i] = quest;
                 }
                 
-                questStored[i] = quest;
                 if (i == 0)
                 {
                     quest.button.Select();
                 }
             }
+            spawnPatients.TurnAllToZero();
 
         isNeedRefresh = false;
     }
@@ -54,26 +58,36 @@ public class QuestLogScrollingList : MonoBehaviour
     {
         if (isNeedRefresh)
         {
-
-            for (int i = 0; i < 5; i++)
-            {
-                if (random.Next(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
-                else
-                {
-                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
-                    {
-                        collectHerbalQuest(questStored[i], "Thảo dược");
-                    }
-                    else
-                    {
-                        //Debug.Log("count bed" + spawnPatients.countBed);
-                        //Debug.Log("spawn patient");
-                        spawnPatients.SpawnPrefabs(grandpa);
-                        savePeopleQuest(questStored[i], "Cứu người");
+            for (int j = 0; j < grandpa.transform.childCount; j++) {
+                if (grandpa.transform.GetChild(j).GetChild(0) != null) {
+                    GameObject child = grandpa.transform.GetChild(j).gameObject;
+                    if (child.transform.GetChild(0).GetComponent<DialogTrigger>()!= null) {
+                        Destroy(child);
                     }
                 }
-                
             }
+            for (int i = 0; i < 5; i++)
+            {
+                // if (random.Next(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
+                // else
+                // {
+                //     if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                //     {
+                //         collectHerbalQuest(questStored[i], "Thảo dược");
+                //     }
+                //     else
+                //     {
+                //         //Debug.Log("count bed" + spawnPatients.countBed);
+                //         //Debug.Log("spawn patient");
+                        
+                //     }
+                // }
+                if (spawnPatients != null) {
+                    spawnPatients.SpawnPrefabs(grandpa, grandpa.transform.parent.GetComponent<QuestUI>().timeToRefresh, quest);
+                    savePeopleQuest(questStored[i], "Cứu người");
+                }
+            }
+            spawnPatients.TurnAllToZero();
             isNeedRefresh = false;
         }
     }

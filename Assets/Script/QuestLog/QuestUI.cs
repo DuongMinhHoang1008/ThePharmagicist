@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using System.ComponentModel;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class QuestUI : MonoBehaviour
 {
@@ -14,8 +16,8 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI QuestStatus;
     [SerializeField] TextMeshProUGUI QuestReward;
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
-    [SerializeField] float timeToRefresh = 600;
-    private float remainTime = 120;
+    [SerializeField] public float timeToRefresh = 10;
+    private float remainTime = 10;
     private int indexActiveLastest;
 
     public static QuestUI instance { get; set; }
@@ -32,6 +34,14 @@ public class QuestUI : MonoBehaviour
     }
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "BrewingPuzzle") {
+            gameObject.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene().name == "LobbyHouse") {
+            transform.GetChild(1).gameObject.SetActive(true);
+        } else {
+            transform.GetChild(1).gameObject.SetActive(false);
+        }
         HideAndShowUI();
         SwitchQuest(instance.questList);
         remainTime -= Time.deltaTime;
@@ -71,6 +81,9 @@ public class QuestUI : MonoBehaviour
         }
 
         QuestStatus.text = "Tiến độ          " + quest.questCollected + " / " + quest.questColletion;
+        if (quest.questCollected >= quest.questColletion) {
+            QuestStatus.text += "   Đã hoàn thành";
+        }
     }
 
     private void SwitchQuest(QuestLogScrollingList questList)

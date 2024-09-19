@@ -22,7 +22,7 @@ public class SpawnPatient : MonoBehaviour
         }
     }
 
-    public void SpawnPrefabs(GameObject parent) {
+    public void SpawnPrefabs(GameObject parent, float lifeTime, QuestPrefab quest) {
 
         System.Random random = new System.Random();
         int idPrefabs = random.Next(0, prefabs.Length - 1);
@@ -44,5 +44,17 @@ public class SpawnPatient : MonoBehaviour
 
         patient = Instantiate(randomPrefabs, randomPosition, Quaternion.identity);
         patient.transform.parent = parent.transform;
+        patient.transform.GetChild(0).GetComponent<DialogTrigger>().questPrefab = quest;
+        //StartCoroutine(DestroyPatient(patient, lifeTime));
+    }
+
+    IEnumerator DestroyPatient(GameObject pat, float lifeTime) {
+        yield return new WaitForSeconds(lifeTime - 1);
+        Destroy(pat);
+    }
+    public void TurnAllToZero() {
+        for (int i = 0; i < onActive.Length; i++)  {
+            onActive[i] = 0;
+        }
     }
 }

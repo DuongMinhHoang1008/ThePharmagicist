@@ -367,4 +367,18 @@ public class InventoryManager : MonoBehaviour
             // BlockchainManager.Instance.ClaimNFT(item.name);
         } 
     }
+    public CurePotionClass FindCurePotion(UseElement useElement) {
+        foreach (SlotClass slot in items) {
+            if (slot.GetItem() is CurePotionClass) {
+                CurePotionClass cure = (CurePotionClass) slot.GetItem();
+                if (cure.metalValue != useElement.metalValue) break;
+                if (cure.waterValue != useElement.waterValue) break;
+                if (cure.woodValue != useElement.woodValue) break;
+                if (cure.fireValue != useElement.fireValue) break;
+                if (cure.earthValue != useElement.earthValue) break;
+                return cure;
+            }
+        }
+        return null;
+    }
 }

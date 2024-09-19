@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
             case "LobbyHouse":
                 if (SceneManager.GetActiveScene().name == "Lobby") {
                     rb.position = new Vector2(0, 14);
+                } else if (SceneManager.GetActiveScene().name == "LobbyHouse") {
+                    rb.position = new Vector2(-15, -1);
+                    QuestUI.instance.gameObject.SetActive(true);
                 }
                 break;
             default:
