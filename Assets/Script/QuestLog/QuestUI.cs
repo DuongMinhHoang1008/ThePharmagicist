@@ -17,7 +17,7 @@ public class QuestUI : MonoBehaviour
     private float remainTime = 120;
     private int indexActiveLastest;
 
-    public static QuestUI instance { get; private set; }
+    public static QuestUI instance { get; set; }
     void Update()
     {
         HideAndShowUI();

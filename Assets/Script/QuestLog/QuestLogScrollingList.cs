@@ -14,7 +14,7 @@ public class QuestLogScrollingList : MonoBehaviour
     public QuestPrefab[] questStored = new QuestPrefab[5];
     public QuestPrefab quest;
 
-    public static QuestLogScrollingList instance { get; private set; }
+    public static QuestLogScrollingList instance { get;  set; }
 
     public bool isNeedRefresh;
 
