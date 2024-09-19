@@ -18,6 +18,8 @@ public class DialogTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player") { 
             playerInRange = true;
 
+            Debug.Log("on player");
+
             DialogManager.GetInstance().EnterDialogMode(inkJSON);
         }
     }
