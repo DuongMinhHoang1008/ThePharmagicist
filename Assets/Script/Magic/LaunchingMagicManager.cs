@@ -25,6 +25,7 @@ public class LaunchingMagicManager : MonoBehaviour
     [SerializeField] GameObject secondMagicLevel;
     [SerializeField] GameObject accessoryIcon;
     [SerializeField] GameObject playerElementIcon;
+    [SerializeField] AudioSource shootsound;
     Vector2 position = Vector2.zero;
     bool onFirstMagicCooldown = false;
     bool onSecondMagicCooldown = false;
@@ -66,6 +67,7 @@ public class LaunchingMagicManager : MonoBehaviour
         }
     }
     void ShootOneProjectile(Vector2 direction, Magic magic) {
+        shootsound.PlayOneShot(shootsound.clip, 1);
         float dmgModifier = 1f;
         if (accessory != null) {
             switch(magic.scriptableMagic.element) {
@@ -139,6 +141,7 @@ public class LaunchingMagicManager : MonoBehaviour
         return accessory;
     }
     void UpdateMagicIcon() {
+        PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
         if (firstMagic.scriptableMagic != null) {
             firstMagicIcon.SetActive(true);
             firstMagicIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[firstMagic.scriptableMagic.element].sprite;
@@ -163,5 +166,7 @@ public class LaunchingMagicManager : MonoBehaviour
         } else {
             accessoryIcon.SetActive(false);
         }
+
+        
     }
 }

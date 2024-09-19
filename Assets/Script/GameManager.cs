@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
+    string lastScene;
     private void Awake() {
         if (instance == null) {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     // Start is called before the first frame update
@@ -28,5 +30,11 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeSceneToInventory() {
         SceneManager.LoadScene("InventoryTestScene");
+    }
+    public string GetLastScene() {
+        return lastScene;
+    }
+    public void ChangeLastScene(string scene) {
+        lastScene = scene;
     }
 }

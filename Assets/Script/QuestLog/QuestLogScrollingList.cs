@@ -8,47 +8,71 @@ public class QuestLogScrollingList : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject contentParent;
     [SerializeField] private GameObject questPrefabs; 
+
+    [SerializeField] public SpawnPatient spawnPatients;
+    
     public QuestPrefab[] questStored = new QuestPrefab[5];
     public QuestPrefab quest;
 
-    public bool isNeedRefresh = true;
+    public static QuestLogScrollingList instance { get; private set; }
+
+    public bool isNeedRefresh;
+
+    System.Random random = new System.Random();
+
     void Start()
     {
         for (int i = 0; i < 5; i++)
             {
                 quest = createQuest(i);
 
-                if (Random.Range(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
-                else savePeopleQuest(quest, "Cứu người");
+                if (random.Next(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
+                else
+                {
+                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                    {
+                        collectHerbalQuest(quest, "Thảo dược");
+                    }
+                    else
+                    {
+                        //Debug.Log("spawn patient");
+                        spawnPatients.SpawnPrefabs();
+                        savePeopleQuest(quest, "Cứu người");
+                    }
+                }
+
                 questStored[i] = quest;
                 if (i == 0)
                 {
                     quest.button.Select();
                 }
             }
+
+        isNeedRefresh = false;
     }
     void Update()
     {
         if (isNeedRefresh)
         {
-            // for (int i = 0; i < 5; i++)
-            // {
-            //     quest = createQuest(i);
 
-            //     if (Random.Range(1, 10) > 5) collectHerbalQuest(quest, "Thảo dược");
-            //     else savePeopleQuest(quest, "Cứu người");
-            //     questStored[i] = quest;
-            //     if (i == 0)
-            //     {
-            //         quest.button.Select();
-            //     }
-            // }
             for (int i = 0; i < 5; i++)
             {
-                if (Random.Range(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
-                else savePeopleQuest(questStored[i], "Cứu người");
+                if (random.Next(1, 10) > 5) collectHerbalQuest(questStored[i], "Thảo dược");
+                else
+                {
+                    if (spawnPatients.countBed == spawnPatients.postionObject.Length)
+                    {
+                        collectHerbalQuest(questStored[i], "Thảo dược");
+                    }
+                    else
+                    {
+                        //Debug.Log("count bed" + spawnPatients.countBed);
+                        //Debug.Log("spawn patient");
+                        spawnPatients.SpawnPrefabs();
+                        savePeopleQuest(questStored[i], "Cứu người");
+                    }
+                }
                 
-                questStored[0].button.Select();
             }
             isNeedRefresh = false;
         }

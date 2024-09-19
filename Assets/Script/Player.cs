@@ -4,6 +4,7 @@ using UnityEngine;
 using Microsoft.Unity.VisualStudio.Editor;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public LayerMask lootLayer;
     bool isInvincible = false;
     [SerializeField] MagicInventoryClass inventory;
+    [SerializeField] AudioSource hitsound;
 
     void Start()
     {
@@ -43,6 +45,19 @@ public class Player : MonoBehaviour
         } else {
             playerElement = PlayerInfo.Instance().element;
         }
+        switch (GameManager.instance.GetLastScene()) {
+            case "Forest2":
+                rb.position = new Vector2(42, 0);
+                break;
+            case "Forest1":
+                if (SceneManager.GetActiveScene().name == "Lobby") {
+                    rb.position = new Vector2(19, -17);
+                }
+                break;
+            default:
+                break;
+        }
+        GameManager.instance.ChangeLastScene(SceneManager.GetActiveScene().name);
     }
 
     void Update()
@@ -113,6 +128,7 @@ public class Player : MonoBehaviour
             if (isInvincible) {
                 return;
             }
+            hitsound.PlayOneShot(hitsound.clip, 1);
             isInvincible = true;
             StartCoroutine("Blinking");
             Invoke("InvincibleEnd", invincibleTime);
@@ -133,6 +149,9 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public InventoryManager GetInventory() {
+        return inventory;
     }
 }
 

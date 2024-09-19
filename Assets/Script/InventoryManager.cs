@@ -21,11 +21,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] protected SlotClass originalSlot;
     [SerializeField] protected SlotClass tempSlot;
 
-   
+    [SerializeField] GameObject showItemPickup;
 
     public Image itemCursor;
 
     [SerializeField] public GameObject[] slots;
+    [SerializeField] AudioSource audioSource;
     public bool isMoving;
 
     //[SerializeField] private List<SlotClass> items = new List<SlotClass>();
@@ -62,7 +63,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
-
         RefreshUI();
     }
     public void Classify()
@@ -206,6 +206,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     public void AddItem(ItemClass item,int quantity)
     {
+        ShowItemRecieve(item.ItemName);
         SlotClass slot = ContainItem(item);
         if(slot != null)
         {
@@ -347,6 +348,17 @@ public class InventoryManager : MonoBehaviour
         return;
     }
    
-
+    void ShowItemRecieve(string itemName) {
+        if (showItemPickup != null) {
+            audioSource.PlayOneShot(audioSource.clip, 1);
+            GameObject showItem = Instantiate(showItemPickup, transform.position, Quaternion.identity);
+            showItem.GetComponent<TextMeshPro>().text = itemName;
+            showItem.GetComponent<TextMeshPro>().fontSize = 5;
+            showItem.GetComponent<TextMeshPro>().color = Color.white;
+            float randRad = UnityEngine.Random.Range(60, 120) * Mathf.Deg2Rad;
+            Vector2 direc = new Vector2(Mathf.Cos(randRad), Mathf.Sin(randRad));
+            showItem.GetComponent<Rigidbody2D>().AddForce(direc * UnityEngine.Random.Range(300, 400));
+        }
+    }
 
 }

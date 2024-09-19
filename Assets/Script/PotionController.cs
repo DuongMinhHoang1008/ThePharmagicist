@@ -33,10 +33,11 @@ public class PotionController : MonoBehaviour
         {
             // Tạo vị trí ngẫu nhiên trong giới hạn spawn
             Vector3 randomPosition = new Vector3(
-            Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-            Random.Range(spawnAreaMin.y, spawnAreaMax.y),
-            Random.Range(spawnAreaMin.z, spawnAreaMax.z));
+            Random.Range(transform.position.x + spawnAreaMin.x, transform.position.x +  spawnAreaMax.x),
+            Random.Range(transform.position.y + spawnAreaMin.y, transform.position.y + spawnAreaMax.y),
+            Random.Range(transform.position.z + spawnAreaMin.z, transform.position.z + spawnAreaMax.z));
             GameObject newObject = new GameObject(herbDic[i].herb.ItemName);
+            newObject.transform.parent = gameObject.transform;
             var currentitem = herbDic[i].herb.ItemName;
             newObject.transform.localScale = new Vector3(4f, 4f, 4f);
             SpriteRenderer spriteRenderer = newObject.AddComponent<SpriteRenderer>();

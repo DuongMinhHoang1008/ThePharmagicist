@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInfo
 {
     private static PlayerInfo instance;
-    private SlotClass[] inventoryItems;
+    public SlotClass[] inventoryItems { get; private set; }
     private Vector2 playerPos = Vector2.zero;
     public Element element { get; private set; } = Element.None;
     public Magic firstMagic;
@@ -34,11 +34,11 @@ public class PlayerInfo
         this.element = element;
     }
     public void UpdatePlayerGlobalMagic(ref Magic fmagic, ref Magic smagic, ref AccessoryClass acc) {
-        if (firstMagic == null) {
+        if (firstMagic == null || firstMagic.scriptableMagic == null) {
             firstMagic = fmagic;
         }
         fmagic = firstMagic;
-        if (secondMagic == null) {
+        if (secondMagic == null || secondMagic.scriptableMagic == null) {
             secondMagic = smagic;
         }
         smagic = secondMagic;

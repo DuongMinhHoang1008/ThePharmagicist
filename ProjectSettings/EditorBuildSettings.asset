@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoginMetamaskScene.unity
     guid: 6e4570e5b90bf734597f8fbc46b20d30
+  - enabled: 1
+    path: Assets/Scenes/Forest1.unity
+    guid: 63bd1b2e9f8bd764a9fb3e7dc737d840
+  - enabled: 1
+    path: Assets/Scenes/Forest2.unity
+    guid: a2c242e62e351d442815c6a5c3ea1d48
+  - enabled: 1
+    path: Assets/Scenes/LobbyHouse.unity
+    guid: 5a9ce21221c452a43ba967364156076b
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: d72b5acaa9397454580f7b462aa326a0
   m_configObjects: {}
