@@ -41,5 +41,14 @@ namespace ThangChibaGPT
         {
             ChatMode.CurrentState.SubmitChat(content);
         }
+        public void StopTime() 
+        {
+            Time.timeScale = 0;
+        }
+
+        public void ContinueTime()
+        {
+            Time.timeScale = 1;
+        }
     }
 }

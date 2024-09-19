@@ -26,8 +26,8 @@ namespace ThangChibaGPT
         // Start is called before the first frame update
         private void Start()
         {
-            if (uiContainer != null)
-                uiContainer?.SetActive(false);
+            // if (uiContainer != null)
+            //     uiContainer?.SetActive(false);
         }
 
         // Update is called once per frame
