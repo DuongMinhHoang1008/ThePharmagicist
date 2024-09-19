@@ -37,4 +37,28 @@ public class GameManager : MonoBehaviour
     public void ChangeLastScene(string scene) {
         lastScene = scene;
     }
+    public void ChangeElement(string element) {
+        //PlayerInfo.Instance().SetPlayerElement(element);
+        Element el = Element.None;
+        switch(element){
+            case "Metal":
+                el = Element.Metal;
+                break;
+            case "Water":
+                el = Element.Water;
+                break;
+            case "Wood":
+                el = Element.Wood;
+                break;
+            case "Fire":
+                el = Element.Fire;
+                break;
+            case "Earth":
+                el = Element.Earth;
+                break;
+            default:
+                break;
+        }
+        PlayerInfo.Instance().SetPlayerElement(el);
+    }
 }
