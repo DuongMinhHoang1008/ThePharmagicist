@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Cancel_Auction
         m_Mode: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Buy_Listing
         m_Mode: 1
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Accept_Offer
         m_Mode: 1
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Buyout_Auction
         m_Mode: 1
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Cancel_Offer
         m_Mode: 1
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Make_Offer
         m_Mode: 1
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Cancel_Listing
         m_Mode: 1
@@ -2103,7 +2103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Create_Listing
         m_Mode: 1
@@ -2520,7 +2520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Fetch_Offer
         m_Mode: 1
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Fetch_DirectListing
         m_Mode: 1
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Fetch_Auction
         m_Mode: 1
@@ -3390,7 +3390,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3594272031937837205}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Prefab_Marketplace, Assembly-CSharp
         m_MethodName: Create_Auction
         m_Mode: 1
@@ -3561,7 +3561,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7988299437291109124}
   - component: {fileID: 232602048929406624}
-  - component: {fileID: 3594272031937837205}
   - component: {fileID: 9219138123330924755}
   m_Layer: 0
   m_Name: Prefab_Marketplace
@@ -3616,18 +3615,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &3594272031937837205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5386901534206438770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5823f51b679da64fbfd08bcd82e3731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &9219138123330924755
 MonoBehaviour:
   m_ObjectHideFlags: 0
