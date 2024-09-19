@@ -10,7 +10,7 @@ public class QuestLogScrollingList : MonoBehaviour
     [SerializeField] private GameObject questPrefabs; 
 
     [SerializeField] public SpawnPatient spawnPatients;
-    
+    [SerializeField] GameObject grandpa;    
     public QuestPrefab[] questStored = new QuestPrefab[5];
     public QuestPrefab quest;
 
@@ -36,11 +36,11 @@ public class QuestLogScrollingList : MonoBehaviour
                     else
                     {
                         //Debug.Log("spawn patient");
-                        spawnPatients.SpawnPrefabs();
+                        spawnPatients.SpawnPrefabs(grandpa);
                         savePeopleQuest(quest, "Cứu người");
                     }
                 }
-
+                
                 questStored[i] = quest;
                 if (i == 0)
                 {
@@ -68,7 +68,7 @@ public class QuestLogScrollingList : MonoBehaviour
                     {
                         //Debug.Log("count bed" + spawnPatients.countBed);
                         //Debug.Log("spawn patient");
-                        spawnPatients.SpawnPrefabs();
+                        spawnPatients.SpawnPrefabs(grandpa);
                         savePeopleQuest(questStored[i], "Cứu người");
                     }
                 }

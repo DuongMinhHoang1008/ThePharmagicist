@@ -14,21 +14,33 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI QuestStatus;
     [SerializeField] TextMeshProUGUI QuestReward;
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
+    [SerializeField] float timeToRefresh = 600;
     private float remainTime = 120;
     private int indexActiveLastest;
 
     public static QuestUI instance { get; set; }
+    private void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+    }
+    public void Start() {
+        remainTime = timeToRefresh;
+    }
     void Update()
     {
         HideAndShowUI();
-        SwitchQuest(questList);
+        SwitchQuest(instance.questList);
         remainTime -= Time.deltaTime;
         transferTime(remainTime);
 
         if (remainTime <= 0)
         {
             questList.isNeedRefresh = true;
-            remainTime = 10;
+            remainTime = timeToRefresh;
         }
     }
 

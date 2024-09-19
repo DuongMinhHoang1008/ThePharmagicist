@@ -22,7 +22,7 @@ public class SpawnPatient : MonoBehaviour
         }
     }
 
-    public void SpawnPrefabs() {
+    public void SpawnPrefabs(GameObject parent) {
 
         System.Random random = new System.Random();
         int idPrefabs = random.Next(0, prefabs.Length - 1);
@@ -43,6 +43,6 @@ public class SpawnPatient : MonoBehaviour
         countBed++;
 
         patient = Instantiate(randomPrefabs, randomPosition, Quaternion.identity);
-
+        patient.transform.parent = parent.transform;
     }
 }

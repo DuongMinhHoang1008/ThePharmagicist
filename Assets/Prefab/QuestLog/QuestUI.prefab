@@ -1477,6 +1477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentParent: {fileID: 8409143269740668449}
   questPrefabs: {fileID: 0}
+  spawnPatients: {fileID: 0}
+  grandpa: {fileID: 4873138085940387517}
   questStored:
   - {fileID: 0}
   - {fileID: 0}
