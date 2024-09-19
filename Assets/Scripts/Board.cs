@@ -58,6 +58,7 @@ public class Board : MonoBehaviour
         if (CanMakeMagicPotion()) {
             brewingInventoryManager.AddItem(magicIngredient.GetMagicPotion(), 1);
             brewingInventoryManager.CopyInventoryToTemp();
+            brewingInventoryManager.ClaimNFT(magicIngredient.GetMagicPotion());
             magicIngredient = null;
         } else {
             CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();

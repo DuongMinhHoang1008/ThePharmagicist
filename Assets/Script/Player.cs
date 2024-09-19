@@ -54,6 +54,11 @@ public class Player : MonoBehaviour
                     rb.position = new Vector2(19, -17);
                 }
                 break;
+            case "LobbyHouse":
+                if (SceneManager.GetActiveScene().name == "Lobby") {
+                    rb.position = new Vector2(0, 14);
+                }
+                break;
             default:
                 break;
         }
