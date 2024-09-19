@@ -16,7 +16,7 @@ public class MagicInventoryClass : InventoryManager
     // For Magic
 
     //[SerializeField] private List<SlotClass> items = new List<SlotClass>();
-    private void Start()
+    private void Awake()
     {
         
 
@@ -51,30 +51,35 @@ public class MagicInventoryClass : InventoryManager
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
 
         RefreshUI();
+        equipButton.GetComponent<Button>().onClick.AddListener(EquipItem);
+        firstMagicButton.GetComponent<Button>().onClick.AddListener(ChangeFirstMagic);
+        secondMagicButton.GetComponent<Button>().onClick.AddListener(ChangeSecondMagic);
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Time.timeScale != 1) {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (isMoving)
+                {
+                    EndMove();
+                }
+                else
+                {
+                    BeginMove();
+                }
+            }
             if (isMoving)
             {
-                EndMove();
+                itemCursor.enabled = true;
+                itemCursor.transform.position = Input.mousePosition;
+                itemCursor.sprite = movingSlot.GetItem().itemIcon;
             }
             else
             {
-                BeginMove();
+                itemCursor.enabled = false;
+                itemCursor.sprite = null;
             }
-        }
-        if (isMoving)
-        {
-            itemCursor.enabled = true;
-            itemCursor.transform.position = Input.mousePosition;
-            itemCursor.sprite = movingSlot.GetItem().itemIcon;
-        }
-        else
-        {
-            itemCursor.enabled = false;
-            itemCursor.sprite = null;
         }
         
         //For Magic

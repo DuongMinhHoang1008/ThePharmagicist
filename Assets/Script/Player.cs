@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
+        GameManager.instance.ChangeLastScene(SceneManager.GetActiveScene().name);
     }
 
     void Update()
@@ -148,6 +149,9 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public InventoryManager GetInventory() {
+        return inventory;
     }
 }
 

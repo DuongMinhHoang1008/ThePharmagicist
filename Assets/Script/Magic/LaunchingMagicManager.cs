@@ -35,7 +35,6 @@ public class LaunchingMagicManager : MonoBehaviour
         PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
         UpdateMagicIcon();
         playerElementIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[PlayerInfo.Instance().element].sprite;
-        Debug.Log(playerElementIcon.GetComponent<Image>().sprite);
     }
 
     // Update is called once per frame
@@ -142,6 +141,7 @@ public class LaunchingMagicManager : MonoBehaviour
         return accessory;
     }
     void UpdateMagicIcon() {
+        PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
         if (firstMagic.scriptableMagic != null) {
             firstMagicIcon.SetActive(true);
             firstMagicIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[firstMagic.scriptableMagic.element].sprite;
@@ -166,5 +166,7 @@ public class LaunchingMagicManager : MonoBehaviour
         } else {
             accessoryIcon.SetActive(false);
         }
+
+        
     }
 }
