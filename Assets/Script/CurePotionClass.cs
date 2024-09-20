@@ -39,6 +39,7 @@ public class CurePotionClass : ItemClass
                         + "Wo" + woodValue
                         + "F" + fireValue
                         + "E" + earthValue;
+                        ItemName = name;
         return name;
     }
     virtual public string GetInfoPotion() {

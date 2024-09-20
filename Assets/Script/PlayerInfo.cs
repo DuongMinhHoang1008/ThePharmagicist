@@ -54,9 +54,18 @@ public class PlayerInfo
         }
         acc = accessory;
     }
+    public void MoreGold(int amount) {
+        gold += amount;
+    }
+    public void MoreSilv(int amount) {
+        silv = silv + amount;
+                Debug.Log(silv);
+    }
     public void CallChangeGandS() {
-        instance.gold = Int32.Parse(BlockchainManager.Instance.userBalance.gold);
-        instance.silv = Int32.Parse(BlockchainManager.Instance.userBalance.silver);
+        if (!isGetNFT) {
+            instance.gold = Int32.Parse(BlockchainManager.Instance.userBalance.gold);
+            instance.silv = Int32.Parse(BlockchainManager.Instance.userBalance.silver);
+        }
     }
     public void UpdateInventoryFromBlockchain(int slotLength) {
         Debug.Log(isGetNFT);
@@ -82,10 +91,11 @@ public class PlayerInfo
                         Debug.Log(item.ItemName);
                         inventoryItems[index] = new SlotClass(item, Int32.Parse(BlockchainManager.Instance.userBalance.nfts[itemName]));
                         index++;
-                        isGetNFT = true;
                     }
                 }
             }
+            CallChangeGandS();
+            isGetNFT = true;
         }
     }
 }

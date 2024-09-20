@@ -10,14 +10,16 @@ public class ShowingToken : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gold.text = BlockchainManager.Instance.userBalance.gold;
-        silv.text = BlockchainManager.Instance.userBalance.silver;
+        gold.text = PlayerInfo.Instance().gold.ToString();
+        silv.text = PlayerInfo.Instance().silv.ToString();
+        Debug.Log(PlayerInfo.Instance().silv.ToString());
+        Debug.Log(PlayerInfo.Instance());
     }
 
     // Update is called once per frame
     void Update()
     {
-        gold.text = BlockchainManager.Instance.userBalance.gold;
-        silv.text = BlockchainManager.Instance.userBalance.silver;
+        gold.text = PlayerInfo.Instance().gold.ToString();
+        silv.text = PlayerInfo.Instance().silv.ToString();
     }
 }

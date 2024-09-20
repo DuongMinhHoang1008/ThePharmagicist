@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         }
         
         GameManager.instance.ChangeLastScene(SceneManager.GetActiveScene().name);
-        PlayerInfo.Instance().CallChangeGandS();
+        //PlayerInfo.Instance().CallChangeGandS();
     }
 
     void Update()

@@ -27,6 +27,8 @@ public class QuestPrefab : MonoBehaviour
             questCollected += 1;
             if (questCollected >= questColletion) {
                 BlockchainManager.Instance.ClaimSilv(1);
+                PlayerInfo.Instance().MoreSilv(10);
+                Debug.Log(PlayerInfo.Instance());
             }
         }
     }
