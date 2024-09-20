@@ -23,14 +23,14 @@ namespace Thirdweb.Examples
         {
             try
             {
+                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 var contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
-                var marketplace = contract.Marketplace;
-                var result = await marketplace.DirectListings.GetAll();
-                Debug.Log(result);
+                var result = await contract.Marketplace.DirectListings.GetAll();
+                Debugger.Instance.Log("[Fetch_DirectListing] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debug.Log(e.Message);
+                Debugger.Instance.Log("[Fetch_DirectListing] Error", e.Message);
             }
         }
 
