@@ -18,3 +18,4 @@ MonoBehaviour:
   itemDescription: 
   element: 2
   ingredientShape: {fileID: 7569769398543869036, guid: 494849210481f7040bd0daa9d7c71193, type: 3}
+  level: 3

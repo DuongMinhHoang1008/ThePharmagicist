@@ -229,6 +229,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void RemoveItem(ItemClass item,int quantity)
     {
+        ShowItemRecieve("- " + item.ItemName);
         SlotClass temp = ContainItem(item);
         if (temp != null)
         {
@@ -364,7 +365,7 @@ public class InventoryManager : MonoBehaviour
     public void ClaimNFT(ItemClass item) {
         if (item is MagicPotionClass) {
             Debug.Log(item.name);
-            // BlockchainManager.Instance.ClaimNFT(item.name);
+            BlockchainManager.Instance.ClaimNFT(item.name);
         } 
     }
     public CurePotionClass FindCurePotion(UseElement useElement) {

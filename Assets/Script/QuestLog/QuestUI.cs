@@ -80,7 +80,7 @@ public class QuestUI : MonoBehaviour
             QuestDescribe.text = "Mô tả \nCứu người bị bệnh";
         }
 
-        QuestStatus.text = "Tiến độ          " + quest.questCollected + " / " + quest.questColletion;
+        QuestStatus.text = "Tiến độ  " + quest.questCollected + " / " + quest.questColletion;
         if (quest.questCollected >= quest.questColletion) {
             QuestStatus.text += "   Đã hoàn thành";
         }

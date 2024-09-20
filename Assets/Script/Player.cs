@@ -71,9 +71,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (currentHP > 0) playerMovement();
+        else {
+            currentHP = maxHP;
+            SceneManager.LoadScene("LobbyHouse");
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
             RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, transform.right , 1f, LayerMask.GetMask("Item", "~Player"));
             //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hit.collider);
             if (hits.Length > 0)
