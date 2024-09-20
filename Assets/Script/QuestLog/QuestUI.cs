@@ -17,6 +17,7 @@ public class QuestUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI QuestReward;
     [SerializeField] TextMeshProUGUI TimeRefreshQuest;
     [SerializeField] public float timeToRefresh = 10;
+    [SerializeField] GameObject bedList;
     private float remainTime = 10;
     private int indexActiveLastest;
 
@@ -51,6 +52,9 @@ public class QuestUI : MonoBehaviour
         {
             questList.isNeedRefresh = true;
             remainTime = timeToRefresh;
+        }
+        if (SceneManager.GetActiveScene().name == "LobbyHouse") {
+            bedList.transform.position = new Vector3(0, 0, 0);
         }
     }
 
