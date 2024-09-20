@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Thirdweb;
 
 public class QuestPrefab : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class QuestPrefab : MonoBehaviour
         if (questCollected < questColletion) {
             questCollected += 1;
             if (questCollected >= questColletion) {
-
+                BlockchainManager.Instance.ClaimSilv(1);
             }
         }
     }

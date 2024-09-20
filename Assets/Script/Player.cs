@@ -40,11 +40,13 @@ public class Player : MonoBehaviour
         //playerHeath = GetComponentInChildren<HealthBar>();
         launchingMagicManager = GetComponent<LaunchingMagicManager>();
         playerHealth.updateHealthBar(currentHP, maxHP);
+
         if (PlayerInfo.Instance().element == Element.None) {
             PlayerInfo.Instance().SetPlayerElement(playerElement);
         } else {
             playerElement = PlayerInfo.Instance().element;
         }
+
         switch (GameManager.instance.GetLastScene()) {
             case "Forest2":
                 if (SceneManager.GetActiveScene().name == "Forest1")
@@ -68,7 +70,9 @@ public class Player : MonoBehaviour
             default:
                 break;
         }
+        
         GameManager.instance.ChangeLastScene(SceneManager.GetActiveScene().name);
+        PlayerInfo.Instance().CallChangeGandS();
     }
 
     void Update()

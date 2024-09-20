@@ -43,7 +43,13 @@ public class BlockchainManager : MonoBehaviour
             { "Cau_lua", "20" },
             { "Gai_doc", "16" },
             { "Kim_tieu", "17" },
-            { "Nam_dam_da", "18" }
+            { "Nam_dam_da", "18" },
+            { "Vong_co_kim", "19" },
+            { "Vong_co_thuy", "20" },
+            { "Vong_co_moc", "21" },
+            { "Vong_co_hoa", "22" },
+            { "Vong_co_tho", "23" },
+            { "Vong_co_ngu_hanh", "24" }
         };
 
     private void Awake()

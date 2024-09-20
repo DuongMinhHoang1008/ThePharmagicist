@@ -48,7 +48,7 @@ public class MagicInventoryClass : InventoryManager
             }
             
         }
-
+        PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
 
         RefreshUI();

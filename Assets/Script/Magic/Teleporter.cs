@@ -42,4 +42,7 @@ public class Teleporter : MonoBehaviour
             SceneManager.LoadScene(sceneTeleTo);
         }
     }
+    public void ChangeSceneAfterTime(float time) {
+        Invoke("ChangeScene", time);
+    }
 }

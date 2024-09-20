@@ -24,8 +24,9 @@ public class DialogTrigger : MonoBehaviour
 
             DialogManager.GetInstance().EnterDialogMode(inkJSON);
             if (questPrefab != null) {
-                Debug.Log(gameObject.transform.parent.GetChild(1).name);
+                
                 CurePotionClass cure = player.GetInventory().FindCurePotion(gameObject.transform.parent.GetChild(1).GetComponent<UseElement>());
+                
                 if (cure != null) {
                     player.GetInventory().RemoveItem(cure, 1);
                     questPrefab.UpdateQuestProgress();

@@ -42,9 +42,9 @@ public class CurePotionClass : ItemClass
         return name;
     }
     virtual public string GetInfoPotion() {
-        string info = "Kim: " + metalValue + "\n"
+        string info = "Kim: " + metalValue + "   "
                     + "Thủy: " + waterValue + "\n"
-                    + "Mộc: " + woodValue + "\n"
+                    + "Mộc: " + woodValue + "   "
                     + "Hỏa: " + fireValue + "\n"
                     + "Thổ: " + earthValue;
         return info;

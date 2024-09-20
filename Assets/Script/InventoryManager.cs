@@ -62,7 +62,7 @@ public class InventoryManager : MonoBehaviour
             }
             
         }
-
+        PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
         RefreshUI();
     }
@@ -370,13 +370,15 @@ public class InventoryManager : MonoBehaviour
     }
     public CurePotionClass FindCurePotion(UseElement useElement) {
         foreach (SlotClass slot in items) {
+            Debug.Log(slot.GetItem() is CurePotionClass);
             if (slot.GetItem() is CurePotionClass) {
                 CurePotionClass cure = (CurePotionClass) slot.GetItem();
-                if (cure.metalValue != useElement.metalValue) break;
-                if (cure.waterValue != useElement.waterValue) break;
-                if (cure.woodValue != useElement.woodValue) break;
-                if (cure.fireValue != useElement.fireValue) break;
-                if (cure.earthValue != useElement.earthValue) break;
+                Debug.Log(cure.metalValue + " " + cure.waterValue + " " + cure.woodValue);
+                if (cure.metalValue != useElement.metalValue) continue;
+                if (cure.waterValue != useElement.waterValue) continue;
+                if (cure.woodValue != useElement.woodValue) continue;
+                if (cure.fireValue != useElement.fireValue) continue;
+                if (cure.earthValue != useElement.earthValue) continue;
                 return cure;
             }
         }

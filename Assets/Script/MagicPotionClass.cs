@@ -39,9 +39,9 @@ public class MagicPotionClass : CurePotionClass
         return info;
     } 
     public string GetPotionReq() {
-        return "Kim: " + metalValue + "\n"
+        return "Kim: " + metalValue + "   "
                     + "Thủy: " + waterValue + "\n"
-                    + "Mộc: " + woodValue + "\n"
+                    + "Mộc: " + woodValue + "   "
                     + "Hỏa: " + fireValue + "\n"
                     + "Thổ: " + earthValue;
     }
