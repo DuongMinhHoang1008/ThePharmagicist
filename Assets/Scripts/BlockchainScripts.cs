@@ -88,6 +88,11 @@ public class BlockchainManager : MonoBehaviour
         var contract = ThirdwebManager.Instance.SDK.GetContract(NFT_CONTRACT_ADDRESS);
         await contract.ERC1155.ClaimTo(Address, NFTtoID[name], 1);
     }
+    public async void ATransferNFT(string name, string toAddress, int amount) {
+        Address = await ThirdwebManager.Instance.SDK.Wallet.GetAddress();
+        var contract = ThirdwebManager.Instance.SDK.GetContract(NFT_CONTRACT_ADDRESS);
+        await contract.ERC1155.Transfer(toAddress, NFTtoID[name], amount);
+    }
     public async void GetBalance()
     {
         Address = await ThirdwebManager.Instance.SDK.Wallet.GetAddress();
