@@ -47,7 +47,10 @@ public class Player : MonoBehaviour
         }
         switch (GameManager.instance.GetLastScene()) {
             case "Forest2":
-                rb.position = new Vector2(42, 0);
+                if (SceneManager.GetActiveScene().name == "Forest1")
+                {
+                    rb.position = new Vector2(42, 0);
+                }
                 break;
             case "Forest1":
                 if (SceneManager.GetActiveScene().name == "Lobby") {
