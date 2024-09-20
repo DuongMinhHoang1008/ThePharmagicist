@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.Unity.VisualStudio.Editor;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour

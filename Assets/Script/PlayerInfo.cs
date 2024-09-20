@@ -77,16 +77,14 @@ public class PlayerInfo
             }
             foreach (string itemName in BlockchainManager.Instance.userBalance.nfts.Keys) {
                 if (Int32.Parse(BlockchainManager.Instance.userBalance.nfts[itemName]) > 0) {
-                    string path = "Assets/Prefab/";
-                    Debug.Log(itemName.Substring(0, 5));
+                    string path = "";
                     if (itemName.Substring(0, 5) == "Thuoc") {
-                        path += "Potion/MagicPotion/";
+                        path += "MagicPotion/";
                     } else if (itemName.Substring(0, 4) == "Vong") {
                         path += "Accessories/";
                     }
-                    path += itemName + ".asset";
-                    Debug.Log(path);
-                    ItemClass item = AssetDatabase.LoadAssetAtPath<ItemClass>(path);
+                    path += itemName;
+                    ItemClass item = Resources.Load<ItemClass>(path);
                     if (item != null) {
                         Debug.Log(item.ItemName);
                         inventoryItems[index] = new SlotClass(item, Int32.Parse(BlockchainManager.Instance.userBalance.nfts[itemName]));

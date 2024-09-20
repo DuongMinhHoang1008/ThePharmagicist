@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -68,8 +67,7 @@ public class Board : MonoBehaviour
                             + "Wo" + elementNumber[Element.Wood]
                             + "F" + elementNumber[Element.Fire]
                             + "E" + elementNumber[Element.Earth]; 
-            string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
-
+            string path = "Assets/Resources/CurePotion/" + name + ".json";
             if (!System.IO.File.Exists(path)) {
                 curePotionClass.SetElementValue(elementNumber[Element.Metal],
                                                 elementNumber[Element.Water],
@@ -78,11 +76,9 @@ public class Board : MonoBehaviour
                                                 elementNumber[Element.Earth],
                                                 curePotionIcon);
 
-                AssetDatabase.CreateAsset(curePotionClass, path);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
+                SaveToJSON(curePotionClass, path);
             } else {
-                curePotionClass = AssetDatabase.LoadAssetAtPath<CurePotionClass>(path);
+                curePotionClass = LoadFromJSON(path);
             }
 
             brewingInventoryManager.AddItem(curePotionClass, 1);
@@ -123,4 +119,26 @@ public class Board : MonoBehaviour
         }
         return false;
     }
+    public void SaveToJSON(CurePotionClass data, string path)
+    {
+        string json = JsonUtility.ToJson(data);
+        System.IO.File.WriteAllText(path, json);
+        Debug.Log("Saved ScriptableObject as JSON to " + path);
+    }
+    CurePotionClass LoadFromJSON(string path)
+    {
+        CurePotionClass loadedData = null;
+        if (System.IO.File.Exists(path))
+        {
+            string json = System.IO.File.ReadAllText(path);
+            loadedData = ScriptableObject.CreateInstance<CurePotionClass>();
+            JsonUtility.FromJsonOverwrite(json, loadedData);
+        }
+        else
+        {
+            Debug.LogError("File not found: " + path);
+        }
+        return loadedData;
+    }
+
 }

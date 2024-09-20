@@ -266,7 +266,7 @@ public class EnemyController : MonoBehaviour
                 itemDrop = null;
             }
             if (itemDrop != null) {
-                GameObject itemPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefab/Enemies/DropItem.prefab");
+                GameObject itemPrefab = Resources.Load<GameObject>("DropItem");
                 GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
                 item.GetComponent<DropItemManager>().SetUp(itemDrop.itemIcon, itemDrop);
             }

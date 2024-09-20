@@ -5,7 +5,6 @@ using UnityEngine;
 using Ink.Runtime;
 using System.Windows.Input;
 using UnityEngine.EventSystems;
-using UnityEditor.VersionControl;
 
 public class DialogManager : MonoBehaviour
 {

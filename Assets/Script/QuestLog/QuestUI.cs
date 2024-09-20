@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using System.ComponentModel;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class QuestUI : MonoBehaviour
