@@ -10,6 +10,7 @@ public class HerbClass : ItemClass
     public string itemDescription;
     [SerializeField] protected Element element;
     [SerializeField] protected GameObject ingredientShape;
+    [SerializeField] int level;
     
     public override ItemClass GetItems(SlotClass slotClass) { return this; }
     public override PotionClass GetPotion() { return null; }
@@ -18,4 +19,28 @@ public class HerbClass : ItemClass
     public override ConsumableClass GetConsumable() { return null; }
     public Element GetElement() { return element; }
     public GameObject GetIngredientShape() { return ingredientShape; }
+    public override string GetDescription() { 
+        string info = "Nguyên tố: ";
+        switch (element) {
+            case Element.Metal:
+                info += "Kim";
+                break;
+            case Element.Water:
+                info += "Thủy";
+                break;
+            case Element.Wood:
+                info += "Mộc";
+                break;
+            case Element.Fire:
+                info += "Hỏa";
+                break;
+            case Element.Earth:
+                info += "Thổ";
+                break;
+            default:
+                break;
+        }
+        info += "\nCấp độ: " + level;
+        return info;
+    }
 }

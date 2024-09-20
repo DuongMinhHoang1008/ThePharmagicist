@@ -5,15 +5,15 @@ using UnityEngine;
 public class UseElement : MonoBehaviour
 {
     [Header("Metal")]
-    [SerializeField] int metalValue = 0;
+    [SerializeField] public int metalValue = 0;
     [Header("Water")]
-    [SerializeField] int waterValue = 0;
+    [SerializeField] public int waterValue = 0;
     [Header("Wood")]
-    [SerializeField] int woodValue = 0;
+    [SerializeField] public int woodValue = 0;
     [Header("Fire")]
-    [SerializeField] int fireValue = 0;
+    [SerializeField] public int fireValue = 0;
     [Header("Earth")]
-    [SerializeField] int earthValue = 0;
+    [SerializeField] public int earthValue = 0;
 
 
     private static UseElement instance;

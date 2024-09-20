@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
             case "LobbyHouse":
                 if (SceneManager.GetActiveScene().name == "Lobby") {
                     rb.position = new Vector2(0, 14);
+                } else if (SceneManager.GetActiveScene().name == "LobbyHouse") {
+                    rb.position = new Vector2(-15, -1);
+                    QuestUI.instance.gameObject.SetActive(true);
                 }
                 break;
             default:
@@ -68,9 +71,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (currentHP > 0) playerMovement();
+        else {
+            currentHP = maxHP;
+            SceneManager.LoadScene("LobbyHouse");
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
             RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, transform.right , 1f, LayerMask.GetMask("Item", "~Player"));
             //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hit.collider);
             if (hits.Length > 0)

@@ -21,5 +21,13 @@ public class QuestPrefab : MonoBehaviour
 
         this.buttonText.text = displayName;
     }
+    public void UpdateQuestProgress() {
+        if (questCollected < questColletion) {
+            questCollected += 1;
+            if (questCollected >= questColletion) {
+
+            }
+        }
+    }
 
 }
