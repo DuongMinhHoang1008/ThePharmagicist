@@ -5,7 +5,7 @@ using System.Net.WebSockets;
 using Org.BouncyCastle.Math.Field;
 using UnityEngine;
 using ZXing.Client.Result;
-
+using System.Numerics;
 namespace Thirdweb.Examples
 {
     public class Prefab_Marketplace : MonoBehaviour
@@ -169,27 +169,58 @@ namespace Thirdweb.Examples
 
         // Closing
 
-        public async void Buy_Listing(string listingId)
+                public async void Buy_Listing(string listingId)
         {
             try
             {
-                var Address = await ThirdwebManager.Instance.SDK.Wallet.GetAddress();
-                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 Marketplace marketplace = contract.Marketplace;
+                var Address = await ThirdwebManager.Instance.SDK.Wallet.GetAddress();
+                var listing = await marketplace.DirectListings.GetListing(listingId);
+                var pricePerToken = BigInteger.Parse(listing.pricePerToken);
+                var contractERC20 = ThirdwebManager.Instance.SDK.GetContract(TOKEN_ERC20_CONTRACT);
+                var contractSILV = ThirdwebManager.Instance.SDK.GetContract(SILV_ADDRESS);
+                var contractGOLD = ThirdwebManager.Instance.SDK.GetContract(GOLD_ADDRESS);
+                BigInteger result;
+                var currencyContract = listing.currencyContractAddress;
+                if (currencyContract == SILV_ADDRESS)
+                {
+                    result = await contractSILV.Read<BigInteger>("allowance", Address, MARKETPLACE_CONTRACT);
+                    if (result < BigInteger.Parse(listing.pricePerToken)) {
+                    await contractSILV.Write("approve", MARKETPLACE_CONTRACT, pricePerToken - result);
+                    }    
+                }
+                else if (currencyContract == GOLD_ADDRESS)
+                {
+                    result = await contractGOLD.Read<BigInteger>("allowance", Address, MARKETPLACE_CONTRACT);
+                    if (result < BigInteger.Parse(listing.pricePerToken)) {
+                    await contractGOLD.Write("approve", MARKETPLACE_CONTRACT, pricePerToken - result);
+                    }   
+                }
+                else
+                {
+                    result = await contractERC20.Read<BigInteger>("allowance", Address, MARKETPLACE_CONTRACT);
+                    if (result < BigInteger.Parse(listing.pricePerToken)) {
+                    await contractERC20.Write("approve", MARKETPLACE_CONTRACT, pricePerToken - result);
+                    }
+                }
                 
-                Debug.Log("Get Contract, Market - success");
-                var result = await marketplace.DirectListings.BuyFromListing(listingId, "1", Address);
-                Debug.Log(result);
-                //Debugger.Instance.Log("[Buy_Listing] Success", result.ToString());
+                await marketplace.DirectListings.BuyFromListing(listingId, "1", Address);
             }
             catch (System.Exception e)
             {
-                //Debugger.Instance.Log("[Buy_Listing] Error", e.Message);
                 Debug.Log(e.ToString());
             }
         }
-
+//=))) địa chỉ hợp đồng thấy giống t rồi mà nhỉ
+//mọi thứ ổn r chứ?
+//Có vẻ là oke r ô
+//public thêm mấy cái nft nữa là đc r
+//ô public thì ưu tiên mấy cái thuốc với vòng nháokkk
+//Giờ bạn push hộ t cái hàm buy lên main nhé
+//Ô mới thêm trong này r hả
+//đr, ngay trên đó ok nha
+//ổn r tôi out nhé oke oo
         public async void Buyout_Auction()
         {
             try

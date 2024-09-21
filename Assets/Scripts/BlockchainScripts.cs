@@ -69,7 +69,7 @@ public class BlockchainManager : MonoBehaviour
     { "Vong_co_kim", "43" },
     { "Vong_co_moc", "44" },
     { "Vong_co_ngu_hanh", "45"},
-    { "Vong_co_thỏ", "46" },
+    { "Vong_co_tho", "46" },
 
 };
     private void Awake()
