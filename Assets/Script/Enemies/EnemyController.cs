@@ -1,8 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using MetaMask.Editor.NaughtyAttributes;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Quaternion = UnityEngine.Quaternion;
+using Unity.Mathematics;
 
 public class EnemyController : MonoBehaviour
 {
@@ -30,10 +36,19 @@ public class EnemyController : MonoBehaviour
                                                     };
     
     [SerializeField] GameObject elementIcon;
+    [SerializeField] GameObject damageNumber;
     public bool comeBack = false;
     bool hasChase = false;
     public bool attack = false;
     Animator animator;
+    [SerializeField] bool canDropItem;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass veryhighRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass highRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass mediumRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass lowRate;
+    [ShowIf("canDropItem")] [SerializeField] ItemClass verylowRate;
+
+    [SerializeField] AudioSource hitsound;
     // Start is called before the first frame update
     void Start()
     {
@@ -83,29 +98,44 @@ public class EnemyController : MonoBehaviour
         }
     }
     public void TakeDamage(float damage, StatusEffect status, int level, Element dmgElement) {
-        StartCoroutine("Blinking");
-        float damageModifier = 1;
-        Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
-        if (elementDic[dmgElement].minus == element) {
-            damageModifier = 1.5f;
-        } else if (elementDic[dmgElement].minus == element) {
-            damageModifier = 0.5f;
-        }
-        health -= damage * damageModifier;
-        enemyHealthBar.updateHealthBar(health, maxHealth);
-        if (status != StatusEffect.None && !statusEffects[status]) {
-            statusEffects[status] = true;
-            OnStatusEffect(status, level);
-        }
-        if (health <= 0) {
-            Destroy(gameObject);
+        if (health > 0) {
+            StartCoroutine("Blinking");
+            hitsound.PlayOneShot(hitsound.clip, 1);
+            float damageModifier = 1f;
+            Color dmgColor = Color.white;
+            Dictionary<Element, ElementInfo> elementDic = GlobalGameVar.Instance().elementDic;
+            if (elementDic[dmgElement].minus == element) {
+                damageModifier = 1.5f;
+                dmgColor = Color.red;
+            } else if (elementDic[dmgElement].plus == element) {
+                damageModifier = 0.5f;
+                dmgColor = Color.gray;
+            }
+            ShowDamageRecieve(damage * damageModifier, dmgColor);
+            health -= damage * damageModifier;
+            enemyHealthBar.updateHealthBar(health, maxHealth);
+            Debug.Log(status);
+            if (status != StatusEffect.None && !statusEffects[status]) {
+                statusEffects[status] = true;
+                OnStatusEffect(status, level);
+            }
+            if (health <= 0) {
+                DropItem();
+                Destroy(gameObject);
+            }
         }
     }
-    void LoseStatusHealth(float damage, int level) {
-        health -= (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
-        enemyHealthBar.updateHealthBar(health, maxHealth);
-        if (health <= 0) {
-            Destroy(gameObject);
+    void LoseStatusHealth(float damage, int level, Color dmgColor) {
+        if (health > 0) {
+            hitsound.PlayOneShot(hitsound.clip, 1);
+            int dmg = (int) Math.Ceiling(damage * Math.Pow(1.25f ,level - 1));
+            health -= dmg;
+            ShowDamageRecieve(dmg, dmgColor);
+            enemyHealthBar.updateHealthBar(health, maxHealth);
+            if (health <= 0) {
+                DropItem();
+                Destroy(gameObject);
+            }
         }
     }
     void OnStatusEffect(StatusEffect status, int level) {
@@ -124,23 +154,53 @@ public class EnemyController : MonoBehaviour
         }
     }
     IEnumerator OnBurn(int level) {
+        float dmgModifier = 1f;
+        if(PlayerInfo.Instance().accessory != null) {
+            dmgModifier += PlayerInfo.Instance().accessory.fireBuff;
+        }
+        Element playerElement = PlayerInfo.Instance().element;
+        if (playerElement == Element.Fire) {
+            dmgModifier *= 1.5f;
+        } else if (playerElement == Element.Water || playerElement == Element.Metal) {
+            dmgModifier *= 0.5f;
+        }
+        if (element == Element.Metal) {
+            dmgModifier *= 1.5f;
+        } else if (element == Element.Earth) {
+            dmgModifier *= 0.5f;
+        }
         burnIcon.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        LoseStatusHealth(8, level);
+        LoseStatusHealth(8 * dmgModifier, level, new Color(1, 165f/255f, 0));
         statusEffects[StatusEffect.Burn] = false;
         burnIcon.SetActive(false);
     }
     IEnumerator OnPoison(int level) {
+        float dmgModifier = 1f;
+        if(PlayerInfo.Instance().accessory != null) {
+            dmgModifier += PlayerInfo.Instance().accessory.woodBuff;
+        }
+        Element playerElement = PlayerInfo.Instance().element;
+        if (playerElement == Element.Wood) {
+            dmgModifier *= 1.5f;
+        } else if (playerElement == Element.Earth || playerElement == Element.Metal) {
+            dmgModifier *= 0.5f;
+        }
+        if (element == Element.Earth) {
+            dmgModifier *= 1.5f;
+        } else if (element == Element.Fire) {
+            dmgModifier *= 0.5f;
+        }
         poisonIcon.SetActive(true);
         for (int i = 0; i < 8; i++) {
             yield return new WaitForSeconds(0.5f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             yield return new WaitForSeconds(0.1f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-            LoseStatusHealth(1.5f, level);
+            LoseStatusHealth(1.5f * dmgModifier, level, Color.green);
         }
         statusEffects[StatusEffect.Poison] = false;
         poisonIcon.SetActive(false);
@@ -189,5 +249,45 @@ public class EnemyController : MonoBehaviour
     }
     void AttackCooldownEnd() {
         onAttackCooldown = false;
+    }
+    void DropItem() {
+        if (canDropItem) {
+            ItemClass itemDrop;
+            int rate = UnityEngine.Random.Range(0, 100);
+            if (rate >= 99) {
+                //2%
+                itemDrop = verylowRate;
+            } else if (rate >= 97) {
+                //2%
+                itemDrop = lowRate;
+            } else if (rate >= 92) {
+                //5%
+                itemDrop = mediumRate;
+            } else if (rate >= 82) {
+                //10%
+                itemDrop = highRate;
+            } else if (rate >= 62) {
+                //20%
+                itemDrop = veryhighRate;
+            } else {
+                itemDrop = null;
+            }
+            if (itemDrop != null) {
+                GameObject itemPrefab = Resources.Load<GameObject>("DropItem");
+                GameObject item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                item.GetComponent<DropItemManager>().SetUp(itemDrop.itemIcon, itemDrop);
+            }
+        }
+    }
+    void ShowDamageRecieve(float dmg, Color dmgColor) {
+        if (damageNumber != null) {
+            int dam = (int) Math.Ceiling(dmg);
+            GameObject showdmg = Instantiate(damageNumber, rigidbody2D.position + Vector2.up, Quaternion.identity);
+            showdmg.GetComponent<TextMeshPro>().text = dam.ToString();
+            showdmg.GetComponent<TextMeshPro>().color = dmgColor;
+            float randRad = UnityEngine.Random.Range(60, 120) * Mathf.Deg2Rad;
+            Vector2 direc = new Vector2(Mathf.Cos(randRad), Mathf.Sin(randRad));
+            showdmg.GetComponent<Rigidbody2D>().AddForce(direc * UnityEngine.Random.Range(300, 400));
+        }
     }
 }

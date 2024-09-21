@@ -15,7 +15,7 @@ MonoBehaviour:
   magicName: "N\u1EAFm \u0111\u1EA5m \u0111\xE1"
   description: 
   element: 5
-  damage: 10
+  damage: 15
   cooldown: 3
   speed: 500
   lifeTime: 1

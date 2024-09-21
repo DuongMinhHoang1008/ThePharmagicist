@@ -23,7 +23,14 @@ public class CurePotionClass : ItemClass
     public override ConsumableClass GetConsumable() { return null; }
     public void SetElementValue(int metal, int water, int wood, int fire, int earth, Sprite sprite) {
         metalValue = metal; waterValue = water; woodValue = wood; fireValue = fire; earthValue = earth; 
+        string name = "Thuốc chữa bệnh\n" 
+                        + "M" + metalValue
+                        + "Wa" + waterValue
+                        + "Wo" + woodValue
+                        + "F" + fireValue
+                        + "E" + earthValue;
         itemIcon = sprite;
+        ItemName = name;
     }
     virtual public string GetPotionName() {
         string name = "Thuốc chữa bệnh\n" 
@@ -32,14 +39,19 @@ public class CurePotionClass : ItemClass
                         + "Wo" + woodValue
                         + "F" + fireValue
                         + "E" + earthValue;
+                        ItemName = name;
         return name;
     }
     virtual public string GetInfoPotion() {
-        string info = "Kim: " + metalValue + "\n"
+        string info = "Kim: " + metalValue + "   "
                     + "Thủy: " + waterValue + "\n"
-                    + "Mộc: " + woodValue + "\n"
+                    + "Mộc: " + woodValue + "   "
                     + "Hỏa: " + fireValue + "\n"
                     + "Thổ: " + earthValue;
         return info;
+    }
+    public override string GetDescription()
+    {
+        return GetInfoPotion();
     }
 }

@@ -63,7 +63,7 @@ public class BrewingInventoryManager : MonoBehaviour
             }
             
         }
-
+        PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
         tempItems = new SlotClass[items.Length];
         CopyInventory(items, ref tempItems);
@@ -406,5 +406,10 @@ public class BrewingInventoryManager : MonoBehaviour
     }
     void CloseItemInfo() {
         itemInfo.active = false;
+    }
+    public void ClaimNFT(ItemClass item) {
+        if (item is MagicPotionClass || item is AccessoryClass) {
+            BlockchainManager.Instance.ClaimNFT(item.name);
+        } 
     }
 }

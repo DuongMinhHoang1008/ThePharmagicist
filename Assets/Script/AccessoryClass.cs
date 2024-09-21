@@ -13,4 +13,14 @@ public class AccessoryClass : ItemClass{
     public override HerbClass GetHerb() { return null; }
 
     public override ConsumableClass GetConsumable() { return null; }
+    public override string GetDescription()
+    {
+        string info = "Tăng sát thương nguyên tố:\n"
+                    + "Kim: " + (metalBuff + 1) * 100 + "%\n"
+                    + "Thủy: " + (waterBuff + 1) * 100 + "%\n"
+                    + "Mộc: " + (woodBuff + 1) * 100 + "%\n"
+                    + "Hỏa: " + (fireBuff + 1) * 100 + "%\n"
+                    + "Thổ: " + (earthBuff + 1) * 100 + "%";
+        return info;
+    }
 }

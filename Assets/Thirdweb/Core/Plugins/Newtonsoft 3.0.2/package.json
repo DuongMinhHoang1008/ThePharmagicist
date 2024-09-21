@@ -18,5 +18,8 @@
     "url": "https://github.cds.internal.unity3d.com/unity/com.unity.nuget.newtonsoft-json.git",
     "type": "git",
     "revision": "8f66870a71ad3f2cdd46330b5c482dfd138ffc64"
+  },
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "file:"
   }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -58,6 +57,7 @@ public class Board : MonoBehaviour
         if (CanMakeMagicPotion()) {
             brewingInventoryManager.AddItem(magicIngredient.GetMagicPotion(), 1);
             brewingInventoryManager.CopyInventoryToTemp();
+            brewingInventoryManager.ClaimNFT(magicIngredient.GetMagicPotion());
             magicIngredient = null;
         } else {
             CurePotionClass curePotionClass = ScriptableObject.CreateInstance<CurePotionClass>();
@@ -67,9 +67,7 @@ public class Board : MonoBehaviour
                             + "Wo" + elementNumber[Element.Wood]
                             + "F" + elementNumber[Element.Fire]
                             + "E" + elementNumber[Element.Earth]; 
-            string path = "Assets/Prefab/Potion/CurePotion/" + name + ".asset";
-
-            if (!System.IO.File.Exists(path)) {
+            if (!PlayerInfo.Instance().curePotionDic.ContainsKey(name)) {
                 curePotionClass.SetElementValue(elementNumber[Element.Metal],
                                                 elementNumber[Element.Water],
                                                 elementNumber[Element.Wood],
@@ -77,11 +75,9 @@ public class Board : MonoBehaviour
                                                 elementNumber[Element.Earth],
                                                 curePotionIcon);
 
-                AssetDatabase.CreateAsset(curePotionClass, path);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
+                SaveToDic(curePotionClass, name);
             } else {
-                curePotionClass = AssetDatabase.LoadAssetAtPath<CurePotionClass>(path);
+                curePotionClass = LoadFromDic(name);
             }
 
             brewingInventoryManager.AddItem(curePotionClass, 1);
@@ -122,4 +118,16 @@ public class Board : MonoBehaviour
         }
         return false;
     }
+    public void SaveToDic(CurePotionClass data, string name)
+    {
+        PlayerInfo.Instance().curePotionDic.Add(name, data);
+        Debug.Log("Saved " + name +" to Dictionary");
+    }
+    CurePotionClass LoadFromDic(string name)
+    {
+        CurePotionClass data = PlayerInfo.Instance().curePotionDic[name];
+        Debug.Log("Get from Dictionary successfully");
+        return data;
+    }
+
 }

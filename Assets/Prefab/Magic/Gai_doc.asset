@@ -15,7 +15,7 @@ MonoBehaviour:
   magicName: "Gai \u0111\u1ED9c"
   description: 
   element: 3
-  damage: 5
+  damage: 4
   cooldown: 1.5
   speed: 600
   lifeTime: 2

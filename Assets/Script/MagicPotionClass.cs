@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class MagicPotionClass : CurePotionClass
         return name;
     }
     override public string GetInfoPotion() {
-        string info = "Nguyên tố: ";
+        string info = "Ma thuật: " + magic.scriptableMagic.magicName + " " + magic.level 
+                    + "\nNguyên tố: ";
         switch (magic.scriptableMagic.element) {
             case Element.Metal:
                 info += "Kim";
@@ -31,9 +33,17 @@ public class MagicPotionClass : CurePotionClass
             default:
                 break;
         }
-        info += "\nSát thương: " + magic.scriptableMagic.damage + "\n"
+        int damage = (int) Math.Ceiling(magic.scriptableMagic.damage * Math.Pow(1.25f ,magic.level - 1));
+        info += "\nSát thương: " + damage + "\n"
                 + "Hồi chiêu: " + magic.scriptableMagic.cooldown + "s\n";
         
         return info;
     } 
+    public string GetPotionReq() {
+        return "Kim: " + metalValue + "   "
+                    + "Thủy: " + waterValue + "\n"
+                    + "Mộc: " + woodValue + "   "
+                    + "Hỏa: " + fireValue + "\n"
+                    + "Thổ: " + earthValue;
+    }
 }

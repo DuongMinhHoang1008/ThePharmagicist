@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.Unity.VisualStudio.Editor;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -24,6 +22,8 @@ public class Player : MonoBehaviour
     LaunchingMagicManager launchingMagicManager;
     public LayerMask lootLayer;
     bool isInvincible = false;
+    [SerializeField] MagicInventoryClass inventory;
+    [SerializeField] AudioSource hitsound;
 
     void Start()
     {
@@ -37,19 +37,50 @@ public class Player : MonoBehaviour
         //playerHeath = GetComponentInChildren<HealthBar>();
         launchingMagicManager = GetComponent<LaunchingMagicManager>();
         playerHealth.updateHealthBar(currentHP, maxHP);
+
         if (PlayerInfo.Instance().element == Element.None) {
             PlayerInfo.Instance().SetPlayerElement(playerElement);
         } else {
             playerElement = PlayerInfo.Instance().element;
         }
+
+        switch (GameManager.instance.GetLastScene()) {
+            case "Forest2":
+                if (SceneManager.GetActiveScene().name == "Forest1")
+                {
+                    rb.position = new Vector2(42, 0);
+                }
+                break;
+            case "Forest1":
+                if (SceneManager.GetActiveScene().name == "Lobby") {
+                    rb.position = new Vector2(19, -17);
+                }
+                break;
+            case "LobbyHouse":
+                if (SceneManager.GetActiveScene().name == "Lobby") {
+                    rb.position = new Vector2(0, 14);
+                } else if (SceneManager.GetActiveScene().name == "LobbyHouse") {
+                    rb.position = new Vector2(-15, -1);
+                    QuestUI.instance.gameObject.SetActive(true);
+                }
+                break;
+            default:
+                break;
+        }
+        
+        GameManager.instance.ChangeLastScene(SceneManager.GetActiveScene().name);
+        //PlayerInfo.Instance().CallChangeGandS();
     }
 
     void Update()
     {
         if (currentHP > 0) playerMovement();
+        else {
+            currentHP = maxHP;
+            SceneManager.LoadScene("LobbyHouse");
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            
             RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, transform.right , 1f, LayerMask.GetMask("Item", "~Player"));
             //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), hit.collider);
             if (hits.Length > 0)
@@ -58,6 +89,11 @@ public class Player : MonoBehaviour
                 {
                     if (hit.collider != null && hit.collider.gameObject.layer == 6)
                     {
+                        if (hit.collider.GetComponent<DropItemManager>() != null) {
+                            inventory.AddItem(hit.collider.GetComponent<DropItemManager>().itemClass, 1);
+                            Destroy(hit.collider.gameObject);
+                            break;
+                        }
                         SpawnitemManager spawnitemManager = hit.collider.GetComponent<SpawnitemManager>();
                         if (spawnitemManager != null)
                         {
@@ -107,6 +143,7 @@ public class Player : MonoBehaviour
             if (isInvincible) {
                 return;
             }
+            hitsound.PlayOneShot(hitsound.clip, 1);
             isInvincible = true;
             StartCoroutine("Blinking");
             Invoke("InvincibleEnd", invincibleTime);
@@ -127,6 +164,9 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             yield return new WaitForSeconds(0.1f);
         }
+    }
+    public InventoryManager GetInventory() {
+        return inventory;
     }
 }
 

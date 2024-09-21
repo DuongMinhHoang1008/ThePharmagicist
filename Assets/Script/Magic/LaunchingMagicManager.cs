@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Magic {
@@ -17,6 +19,13 @@ public class LaunchingMagicManager : MonoBehaviour
     [SerializeField] Magic firstMagic;
     [SerializeField] Magic secondMagic;
     [SerializeField] AccessoryClass accessory;
+    [SerializeField] GameObject firstMagicIcon;
+    [SerializeField] GameObject firstMagicLevel;
+    [SerializeField] GameObject secondMagicIcon;
+    [SerializeField] GameObject secondMagicLevel;
+    [SerializeField] GameObject accessoryIcon;
+    [SerializeField] GameObject playerElementIcon;
+    [SerializeField] AudioSource shootsound;
     Vector2 position = Vector2.zero;
     bool onFirstMagicCooldown = false;
     bool onSecondMagicCooldown = false;
@@ -24,6 +33,8 @@ public class LaunchingMagicManager : MonoBehaviour
     void Start()
     {
         PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
+        UpdateMagicIcon();
+        playerElementIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[PlayerInfo.Instance().element].sprite;
     }
 
     // Update is called once per frame
@@ -56,6 +67,7 @@ public class LaunchingMagicManager : MonoBehaviour
         }
     }
     void ShootOneProjectile(Vector2 direction, Magic magic) {
+        shootsound.PlayOneShot(shootsound.clip, 1);
         float dmgModifier = 1f;
         if (accessory != null) {
             switch(magic.scriptableMagic.element) {
@@ -112,5 +124,49 @@ public class LaunchingMagicManager : MonoBehaviour
     }
     void OutOfSecondMagicCooldown() {
         onSecondMagicCooldown = false;
+    }
+    public void ChangeFirstMagic(Magic magic) {
+        firstMagic = magic;
+        UpdateMagicIcon();
+    }
+    public void ChangeSecondMagic(Magic magic) {
+        secondMagic = magic;
+        UpdateMagicIcon();
+    }
+    public void ChangeAccessory(AccessoryClass acc) {
+        accessory = acc;
+        UpdateMagicIcon();
+    }
+    public AccessoryClass GetAccessory() {
+        return accessory;
+    }
+    void UpdateMagicIcon() {
+        PlayerInfo.Instance().UpdatePlayerGlobalMagic(ref firstMagic, ref secondMagic, ref accessory);
+        if (firstMagic.scriptableMagic != null) {
+            firstMagicIcon.SetActive(true);
+            firstMagicIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[firstMagic.scriptableMagic.element].sprite;
+            firstMagicLevel.GetComponent<TextMeshProUGUI>().text = firstMagic.level.ToString();
+        } else {
+            firstMagicIcon.SetActive(false);
+            firstMagicLevel.GetComponent<TextMeshProUGUI>().text = "0";
+        }
+
+        if (secondMagic.scriptableMagic != null) {
+            secondMagicIcon.SetActive(true);
+            secondMagicIcon.GetComponent<Image>().sprite = GlobalGameVar.Instance().elementDic[secondMagic.scriptableMagic.element].sprite;
+            secondMagicLevel.GetComponent<TextMeshProUGUI>().text = secondMagic.level.ToString();
+        } else {
+            secondMagicIcon.SetActive(false);
+            secondMagicLevel.GetComponent<TextMeshProUGUI>().text = "0";
+        }
+
+        if (accessory != null) {
+            accessoryIcon.SetActive(true);
+            accessoryIcon.GetComponent<Image>().sprite = accessory.itemIcon;
+        } else {
+            accessoryIcon.SetActive(false);
+        }
+
+        
     }
 }

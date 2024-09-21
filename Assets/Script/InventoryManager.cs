@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Thirdweb;
 
 public class InventoryManager : MonoBehaviour
 {
-    private UIManager UIManager;
-    [SerializeField] private GameObject slotsHolder;
-    [SerializeField] private ItemClass itemToAdd;
+    protected UIManager UIManager;
+    [SerializeField] protected GameObject slotsHolder;
+    [SerializeField] protected ItemClass itemToAdd;
     
-    [SerializeField] private ItemClass itemToRemove;
+    [SerializeField] protected ItemClass itemToRemove;
     [SerializeField] public SlotClass[] items;
-    [SerializeField] private SlotClass[] herb;
-    [SerializeField] private SlotClass[] potion;
+    [SerializeField] protected SlotClass[] herb;
+    [SerializeField] protected SlotClass[] potion;
 
-    [SerializeField] private SlotClass[] startingItems;
+    [SerializeField] protected SlotClass[] startingItems;
 
-    [SerializeField] private SlotClass movingSlot;//di chuyển các slot khác cho cái item
-    [SerializeField] private SlotClass originalSlot;
-    [SerializeField] private SlotClass tempSlot;
+    [SerializeField] protected SlotClass movingSlot;//di chuyển các slot khác cho cái item
+    [SerializeField] protected SlotClass originalSlot;
+    [SerializeField] protected SlotClass tempSlot;
 
-   
+    [SerializeField] GameObject showItemPickup;
 
     public Image itemCursor;
 
     [SerializeField] public GameObject[] slots;
+    [SerializeField] AudioSource audioSource;
     public bool isMoving;
 
     //[SerializeField] private List<SlotClass> items = new List<SlotClass>();
@@ -60,9 +62,8 @@ public class InventoryManager : MonoBehaviour
             }
             
         }
-
+        PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
-
         RefreshUI();
     }
     public void Classify()
@@ -144,7 +145,7 @@ public class InventoryManager : MonoBehaviour
         }
         
     }
-    private void RefreshHerb()
+    protected void RefreshHerb()
     {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -162,7 +163,7 @@ public class InventoryManager : MonoBehaviour
                 }
             }
     }
-    private void RefreshPotion()
+    protected void RefreshPotion()
     {
         
         for (int i = 0; i < slots.Length; i++)
@@ -206,6 +207,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     public void AddItem(ItemClass item,int quantity)
     {
+        ShowItemRecieve(item.ItemName);
         SlotClass slot = ContainItem(item);
         if(slot != null)
         {
@@ -227,6 +229,7 @@ public class InventoryManager : MonoBehaviour
     }
     public void RemoveItem(ItemClass item,int quantity)
     {
+        ShowItemRecieve("- " + item.ItemName);
         SlotClass temp = ContainItem(item);
         if (temp != null)
         {
@@ -270,7 +273,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    private SlotClass GetCloseSlot()
+    protected SlotClass GetCloseSlot()
     {
         for(int i = 0; i < slots.Length; i++)
         {
@@ -284,7 +287,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
     
-    private void BeginMove()
+    protected void BeginMove()
     {
         originalSlot = GetCloseSlot();
         if(originalSlot == null || originalSlot.GetItem() == null)
@@ -299,7 +302,7 @@ public class InventoryManager : MonoBehaviour
         return;
         
     }
-    private void EndMove()
+    protected void EndMove()
     {
         originalSlot = GetCloseSlot();
 
@@ -347,6 +350,38 @@ public class InventoryManager : MonoBehaviour
         return;
     }
    
-
-
+    void ShowItemRecieve(string itemName) {
+        if (showItemPickup != null) {
+            audioSource.PlayOneShot(audioSource.clip, 1);
+            GameObject showItem = Instantiate(showItemPickup, transform.position, Quaternion.identity);
+            showItem.GetComponent<TextMeshPro>().text = itemName;
+            showItem.GetComponent<TextMeshPro>().fontSize = 5;
+            showItem.GetComponent<TextMeshPro>().color = Color.white;
+            float randRad = UnityEngine.Random.Range(60, 120) * Mathf.Deg2Rad;
+            Vector2 direc = new Vector2(Mathf.Cos(randRad), Mathf.Sin(randRad));
+            showItem.GetComponent<Rigidbody2D>().AddForce(direc * UnityEngine.Random.Range(300, 400));
+        }
+    }
+    public void ClaimNFT(ItemClass item) {
+        if (item is MagicPotionClass) {
+            Debug.Log(item.name);
+            BlockchainManager.Instance.ClaimNFT(item.name);
+        } 
+    }
+    public CurePotionClass FindCurePotion(UseElement useElement) {
+        foreach (SlotClass slot in items) {
+            Debug.Log(slot.GetItem() is CurePotionClass);
+            if (slot.GetItem() is CurePotionClass) {
+                CurePotionClass cure = (CurePotionClass) slot.GetItem();
+                Debug.Log(cure.metalValue + " " + cure.waterValue + " " + cure.woodValue);
+                if (cure.metalValue != useElement.metalValue) continue;
+                if (cure.waterValue != useElement.waterValue) continue;
+                if (cure.woodValue != useElement.woodValue) continue;
+                if (cure.fireValue != useElement.fireValue) continue;
+                if (cure.earthValue != useElement.earthValue) continue;
+                return cure;
+            }
+        }
+        return null;
+    }
 }

@@ -93,13 +93,37 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: lowRate
+      value: 
+      objectReference: {fileID: 11400000, guid: 3e000765232cf0543b29837a2ec9d5e1, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: highRate
+      value: 
+      objectReference: {fileID: 11400000, guid: edbe7190e5f02914a9ddc741beca33af, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: maxHealth
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: mediumRate
+      value: 
+      objectReference: {fileID: 11400000, guid: 198a869cd6c812a46968f0a7fff4e9b3, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
       propertyPath: senseRange
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: canDropItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: verylowRate
+      value: 
+      objectReference: {fileID: 11400000, guid: c82d2ea5d3833614f92f67d4af2cda12, type: 2}
+    - target: {fileID: 8594399565941817295, guid: a5b4bbadc1c74f142ba825397b918b58, type: 3}
+      propertyPath: veryhighRate
+      value: 
+      objectReference: {fileID: 11400000, guid: e50a1c5a149e1f5438eeb18bb9071550, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
