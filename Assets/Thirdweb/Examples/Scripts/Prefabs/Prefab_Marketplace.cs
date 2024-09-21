@@ -4,33 +4,49 @@ using System.Collections.Generic;
 using System.Net.WebSockets;
 using Org.BouncyCastle.Math.Field;
 using UnityEngine;
+using ZXing.Client.Result;
 
 namespace Thirdweb.Examples
 {
     public class Prefab_Marketplace : MonoBehaviour
     {
-        private const string TOKEN_ERC20_CONTRACT = "0x1738247AE53268d2B8C860A372D041B17653D28c";
-        private const string DROP_ERC20_CONTRACT_GOLD = "0x837Da77508c6c131a7A67546a95AfB754e7Fb9b7";
-        private const string DROP_ERC20_CONTRACT_SILV = "0x957d31118d993E52B9414856EA4666f11EB79984";
-         private const string TOKEN_ERC721_CONTRACT = "0x345E7B4CCA26725197f1Bed802A05691D8EF7770";
+        private const string TOKEN_ERC20_CONTRACT = "0x181FCa68CD8145F2f287bC34546542c0c3f15ad7";
+        // private const string DROP_ERC20_CONTRACT_GOLD = "0x837Da77508c6c131a7A67546a95AfB754e7Fb9b7";
+        // private const string DROP_ERC20_CONTRACT_SILV = "0x957d31118d993E52B9414856EA4666f11EB79984";
+        //  private const string TOKEN_ERC721_CONTRACT = "0x22A5c81399224Fd55EA33B9a43f0a8333fBfF544";
         // private const string DROP_ERC721_CONTRACT = "0x6170158C1e6C6cd91091b4dcF84F6ae3a75A7707";
-        private const string DROP_ERC1155_CONTRACT = "0xE6FC216dBb76B25af3D3d78643B89474bF645CF8";
         // private const string PACK_CONTRACT = "0xE33653ce510Ee767d8824b5EcDeD27125D49889D";
-        private const string MARKETPLACE_CONTRACT = "0x450667c45F79C6a936d058c2BD044CB6aF8e11A5";
-        private const string TOKEN_ERC1155_CONTRACT = "0xDf1020aC916d9B6136579218f64a30Cf05728ACD";
+        //private const string TOKEN_ERC1155_CONTRACT = "0xDf1020aC916d9B6136579218f64a30Cf05728ACD";
+        private const string MARKETPLACE_CONTRACT = "0xe1aa5ed064D53e9Cf94aaef5190eDf00a50fD003";
+        private const string DROP_ERC1155_CONTRACT = "0xc1Ee09eD05A1fA7FaCf64356ba8dEACcDb348d21";
+        private const string SILV_ADDRESS = "0x898cA645E4D8E4c21cBAcf4EFBE7CdAB5345E791";
+        private const string GOLD_ADDRESS = "0xC56258A3ee06d48A5082735A88BC4Ace635E3fEA";
+
         // Fetching     
         public async void Fetch_DirectListing()
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 var contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
-                var result = await contract.Marketplace.DirectListings.GetAll();
-                Debugger.Instance.Log("[Fetch_DirectListing] Success", result.ToString());
+                Debug.Log("Get Contract - Success");
+
+                Marketplace marketplace = contract.Marketplace;
+                Debug.Log(marketplace);
+                
+                var result = await marketplace.DirectListings.GetAll();
+                foreach (var item in result)
+                {
+                    Debug.Log(item);
+                }
+                Debug.Log(marketplace.DirectListings);
+                Debug.Log(result);
+                //Debugger.Instance.Log("[Fetch_DirectListing] Success", result.ToString());
+
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Fetch_DirectListing] Error", e.Message);
+               Debug.Log(e);
             }
         }
 
@@ -38,14 +54,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 var contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.EnglishAuctions.GetAuction("0");
-                Debugger.Instance.Log("[Fetch_Auction] Sucess", result.ToString());
+                //Debugger.Instance.Log("[Fetch_Auction] Sucess", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Fetch_Auction] Error", e.Message);
+                //Debugger.Instance.Log("[Fetch_Auction] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -53,39 +70,53 @@ namespace Thirdweb.Examples
         { 
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 var contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.Offers.GetOffer("0");
-                Debugger.Instance.Log("[Fetch_Offer] Sucess", result.ToString());
+                //Debugger.Instance.Log("[Fetch_Offer] Sucess", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Fetch_Offer] Error", e.Message);
+                //Debugger.Instance.Log("[Fetch_Offer] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
         // Creating
 
-        public async void Create_Listing()
+        public async void Create_Listing(int tokenId)
         {
             try
-            {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+            {   
+                Debug.Log("Create Listing - Start. ID: " + tokenId);
+                Contract nftContract = ThirdwebManager.Instance.SDK.GetContract(DROP_ERC1155_CONTRACT);
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
+                TransactionResult trans = await nftContract.Write("setApprovalForAll", MARKETPLACE_CONTRACT, true);
+                Debug.Log("ApprovalForAll - Success");
+                string currencyContract;
+                if (tokenId >= 22 && tokenId <= 40)
+                {
+                    currencyContract = SILV_ADDRESS;
+                }
+                else
+                {
+                    currencyContract = GOLD_ADDRESS;
+                }
                 var result = await contract.Marketplace.DirectListings.CreateListing(
                     new CreateListingInput()
                     {
-                        assetContractAddress = TOKEN_ERC1155_CONTRACT,
-                        tokenId = "0",
-                        pricePerToken = "0.000000000000000001", // 1 wei
-                        quantity = "100"
+                        currencyContractAddress = currencyContract,
+                        assetContractAddress = DROP_ERC1155_CONTRACT,
+                        tokenId = tokenId.ToString(),
+                        quantity = "1",
+                        pricePerToken = "30"
                     }
                 );
-                Debugger.Instance.Log("[Create_Listing] Success", result.ToString());
+                Debug.Log(result);
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Create_Listing] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -93,22 +124,23 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.EnglishAuctions.CreateAuction(
                     new CreateAuctionInput()
                     {
-                        assetContractAddress = TOKEN_ERC1155_CONTRACT,
+                        assetContractAddress = DROP_ERC1155_CONTRACT,
                         tokenId = "0",
                         buyoutBidAmount = "0.0000000000000001",
                         minimumBidAmount = "0.000000000000000001"
                     }
                 );
-                Debugger.Instance.Log("[Create_Auction] Success", result.ToString());
+                //Debugger.Instance.Log("[Create_Auction] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Create_Auction] Error", e.Message);
+                //Debugger.Instance.Log("[Create_Auction] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -116,38 +148,45 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.Offers.MakeOffer(
                     new MakeOfferInput()
                     {
-                        assetContractAddress = TOKEN_ERC1155_CONTRACT,
+                        assetContractAddress = DROP_ERC1155_CONTRACT,
                         tokenId = "0",
                         totalPrice = "0.000000000000000001",
                     }
                 );
-                Debugger.Instance.Log("[Make_Offer] Success", result.ToString());
+                //Debugger.Instance.Log("[Make_Offer] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Make_Offer] Error", e.Message);
+                //Debugger.Instance.Log("[Make_Offer] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
         // Closing
 
-        public async void Buy_Listing()
+        public async void Buy_Listing(string listingId)
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                var Address = await ThirdwebManager.Instance.SDK.Wallet.GetAddress();
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
-                var result = await contract.Marketplace.DirectListings.BuyFromListing("2", "1", await ThirdwebManager.Instance.SDK.Wallet.GetAddress());
-                Debugger.Instance.Log("[Buy_Listing] Success", result.ToString());
+                Marketplace marketplace = contract.Marketplace;
+                
+                Debug.Log("Get Contract, Market - success");
+                var result = await marketplace.DirectListings.BuyFromListing(listingId, "1", Address);
+                Debug.Log(result);
+                //Debugger.Instance.Log("[Buy_Listing] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Buy_Listing] Error", e.Message);
+                //Debugger.Instance.Log("[Buy_Listing] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -155,14 +194,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.EnglishAuctions.BuyoutAuction("0");
-                Debugger.Instance.Log("[Buyout_Auction] Success", result.ToString());
+                //Debugger.Instance.Log("[Buyout_Auction] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Buyout_Auction] Error", e.Message);
+                //Debugger.Instance.Log("[Buyout_Auction] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -170,14 +210,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.Offers.AcceptOffer("0");
-                Debugger.Instance.Log("[Accept_Offer] Success", result.ToString());
+                //Debugger.Instance.Log("[Accept_Offer] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Accept_Offer] Error", e.Message);
+                //Debugger.Instance.Log("[Accept_Offer] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -187,14 +228,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.DirectListings.CancelListing("2");
-                Debugger.Instance.Log("[Cancel_Listing] Success", result.ToString());
+                //Debugger.Instance.Log("[Cancel_Listing] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Cancel_Listing] Error", e.Message);
+                //Debugger.Instance.Log("[Cancel_Listing] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -202,14 +244,15 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.EnglishAuctions.CancelAuction("0");
-                Debugger.Instance.Log("[Cancel_Auction] Success", result.ToString());
+                //Debugger.Instance.Log("[Cancel_Auction] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Cancel_Auction] Error", e.Message);
+                //Debugger.Instance.Log("[Cancel_Auction] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
 
@@ -217,16 +260,18 @@ namespace Thirdweb.Examples
         {
             try
             {
-                Debugger.Instance.Log("Request Sent", "Pending confirmation...");
+                //Debugger.Instance.Log("Request Sent", "Pending confirmation...");
                 Contract contract = ThirdwebManager.Instance.SDK.GetContract(MARKETPLACE_CONTRACT);
                 var result = await contract.Marketplace.Offers.CancelOffer("0");
-                Debugger.Instance.Log("[Cancel_Offer] Success", result.ToString());
+                //Debugger.Instance.Log("[Cancel_Offer] Success", result.ToString());
             }
             catch (System.Exception e)
             {
-                Debugger.Instance.Log("[Cancel_Offer] Error", e.Message);
+                //Debugger.Instance.Log("[Cancel_Offer] Error", e.Message);
+                Debug.Log(e.ToString());
             }
         }
         
     }
 }
+
