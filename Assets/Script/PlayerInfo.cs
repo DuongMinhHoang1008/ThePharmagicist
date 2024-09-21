@@ -41,15 +41,27 @@ public class PlayerInfo
         this.element = element;
     }
     public void UpdatePlayerGlobalMagic(ref Magic fmagic, ref Magic smagic, ref AccessoryClass acc) {
-        if (firstMagic == null || firstMagic.scriptableMagic == null) {
+        if (firstMagic == null || firstMagic.scriptableMagic == null 
+            || (fmagic != null && fmagic.scriptableMagic != null 
+                && (
+                    (firstMagic.scriptableMagic != fmagic.scriptableMagic) || (firstMagic.level != fmagic.level)
+                    )
+             )
+         ) {
             firstMagic = fmagic;
         }
         fmagic = firstMagic;
-        if (secondMagic == null || secondMagic.scriptableMagic == null) {
+        if (secondMagic == null || secondMagic.scriptableMagic == null
+            || (smagic != null && smagic.scriptableMagic != null 
+                && (
+                    (secondMagic.scriptableMagic != smagic.scriptableMagic) || (secondMagic.level != smagic.level)
+                    )
+             )
+            ) {
             secondMagic = smagic;
         }
         smagic = secondMagic;
-        if (accessory == null) {
+        if (accessory == null || (acc != null && accessory != acc)) {
             accessory = acc;
         }
         acc = accessory;

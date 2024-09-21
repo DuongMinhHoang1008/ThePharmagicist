@@ -143,6 +143,7 @@ public class MagicInventoryClass : InventoryManager
         useItemInSlot.RemoveItem();
         if (itemClass is MagicPotionClass) {
             MagicPotionClass magicPotionClass = (MagicPotionClass) itemClass;
+            Debug.Log("ChangeHere");
             playerMagicManager.ChangeFirstMagic(magicPotionClass.GetMagic());
         }
         RefreshUI();
