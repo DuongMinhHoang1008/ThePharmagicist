@@ -3227,7 +3227,7 @@ Transform:
   m_GameObject: {fileID: 1180009057}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9658546, y: 4.79, z: -10}
+  m_LocalPosition: {x: 6.8375463, y: 4.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17681,6 +17681,10 @@ PrefabInstance:
       propertyPath: spawnPatients
       value: 
       objectReference: {fileID: 428630665}
+    - target: {fileID: 3850021632226807617, guid: ccb5f88d46be0b143acfac655d63b718, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4873138085940387517, guid: ccb5f88d46be0b143acfac655d63b718, type: 3}
       propertyPath: m_Name
       value: QuestUI

@@ -9,7 +9,9 @@ public class MagicIngredient : HerbClass
     public MagicPotionClass GetMagicPotion() { return magicPotion; }
     public override string GetDescription()
     {
-        string info = "Ma thuật: " + magicPotion.GetMagic().scriptableMagic.magicName + "\nNguyên tố: ";
+        string info = magicPotion.ItemName 
+                        + "\nMa thuật: " + magicPotion.GetMagic().scriptableMagic.magicName
+                        + "\nNguyên tố: ";
         switch (magicPotion.GetMagic().scriptableMagic.element) {
             case Element.Metal:
                 info += "Kim";

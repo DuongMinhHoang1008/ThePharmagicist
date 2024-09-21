@@ -12,7 +12,8 @@ public class MagicPotionClass : CurePotionClass
         return name;
     }
     override public string GetInfoPotion() {
-        string info = "Nguyên tố: ";
+        string info = "Ma thuật: " + magic.scriptableMagic.magicName + " " + magic.level 
+                    + "\nNguyên tố: ";
         switch (magic.scriptableMagic.element) {
             case Element.Metal:
                 info += "Kim";
