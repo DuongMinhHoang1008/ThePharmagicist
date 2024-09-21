@@ -84,9 +84,9 @@ public class QuestUI : MonoBehaviour
         }
 
         QuestStatus.text = "Tiến độ  " + quest.questCollected + " / " + quest.questColletion;
-        if (quest.questCollected >= quest.questColletion) {
-            QuestStatus.text += " Hoàn thành";
-        }
+        // if (quest.questCollected >= quest.questColletion) {
+        //     QuestStatus.text += " Hoàn thành";
+        // }
     }
 
     private void SwitchQuest(QuestLogScrollingList questList)

@@ -3227,7 +3227,7 @@ Transform:
   m_GameObject: {fileID: 1180009057}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.8375463, y: 4.79, z: -10}
+  m_LocalPosition: {x: 3.6787157, y: 4.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10561,6 +10561,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 7021049212136661029, guid: cebe34367588c4aada8f6d660ab99256, type: 3}
+      propertyPath: endPoint
+      value: https://27ad-2405-4802-2448-23c0-28f5-72cd-bb03-9321.ngrok-free.app/chat_with_knowledge_base
+      objectReference: {fileID: 0}
     - target: {fileID: 7021049212136661050, guid: cebe34367588c4aada8f6d660ab99256, type: 3}
       propertyPath: listChatMode.Array.data[1].chatState
       value: 
@@ -17695,7 +17699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5051515218569430486, guid: ccb5f88d46be0b143acfac655d63b718, type: 3}
       propertyPath: m_text
-      value: "Ph\u1EA7n th\u01B0\u1EDFng: 10 SILV"
+      value: "Ph\u1EA7n th\u01B0\u1EDFng: 50 SILV"
       objectReference: {fileID: 0}
     - target: {fileID: 7247318246335574528, guid: ccb5f88d46be0b143acfac655d63b718, type: 3}
       propertyPath: timeToRefresh

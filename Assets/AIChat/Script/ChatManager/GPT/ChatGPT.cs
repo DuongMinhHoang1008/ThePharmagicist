@@ -10,7 +10,7 @@ namespace ThangChibaGPT
     {
         [SerializeField]
         [Tooltip("Endpoint for the FastAPI server")]
-        private string endPoint = "https://32fc-123-16-239-189.ngrok-free.app/chat_with_knowledge_base";
+        private string endPoint = "https://27ad-2405-4802-2448-23c0-28f5-72cd-bb03-9321.ngrok-free.app/chat_with_knowledge_base";
 
         public void Send(string chatContent, AIChatController controller)
         {
