@@ -63,7 +63,7 @@ public class BrewingInventoryManager : MonoBehaviour
             }
             
         }
-
+        PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
         tempItems = new SlotClass[items.Length];
         CopyInventory(items, ref tempItems);

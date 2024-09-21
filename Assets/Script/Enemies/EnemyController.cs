@@ -114,6 +114,7 @@ public class EnemyController : MonoBehaviour
             ShowDamageRecieve(damage * damageModifier, dmgColor);
             health -= damage * damageModifier;
             enemyHealthBar.updateHealthBar(health, maxHealth);
+            Debug.Log(status);
             if (status != StatusEffect.None && !statusEffects[status]) {
                 statusEffects[status] = true;
                 OnStatusEffect(status, level);
@@ -153,7 +154,10 @@ public class EnemyController : MonoBehaviour
         }
     }
     IEnumerator OnBurn(int level) {
-        float dmgModifier = 1f + PlayerInfo.Instance().accessory.fireBuff;
+        float dmgModifier = 1f;
+        if(PlayerInfo.Instance().accessory != null) {
+            dmgModifier += PlayerInfo.Instance().accessory.fireBuff;
+        }
         Element playerElement = PlayerInfo.Instance().element;
         if (playerElement == Element.Fire) {
             dmgModifier *= 1.5f;
@@ -175,7 +179,10 @@ public class EnemyController : MonoBehaviour
         burnIcon.SetActive(false);
     }
     IEnumerator OnPoison(int level) {
-        float dmgModifier = 1f + PlayerInfo.Instance().accessory.woodBuff;
+        float dmgModifier = 1f;
+        if(PlayerInfo.Instance().accessory != null) {
+            dmgModifier += PlayerInfo.Instance().accessory.woodBuff;
+        }
         Element playerElement = PlayerInfo.Instance().element;
         if (playerElement == Element.Wood) {
             dmgModifier *= 1.5f;

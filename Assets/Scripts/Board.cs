@@ -67,8 +67,7 @@ public class Board : MonoBehaviour
                             + "Wo" + elementNumber[Element.Wood]
                             + "F" + elementNumber[Element.Fire]
                             + "E" + elementNumber[Element.Earth]; 
-            string path = "Assets/Resources/CurePotion/" + name + ".json";
-            if (!System.IO.File.Exists(path)) {
+            if (!PlayerInfo.Instance().curePotionDic.ContainsKey(name)) {
                 curePotionClass.SetElementValue(elementNumber[Element.Metal],
                                                 elementNumber[Element.Water],
                                                 elementNumber[Element.Wood],
@@ -76,9 +75,9 @@ public class Board : MonoBehaviour
                                                 elementNumber[Element.Earth],
                                                 curePotionIcon);
 
-                SaveToJSON(curePotionClass, path);
+                SaveToDic(curePotionClass, name);
             } else {
-                curePotionClass = LoadFromJSON(path);
+                curePotionClass = LoadFromDic(name);
             }
 
             brewingInventoryManager.AddItem(curePotionClass, 1);
@@ -119,26 +118,16 @@ public class Board : MonoBehaviour
         }
         return false;
     }
-    public void SaveToJSON(CurePotionClass data, string path)
+    public void SaveToDic(CurePotionClass data, string name)
     {
-        string json = JsonUtility.ToJson(data);
-        System.IO.File.WriteAllText(path, json);
-        Debug.Log("Saved ScriptableObject as JSON to " + path);
+        PlayerInfo.Instance().curePotionDic.Add(name, data);
+        Debug.Log("Saved " + name +" to Dictionary");
     }
-    CurePotionClass LoadFromJSON(string path)
+    CurePotionClass LoadFromDic(string name)
     {
-        CurePotionClass loadedData = null;
-        if (System.IO.File.Exists(path))
-        {
-            string json = System.IO.File.ReadAllText(path);
-            loadedData = ScriptableObject.CreateInstance<CurePotionClass>();
-            JsonUtility.FromJsonOverwrite(json, loadedData);
-        }
-        else
-        {
-            Debug.LogError("File not found: " + path);
-        }
-        return loadedData;
+        CurePotionClass data = PlayerInfo.Instance().curePotionDic[name];
+        Debug.Log("Get from Dictionary successfully");
+        return data;
     }
 
 }

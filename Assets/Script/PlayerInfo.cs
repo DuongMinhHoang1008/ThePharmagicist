@@ -15,8 +15,11 @@ public class PlayerInfo
     public AccessoryClass accessory;
     public int gold {get; private set; }
     public int silv {get; private set; }
+    public Dictionary<string, CurePotionClass> curePotionDic;
     bool isGetNFT = false;
-    private PlayerInfo() {}
+    private PlayerInfo() {
+        curePotionDic = new Dictionary<string, CurePotionClass>();
+    }
     public static PlayerInfo Instance() {
         if (instance == null) {
             instance = new PlayerInfo();
