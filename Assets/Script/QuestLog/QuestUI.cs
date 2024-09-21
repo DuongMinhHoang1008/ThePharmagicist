@@ -85,7 +85,7 @@ public class QuestUI : MonoBehaviour
 
         QuestStatus.text = "Tiến độ  " + quest.questCollected + " / " + quest.questColletion;
         if (quest.questCollected >= quest.questColletion) {
-            QuestStatus.text += "   Đã hoàn thành";
+            QuestStatus.text += " Hoàn thành";
         }
     }
 
