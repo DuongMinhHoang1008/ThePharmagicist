@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSON: {fileID: 4900000, guid: 9cc12de3af45fb1419a56099873be932, type: 3}
+  questPrefab: {fileID: 0}
 --- !u!1 &7010772292096723880
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +151,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7248306097353325460}
   - component: {fileID: 3988182768173309072}
-  - component: {fileID: 1902347934369621049}
   - component: {fileID: 2880129617196262460}
   m_Layer: 0
   m_Name: Patient_Allergy (1)
@@ -228,33 +228,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &1902347934369621049
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7010772292096723880}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!60 &2880129617196262460
 PolygonCollider2D:
   m_ObjectHideFlags: 0
