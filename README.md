@@ -3,7 +3,7 @@
 - Thể loại: RPG, phiêu lưu, giải đố
 - Đối tượng hướng tới: 18 - 35 tuổi
 - Chủ đề: Ma thuật và Y dược
-- Bối cảnh: Một đất nước phía Đông (dựa trên nước Đại Việt thời Hậu Lê) trong một thế giới giả tưởng nơi con người có thể sử dụng ma thuật khi họ đạt tới cảnh giới nhất định trong lĩnh vực y dược, những người này được gọi là Ma Dược Sư, người chơi trong vai một Ma Dược Sư mới vào nghề, thành viên mới của một tổ chức Kim Quy Hội, một hội của những Ma Dược Sư cùng lí tưởng hướng đến sức khỏe mạnh mẽ và bền vững
+- Bối cảnh: Một đất nước phía Đông (dựa trên nước Đại Việt thời Hậu Lê) trong một thế giới giả tưởng nơi con người có thể sử dụng ma thuật khi họ đạt tới cảnh giới nhất định trong lĩnh vực y dược, những người này được gọi là Ma Dược Sư, người chơi trong vai một Ma Dược Sư mới vào nghề, thành viên mới của tổ chức Kim Quy Hội, một hội của những Ma Dược Sư cùng lí tưởng hướng đến sức khỏe mạnh mẽ và bền vững
 ## Công nghệ sử dụng
 - Blockchain
 - Thirdweb SDK
