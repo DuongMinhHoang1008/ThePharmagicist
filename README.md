@@ -36,6 +36,14 @@
 - Chế thuốc
 - Ma thuật và săn quái
 - Nhận trợ giúp từ trợ lí AI (chỉ chạy được trên local tại vì muốn deploy lên thì mất phí)
+## Ngũ hành sinh khắc
+​Các thành phần bên trong game đều ảnh hưởng bởi ngũ hành sinh khắc
+​- Người chơi và quái đều có một nguyên tố.
+- Người chơi dùng nguyên tố nào thì sẽ tăng sát thương cho nguyên tố đó, nếu nguyên tố của phép khắc nguyên tố của người chơi, hoặc nguyên tố người chơi khắc nguyên tố phép thì sẽ giảm sát thương
+- Quái nếu nhận sát thương nguyên tố khắc nguyên tố của nó thì sẽ nhận nhiều sát thương hơn, nếu sát thương nguyên tố sinh nguyên tố của quái thì sẽ giảm sát thương
+- Thảo d​ược cũng có nguyên tố, chuyên dùng để chế thuốc, khi chế thuốc, nguyên tố A sinh nguyên tố B hợp vào nhau sẽ gấp đôi mức độ của B, nếu A khắc B hoặc B khắc A, chúng sẽ triệt tiêu nhau
+- Bệnh tật là sự mất cân bằng nguyên tố, sẽ c​có nguyên tố thừa hoặc thiếu
+- Muốn chữa bệnh cần tạo ra thuốc có nguyên tố lấp đầy khoảng trống thiếu, còn thừa thì cần nguyên t​ố khắc để triệt tiêu
 ## Điều khiển
 - Di chuyển bằng: WASD hoặc mũi tên
 - I: mở túi đồ
