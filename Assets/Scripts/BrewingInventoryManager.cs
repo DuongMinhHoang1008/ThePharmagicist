@@ -408,8 +408,8 @@ public class BrewingInventoryManager : MonoBehaviour
         itemInfo.active = false;
     }
     public void ClaimNFT(ItemClass item) {
-        if (item is MagicPotionClass || item is AccessoryClass) {
-            BlockchainManager.Instance.ClaimNFT(item.name);
-        } 
+        // if (item is MagicPotionClass || item is AccessoryClass) {
+        //     BlockchainManager.Instance.ClaimNFT(item.name);
+        // } 
     }
 }

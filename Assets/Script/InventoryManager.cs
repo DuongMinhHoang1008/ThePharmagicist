@@ -54,14 +54,14 @@ public class InventoryManager : MonoBehaviour
             potion[i] = new SlotClass();
         }
 
-        for(int i = 0; i < startingItems.Length; i++)
-        {
-            if(startingItems[i].GetQuantity() >= 1)
-            {
-                items[i] = startingItems[i];
-            }
+        // for(int i = 0; i < startingItems.Length; i++)
+        // {
+        //     if(startingItems[i].GetQuantity() >= 1)
+        //     {
+        //         items[i] = startingItems[i];
+        //     }
             
-        }
+        // }
         PlayerInfo.Instance().UpdateInventoryFromBlockchain(items.Length);
         PlayerInfo.Instance().UpdateGlobalInventory(ref items);
         RefreshUI();
@@ -363,10 +363,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
     public void ClaimNFT(ItemClass item) {
-        if (item is MagicPotionClass) {
-            Debug.Log(item.name);
-            BlockchainManager.Instance.ClaimNFT(item.name);
-        } 
+        // if (item is MagicPotionClass) {
+        //     Debug.Log(item.name);
+        //     BlockchainManager.Instance.ClaimNFT(item.name);
+        // } 
     }
     public CurePotionClass FindCurePotion(UseElement useElement) {
         foreach (SlotClass slot in items) {

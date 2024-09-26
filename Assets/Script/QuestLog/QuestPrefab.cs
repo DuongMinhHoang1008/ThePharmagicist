@@ -26,7 +26,7 @@ public class QuestPrefab : MonoBehaviour
         if (questCollected < questColletion) {
             questCollected += 1;
             if (questCollected >= questColletion) {
-                BlockchainManager.Instance.ClaimSilv(1);
+                //BlockchainManager.Instance.ClaimSilv(1);
                 PlayerInfo.Instance().MoreSilv(50);
                 Debug.Log(PlayerInfo.Instance());
             }
